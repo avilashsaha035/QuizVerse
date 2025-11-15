@@ -13,7 +13,15 @@ return new class extends Migration
     {
         Schema::create('exam_attempt_users', function (Blueprint $table) {
             $table->id();
+            $table->foreignId('user_id')->constrained('users')->onDelete('cascade');
+            $table->foreignId('exam_id')->constrained('exams')->onDelete('cascade');
+            $table->timestamp('started_at')->nullable();
+            $table->timestamp('submitted_at')->nullable();
+            $table->integer('score')->nullable();
+            $table->decimal('percentile', 5, 2)->nullable();
             $table->timestamps();
+
+            $table->index(['user_id', 'exam_id']);
         });
     }
 

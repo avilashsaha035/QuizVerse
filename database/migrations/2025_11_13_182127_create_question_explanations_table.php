@@ -13,6 +13,9 @@ return new class extends Migration
     {
         Schema::create('question_explanations', function (Blueprint $table) {
             $table->id();
+            $table->foreignId('question_id')->constrained('questions')->onDelete('cascade');
+            $table->text('explanation_text');
+            $table->string('language')->default('en');
             $table->timestamps();
         });
     }

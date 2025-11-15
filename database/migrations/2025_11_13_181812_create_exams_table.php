@@ -13,6 +13,13 @@ return new class extends Migration
     {
         Schema::create('exams', function (Blueprint $table) {
             $table->id();
+            $table->string('title');
+            $table->text('description')->nullable();
+            $table->string('exam_type'); // BCS, Bank, IELTS, Varsity
+            $table->integer('duration_minutes');
+            $table->boolean('is_active')->default(true);
+            $table->string('language')->default('en');
+            $table->foreignId('created_by')->constrained('users')->onDelete('cascade');
             $table->timestamps();
         });
     }

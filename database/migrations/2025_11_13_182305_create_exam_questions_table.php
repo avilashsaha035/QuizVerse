@@ -13,7 +13,13 @@ return new class extends Migration
     {
         Schema::create('exam_questions', function (Blueprint $table) {
             $table->id();
+            $table->foreignId('exam_id')->constrained('exams')->onDelete('cascade');
+            $table->foreignId('question_id')->constrained('questions')->onDelete('cascade');
+            $table->integer('order')->default(0);
             $table->timestamps();
+
+            $table->unique(['exam_id', 'question_id']); // prevent duplicates
+            $table->index(['exam_id', 'order']);        // fast ordered fetch
         });
     }
 

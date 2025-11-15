@@ -13,6 +13,12 @@ return new class extends Migration
     {
         Schema::create('imports', function (Blueprint $table) {
             $table->id();
+            $table->foreignId('admin_id')->constrained('users')->onDelete('cascade');
+            $table->string('file_name');
+            $table->string('file_type'); // csv/xlsx
+            $table->enum('status', ['success', 'failure']);
+            $table->foreignId('exam_id')->nullable()->constrained('exams')->onDelete('set null');
+            $table->timestamp('imported_at')->nullable();
             $table->timestamps();
         });
     }
