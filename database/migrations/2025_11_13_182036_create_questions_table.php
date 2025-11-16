@@ -15,6 +15,7 @@ return new class extends Migration
             $table->id();
             $table->text('question_text');
             $table->foreignId('subject_id')->nullable()->constrained('subjects')->onDelete('set null');
+            $table->string('exam_type');
             $table->string('language')->default('en');
             $table->foreignId('created_by')->constrained('users')->onDelete('cascade');
             $table->timestamps();

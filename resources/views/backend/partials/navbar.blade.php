@@ -76,7 +76,7 @@
                                             <a href="#" class="list-group-item-action border-0 border-bottom d-flex p-3">
                                                 <div class="me-3">
                                                     <div class="avatar avatar-md">
-                                                        <img class="avatar-img rounded-circle" src="assets/images/avatar/08.jpg" alt="avatar">
+                                                        <img class="avatar-img rounded-circle" src="{{ asset('backend/assets/images/avatar/08.jpg') }}" alt="avatar">
                                                     </div>
                                                 </div>
                                                 <div>
@@ -148,7 +148,7 @@
                     <li class="nav-item ms-2 ms-md-3 dropdown">
                         <!-- Avatar -->
                         <a class="avatar avatar-sm p-0" href="#" id="profileDropdown" role="button" data-bs-auto-close="outside" data-bs-display="static" data-bs-toggle="dropdown" aria-expanded="false">
-                            <img class="avatar-img rounded-circle" src="assets/images/avatar/01.jpg" alt="avatar">
+                            <img class="avatar-img rounded-circle" src="{{ asset('backend/assets/images/avatar/01.jpg') }}" alt="avatar">
                         </a>
 
                         <!-- Profile dropdown START -->
@@ -158,7 +158,7 @@
                                 <div class="d-flex align-items-center">
                                     <!-- Avatar -->
                                     <div class="avatar me-3 mb-3">
-                                        <img class="avatar-img rounded-circle shadow" src="assets/images/avatar/01.jpg" alt="avatar">
+                                        <img class="avatar-img rounded-circle shadow" src="{{ asset('backend/assets/images/avatar/01.jpg') }}" alt="avatar">
                                     </div>
                                     <div>
                                         <a class="h6 mt-2 mt-sm-0" href="#">Lori Ferguson</a>
@@ -166,7 +166,7 @@
                                     </div>
                                 </div>
                             </li>
-            <li> <hr class="dropdown-divider"></li>
+                            <li> <hr class="dropdown-divider"></li>
                             <!-- Links -->
                             <li><a class="dropdown-item" href="#"><i class="bi bi-person fa-fw me-2"></i>Edit Profile</a></li>
                             <li><a class="dropdown-item" href="#"><i class="bi bi-gear fa-fw me-2"></i>Account Settings</a></li>

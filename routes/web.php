@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Backend\AdminDashboardController;
+use App\Http\Controllers\Backend\QuestionController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 
@@ -30,7 +31,10 @@ Route::middleware('auth')->group(function () {
 });
 Route::middleware('auth')->prefix('admin')->group(function () {
     Route::get('/dashboard', [AdminDashboardController::class, 'dashboard'])->name('admin.dashboard');
-    Route::get('/questions', [AdminDashboardController::class, 'question'])->name('admin.question');
+
+    // ****** Questions ******* //
+    Route::get('/questions', [QuestionController::class, 'index'])->name('admin.question');
+    Route::post('/questions/import', [QuestionController::class, 'store'])->name('admin.question.import');
 });
 
 require __DIR__.'/auth.php';
