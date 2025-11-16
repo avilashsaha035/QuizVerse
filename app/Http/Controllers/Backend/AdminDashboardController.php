@@ -10,4 +10,8 @@ class AdminDashboardController extends Controller
     public function dashboard() {
         return view('backend.dashboard');
     }
+
+    public function question() {
+        return view('backend.question.index');
+    }
 }
