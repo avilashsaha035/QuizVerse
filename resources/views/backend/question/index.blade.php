@@ -2,9 +2,15 @@
 @section('content')
     <div class="page-content-wrapper border">
         <div class="row">
-            <div class="d-sm-flex justify-content-sm-between align-items-center mb-3">
-                <h5 class="mb-2 mb-sm-0">Import Question</h5>
+            <div class="d-sm-flex justify-content-sm-end align-items-center mb-3">
                 <a href="#" class="btn btn-sm btn-primary-soft mb-0" data-bs-toggle="modal" data-bs-target="#import"><i class="bi bi-upload me-2"></i>Import</a>
+            </div>
+
+            <div class="card">
+                <div class="card-header">Questions List</div>
+                <div class="card-body">
+                    {{ $dataTable->table() }}
+                </div>
             </div>
         </div>
 
@@ -39,3 +45,7 @@
 
     </div>
 @endsection
+
+@push('scripts')
+    {{ $dataTable->scripts(attributes: ['type' => 'module']) }}
+@endpush

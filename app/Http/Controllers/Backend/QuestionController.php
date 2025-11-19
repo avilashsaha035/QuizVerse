@@ -7,11 +7,12 @@ use Illuminate\Http\Request;
 use App\Imports\QuestionsImport;
 use App\Http\Controllers\Controller;
 use Maatwebsite\Excel\Facades\Excel;
+use App\DataTables\QuestionDataTable;
 
 class QuestionController extends Controller
 {
-    public function index() {
-        return view('backend.question.index');
+    public function index(QuestionDataTable $dataTable) {
+        return $dataTable->render('backend.question.index');
     }
 
     public function store(Request $request)

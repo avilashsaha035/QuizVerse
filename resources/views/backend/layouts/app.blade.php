@@ -89,6 +89,7 @@
 	<!-- Theme CSS -->
 	<link rel="stylesheet" type="text/css" href="{{ asset('backend/assets/css/style.css') }}">
 
+    {{-- @vite(['resources/sass/app.scss', 'resources/js/app.js']) --}}
 </head>
 
 <body>
@@ -108,6 +109,9 @@
     <!-- Back to top -->
     <div class="back-top"><i class="bi bi-arrow-up-short position-absolute top-50 start-50 translate-middle"></i></div>
 
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+    @vite(['resources/sass/app.scss', 'resources/js/app.js'])
+
     <!-- Bootstrap JS -->
     <script src="{{ asset('backend/assets/vendor/bootstrap/dist/js/bootstrap.bundle.min.js') }}"></script>
 
@@ -118,6 +122,7 @@
 
     <!-- Template Functions -->
     <script src="{{ asset('backend/assets/js/functions.js') }}"></script>
+    @stack('scripts')
 
 </body>
 
