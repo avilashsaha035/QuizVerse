@@ -89,7 +89,7 @@
 	<!-- Theme CSS -->
 	<link rel="stylesheet" type="text/css" href="{{ asset('backend/assets/css/style.css') }}">
 
-    {{-- @vite(['resources/sass/app.scss', 'resources/js/app.js']) --}}
+    @vite(['resources/css/app.css', 'resources/sass/app.scss', 'resources/js/app.js'])
 </head>
 
 <body>
@@ -109,8 +109,8 @@
     <!-- Back to top -->
     <div class="back-top"><i class="bi bi-arrow-up-short position-absolute top-50 start-50 translate-middle"></i></div>
 
+    <!-- Jquery -->
     <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
-    @vite(['resources/sass/app.scss', 'resources/js/app.js'])
 
     <!-- Bootstrap JS -->
     <script src="{{ asset('backend/assets/vendor/bootstrap/dist/js/bootstrap.bundle.min.js') }}"></script>
