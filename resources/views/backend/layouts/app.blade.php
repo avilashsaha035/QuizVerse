@@ -82,7 +82,7 @@
 	<link rel="stylesheet" type="text/css" href="{{ asset('backend/assets/vendor/bootstrap-icons/bootstrap-icons.css') }}">
 	<link rel="stylesheet" type="text/css" href="{{ asset('backend/assets/vendor/apexcharts/css/apexcharts.css') }}">
 	<link rel="stylesheet" type="text/css" href="{{ asset('backend/assets/vendor/overlay-scrollbar/css/overlayscrollbars.min.css') }}">
-
+<link href="https://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.20/summernote.min.css" rel="stylesheet">
     <!-- Font Awesome CSS -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css" integrity="sha512-2SwdPD6INVrV/lHTZbO2nodKhrnDdJK9/kg2XD1r9uGqPo1cUbujc+IYdlYdEErWNu69gVcYgdxlmVmzTWnetw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 
@@ -115,7 +115,7 @@
     <!-- Bootstrap JS -->
     <script src="{{ asset('backend/assets/vendor/bootstrap/dist/js/bootstrap.bundle.min.js') }}"></script>
 
-    <!-- Vendors -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.20/summernote.min.js"></script>    <!-- Vendors -->
     <script src="{{ asset('backend/assets/vendor/purecounterjs/dist/purecounter_vanilla.js') }}"></script>
     <script src="{{ asset('backend/assets/vendor/apexcharts/js/apexcharts.min.js') }}"></script>
     <script src="{{ asset('backend/assets/vendor/overlay-scrollbar/js/overlayscrollbars.min.js') }}"></script>

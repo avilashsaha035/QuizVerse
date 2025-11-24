@@ -14,17 +14,12 @@
                 <div class="card-body">
                     <!-- Basic info -->
                     <div class="row g-3">
-                        <div class="col-md-6">
-                            <label class="form-label">Title <span class="text-danger">*</span></label>
+                        <div class="col-md-12">
+                            <label class="form-label">Exam Title <span class="text-danger">*</span></label>
                             <input type="text" name="title" required class="form-control">
                             @error('title')
                             <small class="text-danger">{{ $message }}</small>
                             @enderror
-                        </div>
-
-                        <div class="col-md-6">
-                            <label class="form-label">Thumbnail (URL)</label>
-                            <input type="text" name="thumbnail" class="form-control">
                         </div>
 
                         <div class="col-md-6">
@@ -41,9 +36,20 @@
                             <input type="text" name="exam_category" placeholder="e.g., preliminary, model_test" class="form-control">
                         </div>
 
+                        <div class="col-md-12">
+                            <label class="form-label">Thumbnail</label>
+                            <input type="file" name="thumbnail" id="thumbnail" class="form-control" accept="image/*">
+
+                            <!-- Preview container -->
+                            <div id="thumbnailPreview" class="mt-2" style="display:none;">
+                                <img src="" alt="Preview" class="img-thumbnail mb-2" style="max-height:150px;">
+                                <button type="button" id="removeThumbnail" class="btn btn-sm btn-danger"><i class="fa-regular fa-trash-can"></i></button>
+                            </div>
+                        </div>
+
                         <div class="col-12">
                             <label class="form-label">Description</label>
-                            <textarea name="description" rows="3" class="form-control"></textarea>
+                            <textarea name="description" id="summernote" rows="3" class="form-control"></textarea>
                         </div>
                     </div>
 
@@ -163,3 +169,34 @@
         </div>
     </div>
 @endsection
+
+@push('scripts')
+<script>
+    $(document).ready(function() {
+        $('#summernote').summernote();
+    });
+  </script>
+    <script>
+        $(document).ready(function () {
+            // Handle file input change
+            $("#thumbnail").on("change", function (e) {
+                const file = e.target.files[0];
+                if (file) {
+                const reader = new FileReader();
+                reader.onload = function (event) {
+                    $("#thumbnailPreview img").attr("src", event.target.result);
+                    $("#thumbnailPreview").show();
+                };
+                reader.readAsDataURL(file);
+                }
+            });
+
+            // Handle remove button
+            $("#removeThumbnail").on("click", function () {
+                $("#thumbnail").val(""); // clear input
+                $("#thumbnailPreview img").attr("src", "");
+                $("#thumbnailPreview").hide();
+            });
+        });
+    </script>
+@endpush
