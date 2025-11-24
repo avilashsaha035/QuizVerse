@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-	<title>Eduport- LMS, Education and Course Theme</title>
+	<title>Quizverse</title>
 
 	<!-- Meta Tags -->
 	<meta charset="utf-8">
@@ -89,7 +89,7 @@
 	<!-- Theme CSS -->
 	<link rel="stylesheet" type="text/css" href="{{ asset('backend/assets/css/style.css') }}">
 
-    @vite(['resources/css/app.css', 'resources/sass/app.scss', 'resources/js/app.js'])
+    @vite(['resources/sass/app.scss', 'resources/js/app.js'])
 </head>
 
 <body>
