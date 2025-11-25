@@ -1,4 +1,7 @@
 @extends('backend.layouts.app')
+@push('title')
+    Questions
+@endpush
 @section('content')
 
     <div class="page-content-wrapper border">
