@@ -1,7 +1,7 @@
 @extends('backend.layouts.app')
 
 @push('title')
-    Create
+    Exam Create
 @endpush
 
 @push('css')
@@ -21,13 +21,13 @@
                 <a href="{{ route('admin.exams.index') }}" class="btn btn-dark btn-sm float-end"> <i class="fa-solid fa-backward"></i> Back</a>
             </div>
 
-            <form action="{{ route('admin.exams.store') }}" method="POST">
+            <form action="{{ route('admin.exams.store') }}" method="POST" enctype="multipart/form-data">
                 @csrf
 
                 <div class="card-body">
                     <!-- Basic info -->
                     <div class="row g-3">
-                        <div class="col-md-12">
+                        <div class="col-md-6">
                             <label class="form-label">Exam Title <span class="text-danger">*</span></label>
                             <input type="text" name="title" required class="form-control">
                             @error('title')
@@ -42,11 +42,6 @@
                                 <option value="{{ $type }}">{{ strtoupper($type) }}</option>
                             @endforeach --}}
                             </select>
-                        </div>
-
-                        <div class="col-md-6">
-                            <label class="form-label">Exam category</label>
-                            <input type="text" name="exam_category" placeholder="e.g., preliminary, model_test" class="form-control">
                         </div>
 
                         <div class="col-md-12">
@@ -70,7 +65,7 @@
                     <div class="row g-3 mt-3">
                         <div class="col-md-4">
                             <label class="form-label">Duration (minutes) <span class="text-danger">*</span></label>
-                            <input type="number" name="duration" min="1" required class="form-control">
+                            <input type="number" name="duration_minutes" min="1" required class="form-control">
                         </div>
 
                         <div class="col-md-4">
@@ -130,6 +125,32 @@
                             <input type="time" name="end_time" class="form-control">
                         </div>
                     </div>
+
+                    <!-- Subject allocations -->
+                    <div class="row g-3 mt-3">
+                        <div class="col-12">
+                            <label class="form-label">Subjects & Question Counts</label>
+                            <div id="subjectContainer">
+                                <!-- First subject row -->
+                                <div class="row g-2 mb-2 subject-row">
+                                    <div class="col-md-6">
+                                        <select name="subject_ids[]" class="form-select" required>
+                                            <option value="">-- Select Subject --</option>
+                                            @foreach($subjects as $sub)
+                                                <option value="{{ $sub->id }}">{{ $sub->name }}</option>
+                                            @endforeach
+                                        </select>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <input type="number" name="subject_counts[]" class="form-control" placeholder="No. of questions" min="1" required>
+                                    </div>
+                                    <div class="col-md-2">
+                                        <button type="button" class="btn btn-sm btn-primary addSubject"><i class="fa fa-plus"></i></button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
 
                 <div class="card-footer bg-light">
@@ -170,6 +191,39 @@
                 $("#thumbnail").val(""); // clear input
                 $("#thumbnailPreview img").attr("src", "");
                 $("#thumbnailPreview").hide();
+            });
+        });
+    </script>
+
+    <!-- Subject Allocation -->
+    <script>
+        $(function() {
+            // Add new subject row
+            $(document).on('click', '.addSubject', function() {
+                let newRow = `
+                    <div class="row g-2 mb-2 subject-row">
+                        <div class="col-md-6">
+                            <select name="subject_ids[]" class="form-select" required>
+                                <option value="">-- Select Subject --</option>
+                                @foreach($subjects as $sub)
+                                    <option value="{{ $sub->id }}">{{ $sub->name }}</option>
+                                @endforeach
+                            </select>
+                        </div>
+                        <div class="col-md-4">
+                            <input type="number" name="subject_counts[]" class="form-control" placeholder="No. of questions" min="1" required>
+                        </div>
+                        <div class="col-md-2">
+                            <button type="button" class="btn btn-sm btn-danger removeSubject"><i class="fa fa-trash"></i></button>
+                        </div>
+                    </div>
+                `;
+                $('#subjectContainer').append(newRow);
+            });
+
+            // Remove subject row
+            $(document).on('click', '.removeSubject', function() {
+                $(this).closest('.subject-row').remove();
             });
         });
     </script>

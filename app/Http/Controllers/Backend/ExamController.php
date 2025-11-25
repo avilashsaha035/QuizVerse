@@ -2,8 +2,9 @@
 
 namespace App\Http\Controllers\Backend;
 
-use App\Http\Controllers\Controller;
+use App\Models\Subject;
 use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
 
 class ExamController extends Controller
 {
@@ -14,6 +15,7 @@ class ExamController extends Controller
 
     public function create()
     {
-        return view('backend.exam.create');
+        $data['subjects'] = Subject::get();
+        return view('backend.exam.create', $data);
     }
 }
