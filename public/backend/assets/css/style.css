@@ -21438,10 +21438,11 @@ a.text-primary-hover:hover, button.text-primary-hover:hover {
   color: var(--bs-white) !important;
 }
 .sidebar.navbar-expand-xl .sidebar-content .navbar-nav .nav-link.active {
-  color: var(--bs-primary) !important;
+  color: var(--bs-success) !important;
+  font-size: medium;
 }
 .sidebar.navbar-expand-xl .sidebar-content .navbar-nav .nav-link:hover {
-  color: var(--bs-primary) !important;
+  color: var(--bs-success) !important;
 }
 .sidebar.navbar-expand-xl .sidebar-content .nav-item [data-bs-toggle=collapse] {
   position: relative;
