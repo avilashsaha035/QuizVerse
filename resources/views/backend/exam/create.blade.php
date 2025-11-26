@@ -38,9 +38,11 @@
                         <div class="col-md-6">
                             <label class="form-label">Exam type <span class="text-danger">*</span></label>
                             <select name="exam_type" required class="form-select">
-                            {{-- @foreach($examTypes as $type)
-                                <option value="{{ $type }}">{{ strtoupper($type) }}</option>
-                            @endforeach --}}
+                                <option value="" selected>Select Type</option>
+                                <option value="bcs">BCS</option>
+                                <option value="bank">Bank</option>
+                                <option value="varsity">Varsity</option>
+                                <option value="ielts">IELTS</option>
                             </select>
                         </div>
 

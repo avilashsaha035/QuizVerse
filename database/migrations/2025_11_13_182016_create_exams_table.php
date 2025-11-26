@@ -19,7 +19,6 @@ return new class extends Migration
             $table->string('thumbnail')->nullable();
             $table->string('exam_type'); // BCS, Bank, IELTS, Varsity
             $table->foreignId('subject_id')->nullable()->constrained('subjects')->nullOnDelete();
-            $table->json('subject_wise_questions')->nullable();
             $table->integer('duration_minutes');
             $table->integer('no_of_ques')->nullable();
             $table->boolean('is_shuffling')->default(false);

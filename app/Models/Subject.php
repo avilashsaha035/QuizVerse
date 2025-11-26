@@ -13,4 +13,9 @@ class Subject extends Model
         'name',
         'slug',
     ];
+
+    public function exams()
+    {
+        return $this->belongsToMany(Exam::class, 'exam_subjects')->withPivot('question_count')->withTimestamps();
+    }
 }
