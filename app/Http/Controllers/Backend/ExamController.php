@@ -6,16 +6,17 @@ use App\Models\Exam;
 use App\Models\Subject;
 use Illuminate\Support\Str;
 use Illuminate\Http\Request;
+use App\DataTables\ExamDataTable;
 use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Storage;
 
 class ExamController extends Controller
 {
-    public function index()
+    public function index(ExamDataTable $dataTable)
     {
-        $exams = Exam::all();
-        return view('backend.exam.index', compact('exams'));
+        // $exams = Exam::all();
+        return $dataTable->render('backend.exam.index');
     }
 
     public function create()
@@ -206,5 +207,15 @@ class ExamController extends Controller
         }
     }
 
+    public function destroy(Exam $exam)
+    {
+        // Delete thumbnail if exists
+        if ($exam->thumbnail) {
+            Storage::disk('public')->delete('exam_thumbnails/'.$exam->thumbnail);
+        }
+        $exam->delete();
+
+        return redirect()->route('admin.exams.index')->with('success', 'Exam deleted successfully!');
+    }
 
 }

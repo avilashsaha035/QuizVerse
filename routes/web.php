@@ -45,6 +45,7 @@ Route::middleware('auth')->prefix('admin')->group(function () {
     Route::post('/exams/store', [ExamController::class, 'store'])->name('admin.exams.store');
     Route::get('/exams/{exam}/edit', [ExamController::class, 'edit'])->name('admin.exams.edit');
     Route::put('/exams/{exam}', [ExamController::class, 'update'])->name('admin.exams.update');
+    Route::delete('/exams/{exam}', [ExamController::class, 'destroy'])->name('admin.exams.destroy');
 });
 
 require __DIR__.'/auth.php';

@@ -3,14 +3,15 @@
 namespace App\DataTables;
 
 use App\Models\Exam;
-use Illuminate\Database\Eloquent\Builder as QueryBuilder;
-use Yajra\DataTables\EloquentDataTable;
-use Yajra\DataTables\Html\Builder as HtmlBuilder;
+use Illuminate\Support\Carbon;
 use Yajra\DataTables\Html\Button;
 use Yajra\DataTables\Html\Column;
+use Yajra\DataTables\EloquentDataTable;
 use Yajra\DataTables\Html\Editor\Editor;
 use Yajra\DataTables\Html\Editor\Fields;
 use Yajra\DataTables\Services\DataTable;
+use Yajra\DataTables\Html\Builder as HtmlBuilder;
+use Illuminate\Database\Eloquent\Builder as QueryBuilder;
 
 class ExamDataTable extends DataTable
 {
@@ -22,7 +23,41 @@ class ExamDataTable extends DataTable
     public function dataTable(QueryBuilder $query): EloquentDataTable
     {
         return (new EloquentDataTable($query))
-            ->addColumn('action', 'exam.action')
+            // ->addColumn('action', 'exam.action')
+            ->editColumn('exam_type', function ($data) {
+                return strtoupper($data->exam_type);
+            })
+            ->editColumn('start_date', function ($data) {
+                if ($data->start_date && $data->start_time) {
+                    $dt = Carbon::parse($data->start_date . ' ' . $data->start_time);
+                    return $dt->format('d M Y | h:i A');
+                }
+                return null;
+            })
+            ->editColumn('end_date', function ($data) {
+                if ($data->end_date && $data->end_time) {
+                    $dt = Carbon::parse($data->end_date . ' ' . $data->end_time);
+                    return $dt->format('d M Y | h:i A');
+                }
+                return null;
+            })
+            ->addColumn('action', function ($data) {
+                $editUrl   = route('admin.exams.edit', $data->id);
+                $deleteUrl = route('admin.exams.destroy', $data->id);
+
+                return '
+                    <a href="'.$editUrl.'" class="btn btn-sm btn-primary"><i class="fa-regular fa-pen-to-square"></i> Edit</a>
+                    <form action="'.$deleteUrl.'" method="POST" style="display:inline-block;">
+                        '.csrf_field().'
+                        '.method_field('DELETE').'
+                        <button type="submit" class="btn btn-sm btn-danger"
+                            onclick="return confirm(\'Are you sure you want to delete this exam?\')">
+                            <i class="fa-solid fa-trash"></i> Delete
+                        </button>
+                    </form>
+                ';
+            })
+            ->rawColumns(['action'])
             ->setRowId('id');
     }
 
@@ -47,12 +82,12 @@ class ExamDataTable extends DataTable
                     ->orderBy(1)
                     ->selectStyleSingle()
                     ->buttons([
-                        Button::make('excel'),
-                        Button::make('csv'),
-                        Button::make('pdf'),
-                        Button::make('print'),
+                        // Button::make('excel'),
+                        // Button::make('csv'),
+                        // Button::make('pdf'),
+                        // Button::make('print'),
                         Button::make('reset'),
-                        Button::make('reload')
+                        // Button::make('reload')
                     ]);
     }
 
@@ -62,15 +97,15 @@ class ExamDataTable extends DataTable
     public function getColumns(): array
     {
         return [
-            Column::computed('action')
-                  ->exportable(false)
-                  ->printable(false)
-                  ->width(60)
-                  ->addClass('text-center'),
             Column::make('id'),
-            Column::make('add your columns'),
-            Column::make('created_at'),
-            Column::make('updated_at'),
+            Column::make('title'),
+            Column::make('exam_type'),
+            Column::make('duration_minutes')->title('Duration (minutes)'),
+            Column::make('no_of_ques'),
+            Column::make('pass_marks'),
+            Column::make('start_date')->title('Start DateTime'),
+            Column::make('end_date')->title('End DateTime'),
+            Column::computed('action')->width(60)->addClass('text-center'),
         ];
     }
 
