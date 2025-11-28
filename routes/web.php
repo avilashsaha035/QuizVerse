@@ -43,6 +43,8 @@ Route::middleware('auth')->prefix('admin')->group(function () {
     Route::get('/exams', [ExamController::class, 'index'])->name('admin.exams.index');
     Route::get('/exams/create', [ExamController::class, 'create'])->name('admin.exams.create');
     Route::post('/exams/store', [ExamController::class, 'store'])->name('admin.exams.store');
+    Route::get('/exams/{exam}/edit', [ExamController::class, 'edit'])->name('admin.exams.edit');
+    Route::put('/exams/{exam}', [ExamController::class, 'update'])->name('admin.exams.update');
 });
 
 require __DIR__.'/auth.php';

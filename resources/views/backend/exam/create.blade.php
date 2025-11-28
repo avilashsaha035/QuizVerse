@@ -1,7 +1,7 @@
 @extends('backend.layouts.app')
 
 @push('title')
-    Exam Create
+    Create
 @endpush
 
 @push('css')
@@ -31,7 +31,7 @@
                             <label class="form-label">Exam Title <span class="text-danger">*</span></label>
                             <input type="text" name="title" required class="form-control">
                             @error('title')
-                            <small class="text-danger">{{ $message }}</small>
+                                <small class="text-danger">{{ $message }}</small>
                             @enderror
                         </div>
 

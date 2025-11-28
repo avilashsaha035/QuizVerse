@@ -1,4 +1,9 @@
 @extends('backend.layouts.app')
+
+@push('title')
+    Admin Dashboard
+@endpush
+
 @section('content')
     <!-- Page main content START -->
     <div class="page-content-wrapper border">

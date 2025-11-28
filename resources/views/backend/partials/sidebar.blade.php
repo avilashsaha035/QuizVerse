@@ -39,14 +39,14 @@
                 <!-- Menu item 3 -->
                 <li class="nav-item">
                     <a href="{{ route('admin.question.index') }}" class="nav-link {{ request()->routeIs('admin.question.index') ? 'active' : '' }}">
-                        <i class="fa-solid fa-table-list me-2"></i>Questions
+                        <i class="fa-regular fa-file-lines me-2"></i>Questions
                     </a>
                 </li>
 
                 <!-- Menu item 4 -->
                 <li class="nav-item">
                     <a href="{{ route('admin.exams.index') }}" class="nav-link {{ request()->routeIs('admin.exams*') ? 'active' : '' }}">
-                        <i class="fa-solid fa-clipboard-list me-2"></i>Exams
+                        <i class="fa-solid fa-hourglass me-2"></i>Exams
                     </a>
                 </li>
 
