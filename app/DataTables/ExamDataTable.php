@@ -47,11 +47,10 @@ class ExamDataTable extends DataTable
 
                 return '
                     <a href="'.$editUrl.'" class="btn btn-sm btn-primary"><i class="fa-regular fa-pen-to-square"></i> Edit</a>
-                    <form action="'.$deleteUrl.'" method="POST" style="display:inline-block;">
+                    <form action="'.$deleteUrl.'" method="POST" style="display:inline-block;" class="delete-form">
                         '.csrf_field().'
                         '.method_field('DELETE').'
-                        <button type="submit" class="btn btn-sm btn-danger"
-                            onclick="return confirm(\'Are you sure you want to delete this exam?\')">
+                        <button type="button" class="btn btn-sm btn-danger delete-btn">
                             <i class="fa-solid fa-trash"></i> Delete
                         </button>
                     </form>
