@@ -32,6 +32,25 @@
 
     <!-- Toastr -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css">
+    <style>
+        .toast-success {
+            background-color: #2a9b2a !important; /* green */
+            color: #fff !important;
+        }
+        .toast-error {
+            background-color: #BD362F !important; /* red */
+            color: #fff !important;
+        }
+        .toast-info {
+            background-color: #2F96B4 !important; /* blue */
+            color: #fff !important;
+        }
+        .toast-warning {
+            background-color: #F89406 !important; /* orange */
+            color: #fff !important;
+        }
+    </style>
+
 
     <!-- Theme CSS (includes Bootstrap 5.3.3) -->
     <link rel="stylesheet" href="{{ asset('backend/assets/css/style.css') }}">

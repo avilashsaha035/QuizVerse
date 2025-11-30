@@ -29,7 +29,7 @@ class ExamController extends Controller
     {
         $validated = $request->validate([
             'title'            => 'required|string',
-            'exam_type'        => 'required|string',
+            'exam_type'        => 'required',
             'thumbnail'        => 'nullable|image|mimes:jpg,jpeg,png|max:2048',
             'description'      => 'nullable|string',
             'duration_minutes' => 'required|integer|min:1',
@@ -52,7 +52,7 @@ class ExamController extends Controller
             return back()->withErrors(['error' => 'You must be logged in.']);
         }
 
-        $thumbnailPath = null;
+        $thumbnailName = null;
         if ($request->hasFile('thumbnail')) {
             $file = $request->file('thumbnail');
             $originalName = $file->getClientOriginalName();
@@ -93,8 +93,8 @@ class ExamController extends Controller
             return redirect()->route('admin.exams.index')->with('success', 'Exam created successfully!');
         } catch (\Throwable $e) {
             DB::rollBack();
-            if ($thumbnailPath) {
-                Storage::disk('public')->delete($thumbnailPath);
+            if ($thumbnailName) {
+                Storage::disk('public')->delete($thumbnailName);
             }
             return back()->withErrors(['error' => $e->getMessage()])->withInput();
         }

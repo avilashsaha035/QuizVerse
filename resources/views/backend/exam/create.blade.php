@@ -49,6 +49,9 @@
                         <div class="col-md-12">
                             <label class="form-label">Thumbnail</label>
                             <input type="file" name="thumbnail" id="thumbnail" class="form-control" accept="image/*">
+                            @error('thumbnail')
+                                <small class="text-danger">{{ $message }}</small>
+                            @enderror
 
                             <!-- Preview container -->
                             <div id="thumbnailPreview" class="mt-2" style="display:none;">
