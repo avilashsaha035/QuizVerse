@@ -1,4 +1,4 @@
-// 
+//
 // Sidebar-admin
 // Theme Component
 
@@ -10,12 +10,12 @@
     @each $breakpoint in map-keys($grid-breakpoints) {
       $next: breakpoint-next($breakpoint, $grid-breakpoints);
       $infix: breakpoint-infix($next, $grid-breakpoints);
-      
+
       // Styling for navbar-expand
       &#{$infix} {
-        
+
         // Navbar styling for all screen sizes
-        
+
         .sidebar-content {
           padding: 0 1rem 1rem;
           width: 16.25rem;
@@ -25,7 +25,7 @@
           width: auto;
         }
 
-        // Sidebar menu item hover and active 
+        // Sidebar menu item hover and active
         .sidebar-content .navbar-nav > .nav-item > .nav-link[data-bs-toggle=collapse][aria-expanded=true] {
           background: rgba(var(--#{$prefix}primary-rgb), 0.1);
           color: var(--#{$prefix}primary) !important;
@@ -114,11 +114,11 @@
           display: flex;
           flex-direction: column;
           align-items: stretch;
-      
+
           .offcanvas {
             position: relative;
           }
-      
+
           .navbar-brand {
             padding: 1.3rem;
           }
@@ -126,9 +126,9 @@
           .navbar-nav .nav-item {
             position: relative;
           }
-             
+
         }
-        
+
 
         // Navbar styling for navbar collapse
         @include media-breakpoint-down($next) {
@@ -155,7 +155,7 @@
             border-bottom: 0;
             padding: 0;
           }
-          
+
         }
       }
     }

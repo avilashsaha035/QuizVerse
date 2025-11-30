@@ -51,21 +51,19 @@
                 </li>
 
                 <!-- Menu item 4 -->
-                {{-- <li class="nav-item">
-                    <a class="nav-link" data-bs-toggle="collapse" href="#collapseinstructors" role="button" aria-expanded="false" aria-controls="collapseinstructors">
-                        <i class="fas fa-user-tie fa-fw me-2"></i>Instructors
+                <li class="nav-item">
+                    <a class="nav-link {{ request()->routeIs('admin.subject*') ? '' : 'collapsed' }}" data-bs-toggle="collapse" href="#collapseinstructors" role="button"
+                        aria-expanded="{{ request()->routeIs('admin.subject*') ? 'true' : 'false' }}" aria-controls="collapseinstructors">
+                        <i class="fas fa-user-tie fa-fw me-2"></i>Exam Settings
                     </a>
                     <!-- Submenu -->
-                    <ul class="nav collapse flex-column" id="collapseinstructors" data-bs-parent="#navbar-sidebar">
-                        <li class="nav-item"> <a class="nav-link" href="admin-instructor-list.html">Instructors</a></li>
-                        <li class="nav-item"> <a class="nav-link" href="admin-instructor-detail.html">Instructor Detail</a></li>
+                    <ul class="nav collapse flex-column {{ request()->routeIs('admin.subject*') ? 'show' : '' }}" id="collapseinstructors" data-bs-parent="#navbar-sidebar">
                         <li class="nav-item">
-                            <a class="nav-link" href="admin-instructor-request.html">Instructor requests
-                                <span class="badge text-bg-success rounded-circle ms-2">2</span>
-                            </a>
+                            <a class="nav-link {{ request()->routeIs('admin.subject*') ? 'active' : '' }}" href="{{ route('admin.subject.index') }}">Subject</a>
                         </li>
                     </ul>
-                </li> --}}
+                </li>
+
 
                 <!-- Menu item 5 -->
                 {{-- <li class="nav-item"> <a class="nav-link" href="admin-review.html"><i class="far fa-comment-dots fa-fw me-2"></i>Reviews</a></li> --}}

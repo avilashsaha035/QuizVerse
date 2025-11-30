@@ -1,10 +1,11 @@
 <?php
 
-use App\Http\Controllers\Backend\AdminDashboardController;
-use App\Http\Controllers\Backend\QuestionController;
-use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\Backend\ExamController;
+use App\Http\Controllers\Backend\QuestionController;
+use App\Http\Controllers\Backend\ExamSettingsController;
+use App\Http\Controllers\Backend\AdminDashboardController;
 
 /*
 |--------------------------------------------------------------------------
@@ -46,6 +47,20 @@ Route::middleware('auth')->prefix('admin')->group(function () {
     Route::get('/exams/{exam}/edit', [ExamController::class, 'edit'])->name('admin.exams.edit');
     Route::put('/exams/{exam}', [ExamController::class, 'update'])->name('admin.exams.update');
     Route::delete('/exams/{exam}', [ExamController::class, 'destroy'])->name('admin.exams.destroy');
+});
+
+// ****** Exam-settings Route ****** //
+Route::middleware('auth')->prefix('admin')->group(function () {
+    Route::resource('subject', ExamSettingsController::class)
+        ->names([
+            'index'   => 'admin.subject.index',
+            'create'  => 'admin.subject.create',
+            'store'   => 'admin.subject.store',
+            'show'    => 'admin.subject.show',
+            'edit'    => 'admin.subject.edit',
+            'update'  => 'admin.subject.update',
+            'destroy' => 'admin.subject.destroy',
+        ]);
 });
 
 require __DIR__.'/auth.php';
