@@ -23,6 +23,25 @@ class SubjectDataTable extends DataTable
     {
         return (new EloquentDataTable($query))
             // ->addColumn('action', 'subject.action')
+            ->addColumn('action', function ($data) {
+                $editBtn = '<button type="button" class="btn btn-sm btn-primary edit-btn"
+                                data-id="'.$data->id.'" data-name="'.$data->name.'" data-slug="'.$data->slug.'"
+                                data-bs-toggle="modal" data-bs-target="#subjectEditModal">
+                                <i class="fa-solid fa-pen"></i> Edit
+                            </button>';
+
+                $deleteBtn = '<form action="'.route('admin.subject.destroy', $data->id).'"
+                                    method="POST" style="display:inline-block;">
+                                    '.csrf_field().'
+                                    '.method_field('DELETE').'
+                                    <button type="submit" class="btn btn-sm btn-danger delete-btn">
+                                        <i class="fa-solid fa-trash"></i> Delete
+                                    </button>
+                            </form>';
+
+                return $editBtn.' '.$deleteBtn;
+            })
+            ->rawColumns(['action'])
             ->setRowId('id');
     }
 
@@ -65,11 +84,11 @@ class SubjectDataTable extends DataTable
             Column::make('id'),
             Column::make('name'),
             Column::make('slug'),
-            // Column::computed('action')
-            //       ->exportable(false)
-            //       ->printable(false)
-            //       ->width(60)
-            //       ->addClass('text-center'),
+            Column::computed('action')
+                  ->exportable(false)
+                  ->printable(false)
+                  ->width(60)
+                  ->addClass('text-center'),
         ];
     }
 
