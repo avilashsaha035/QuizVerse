@@ -1,5 +1,9 @@
 @extends('layouts.app')
 
+@push('frontend_title')
+    Register
+@endpush
+
 @section('content')
     <div class="w-full max-w-md bg-white dark:bg-gray-800 rounded-xl shadow-lg p-8">
         <h2 class="text-2xl font-bold text-center text-gray-800 dark:text-white mb-6">Create Your Account ✨</h2>
