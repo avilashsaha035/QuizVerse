@@ -1,5 +1,9 @@
 @extends('layouts.app')
 
+@push('frontend_title')
+    Home
+@endpush
+
 @section('content')
     <!-- Main content -->
     <main class="flex-grow flex items-center justify-center bg-gray-50 dark:bg-gray-900">
