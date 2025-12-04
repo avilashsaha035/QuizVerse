@@ -36,7 +36,7 @@
 - 💨 Smooth UI powered by Tailwind  
 - 🏗 Laravel MVC architecture  
 - 🧵 Real-time Livewire components  
-- 🔐 Secure authentication & role management  
+- 🔐 Secure authentication - role based authentication & authorization system
 - 🗄 MySQL-based scalable structure  
 
 ---
