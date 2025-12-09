@@ -21427,8 +21427,8 @@ a.text-primary-hover:hover, button.text-primary-hover:hover {
   width: auto;
 }
 .sidebar.navbar-expand-xl .sidebar-content .navbar-nav > .nav-item > .nav-link[data-bs-toggle=collapse][aria-expanded=true] {
-  background: rgba(var(--bs-primary-rgb), 0.1);
-  color: var(--bs-primary) !important;
+  background: rgba(var(--bs-success-rgb), 0.1);
+  color: var(--bs-success) !important;
   border-radius: 0.325rem;
 }
 .sidebar.navbar-expand-xl .sidebar-content .navbar-nav .nav-link {
@@ -21476,12 +21476,12 @@ a.text-primary-hover:hover, button.text-primary-hover:hover {
 .sidebar.navbar-expand-xl .sidebar-content .nav-item [data-bs-toggle=collapse][aria-expanded=true]:before {
   -webkit-transform: rotate(40deg);
           transform: rotate(40deg);
-  background: var(--bs-primary);
+  background: var(--bs-success);
 }
 .sidebar.navbar-expand-xl .sidebar-content .nav-item [data-bs-toggle=collapse][aria-expanded=true]:after {
   -webkit-transform: rotate(-40deg);
           transform: rotate(-40deg);
-  background: var(--bs-primary);
+  background: var(--bs-success);
 }
 .sidebar.navbar-expand-xl .sidebar-content .navbar-nav .nav-link {
   line-height: 40px;

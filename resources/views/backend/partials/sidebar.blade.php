@@ -39,7 +39,7 @@
                 <!-- Menu item 3 -->
                 <li class="nav-item">
                     <a href="{{ route('admin.question.index') }}" class="nav-link {{ request()->routeIs('admin.question.index') ? 'active' : '' }}">
-                        <i class="fa-regular fa-file-lines me-2"></i>Questions
+                        <i class="fa-solid fa-database me-2"></i>Questions
                     </a>
                 </li>
 
@@ -54,39 +54,36 @@
                 <li class="nav-item">
                     <a class="nav-link {{ request()->routeIs('admin.subject*') ? '' : 'collapsed' }}" data-bs-toggle="collapse" href="#collapseinstructors" role="button"
                         aria-expanded="{{ request()->routeIs('admin.subject*') ? 'true' : 'false' }}" aria-controls="collapseinstructors">
-                        <i class="fas fa-user-tie fa-fw me-2"></i>Exam Settings
+                        <i class="fas fa-gears me-2"></i>Exam Settings
                     </a>
                     <!-- Submenu -->
                     <ul class="nav collapse flex-column {{ request()->routeIs('admin.subject*') ? 'show' : '' }}" id="collapseinstructors" data-bs-parent="#navbar-sidebar">
                         <li class="nav-item">
-                            <a class="nav-link {{ request()->routeIs('admin.subject*') ? 'active' : '' }}" href="{{ route('admin.subject.index') }}">Subject</a>
+                            <a class="nav-link {{ request()->routeIs('admin.subject*') ? 'active' : '' }}" href="{{ route('admin.subject.index') }}"><i class="bi bi-dot me-2"></i>Subject</a>
                         </li>
                     </ul>
                 </li>
 
 
+                <!-- Title -->
+                <li class="nav-item ms-2 my-2">Site Settings</li>
+
                 <!-- Menu item 5 -->
-                {{-- <li class="nav-item"> <a class="nav-link" href="admin-review.html"><i class="far fa-comment-dots fa-fw me-2"></i>Reviews</a></li> --}}
-
-                <!-- Menu item 6 -->
-                {{-- <li class="nav-item"> <a class="nav-link" href="admin-earning.html"><i class="far fa-chart-bar fa-fw me-2"></i>Earnings</a></li> --}}
-
-                <!-- Menu item 7 -->
-                {{-- <li class="nav-item"> <a class="nav-link" href="admin-setting.html"><i class="fas fa-user-cog fa-fw me-2"></i>Admin Settings</a></li> --}}
-
-                <!-- Menu item 8 -->
-                {{-- <li class="nav-item">
-                    <a class="nav-link" data-bs-toggle="collapse" href="#collapseauthentication" role="button" aria-expanded="false" aria-controls="collapseauthentication">
-                        <i class="bi bi-lock fa-fw me-2"></i>Authentication
+                <li class="nav-item">
+                    <a class="nav-link" data-bs-toggle="collapse" href="#collapseacl" role="button"
+                        aria-expanded="" aria-controls="collapseacl">
+                        <i class="fa-solid fa-user-shield me-2"></i>ACL Management
                     </a>
                     <!-- Submenu -->
-                    <ul class="nav collapse flex-column" id="collapseauthentication" data-bs-parent="#navbar-sidebar">
-                        <li class="nav-item"> <a class="nav-link" href="sign-up.html">Sign Up</a></li>
-                        <li class="nav-item"> <a class="nav-link" href="sign-in.html">Sign In</a></li>
-                        <li class="nav-item"> <a class="nav-link" href="forgot-password.html">Forgot Password</a></li>
-                        <li class="nav-item"> <a class="nav-link" href="admin-error-404.html">Error 404</a></li>
+                    <ul class="nav collapse flex-column" id="collapseacl" data-bs-parent="#navbar-sidebar">
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ route('admin.subject.index') }}"><i class="bi bi-dot me-2"></i>Manage Permission</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ route('admin.subject.index') }}"><i class="bi bi-dot me-2"></i>Manage Role</a>
+                        </li>
                     </ul>
-                </li> --}}
+                </li>
 
                 <!-- Title -->
                 {{-- <li class="nav-item ms-2 my-2">Documentation</li> --}}
