@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <title>{{ 'Quizverse' }} | @stack('title')</title>
+    <title>@stack('title') | {{ 'Quizverse' }}</title>
 
     <!-- Meta Tags -->
     <meta charset="utf-8">

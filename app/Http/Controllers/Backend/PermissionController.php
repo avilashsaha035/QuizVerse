@@ -3,18 +3,18 @@
 namespace App\Http\Controllers\Backend;
 
 use Illuminate\Http\Request;
-use Spatie\Permission\Models\Role;
 use App\Http\Controllers\Controller;
-use App\DataTables\ACL\RoleDataTable;
+use Spatie\Permission\Models\Permission;
+use App\DataTables\ACL\PermissionDataTable;
 
-class RoleController extends Controller
+class PermissionController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
-    public function index(RoleDataTable $dataTable)
+    public function index(PermissionDataTable $dataTable)
     {
-        return $dataTable->render('backend.acl.role.index');
+        return $dataTable->render('backend.acl.permission.index');
     }
 
     /**
@@ -22,7 +22,7 @@ class RoleController extends Controller
      */
     public function create()
     {
-        return view('backend.acl.role.create');
+        return view('backend.acl.permission.create');
     }
 
     /**
@@ -31,13 +31,13 @@ class RoleController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'name' => 'required|unique:roles,name'
+            'name' => 'required|unique:permissions,name'
         ]);
-        Role::create([
+        Permission::create([
             'name' => $request->name
         ]);
 
-        return redirect()->route('admin.roles.index')->with('success', 'Role created successfully.');
+        return redirect()->route('admin.permissions.index')->with('success', 'permission created successfully.');
     }
 
     /**
@@ -67,8 +67,9 @@ class RoleController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(string $id)
+    public function destroy(Permission $permission)
     {
-        //
+        $permission->delete();
+        return redirect()->route('admin.permissions.index')->with('success', 'Permission deleted successfully.');
     }
 }

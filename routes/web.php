@@ -5,6 +5,7 @@ use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\Backend\ExamController;
 use App\Http\Controllers\Backend\RoleController;
 use App\Http\Controllers\Backend\QuestionController;
+use App\Http\Controllers\Backend\PermissionController;
 use App\Http\Controllers\Backend\ExamSettingsController;
 use App\Http\Controllers\Backend\AdminDashboardController;
 
@@ -66,15 +67,24 @@ Route::middleware('auth')->prefix('admin')->group(function () {
 
 // ***** Role Permission Route *****//
 Route::middleware('auth')->prefix('admin')->group(function () {
-    Route::resource('role', RoleController::class)
+    Route::resource('roles', RoleController::class)
         ->names([
-            'index'   => 'admin.role.index',
-            'create'  => 'admin.role.create',
-            'store'   => 'admin.role.store',
-            'show'    => 'admin.role.show',
-            'edit'    => 'admin.role.edit',
-            'update'  => 'admin.role.update',
-            'destroy' => 'admin.role.destroy',
+            'index'   => 'admin.roles.index',
+            'create'  => 'admin.roles.create',
+            'store'   => 'admin.roles.store',
+            'edit'    => 'admin.roles.edit',
+            'update'  => 'admin.roles.update',
+            'destroy' => 'admin.roles.destroy',
+        ]);
+
+    Route::resource('permissions', PermissionController::class)
+        ->names([
+            'index'   => 'admin.permissions.index',
+            'create'  => 'admin.permissions.create',
+            'store'   => 'admin.permissions.store',
+            'edit'    => 'admin.permissions.edit',
+            'update'  => 'admin.permissions.update',
+            'destroy' => 'admin.permissions.destroy',
         ]);
 });
 

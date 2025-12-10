@@ -52,12 +52,12 @@
 
                 <!-- Menu item 4 -->
                 <li class="nav-item">
-                    <a class="nav-link {{ request()->routeIs('admin.subject*') ? '' : 'collapsed' }}" data-bs-toggle="collapse" href="#collapseinstructors" role="button"
-                        aria-expanded="{{ request()->routeIs('admin.subject*') ? 'true' : 'false' }}" aria-controls="collapseinstructors">
+                    <a class="nav-link" data-bs-toggle="collapse" href="#collapsexamsettings" role="button"
+                        aria-expanded="{{ request()->routeIs('admin.subject*') ? 'true' : 'false' }}" aria-controls="collapsexamsettings">
                         <i class="fas fa-gears me-2"></i>Exam Settings
                     </a>
                     <!-- Submenu -->
-                    <ul class="nav collapse flex-column {{ request()->routeIs('admin.subject*') ? 'show' : '' }}" id="collapseinstructors" data-bs-parent="#navbar-sidebar">
+                    <ul class="nav collapse flex-column {{ request()->routeIs('admin.subject*') ? 'show' : '' }}" id="collapsexamsettings" data-bs-parent="#navbar-sidebar">
                         <li class="nav-item">
                             <a class="nav-link {{ request()->routeIs('admin.subject*') ? 'active' : '' }}" href="{{ route('admin.subject.index') }}"><i class="bi bi-dot me-2"></i>Subject</a>
                         </li>
@@ -71,16 +71,23 @@
                 <!-- Menu item 5 -->
                 <li class="nav-item">
                     <a class="nav-link" data-bs-toggle="collapse" href="#collapseacl" role="button"
-                        aria-expanded="" aria-controls="collapseacl">
+                        aria-expanded="{{ request()->routeIs('admin.permissions*') || request()->routeIs('admin.roles*') ? 'true' : 'false' }}"aria-controls="collapseacl">
                         <i class="fa-solid fa-user-shield me-2"></i>ACL Management
                     </a>
                     <!-- Submenu -->
-                    <ul class="nav collapse flex-column" id="collapseacl" data-bs-parent="#navbar-sidebar">
+                    <ul class="nav collapse flex-column {{ request()->routeIs('admin.permissions*') || request()->routeIs('admin.roles*') ? 'show' : '' }}"
+                        id="collapseacl" data-bs-parent="#navbar-sidebar">
+
                         <li class="nav-item">
-                            <a class="nav-link" href="{{ route('admin.subject.index') }}"><i class="bi bi-dot me-2"></i>Manage Permission</a>
+                            <a class="nav-link {{ request()->routeIs('admin.permissions*') ? 'active' : '' }}" href="{{ route('admin.permissions.index') }}">
+                                <i class="bi bi-dot me-2"></i>Manage Permission
+                            </a>
                         </li>
+
                         <li class="nav-item">
-                            <a class="nav-link" href="{{ route('admin.subject.index') }}"><i class="bi bi-dot me-2"></i>Manage Role</a>
+                            <a class="nav-link {{ request()->routeIs('admin.roles*') ? 'active' : '' }}" href="{{ route('admin.roles.index') }}">
+                                <i class="bi bi-dot me-2"></i>Manage Role
+                            </a>
                         </li>
                     </ul>
                 </li>
