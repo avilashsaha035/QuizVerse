@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use Spatie\Permission\Models\Role;
 use App\Http\Controllers\Controller;
 use App\DataTables\ACL\RoleDataTable;
+use Spatie\Permission\Models\Permission;
 
 class RoleController extends Controller
 {
@@ -22,7 +23,8 @@ class RoleController extends Controller
      */
     public function create()
     {
-        return view('backend.acl.role.create');
+        $permissions = Permission::all();
+        return view('backend.acl.role.create', compact('permissions'));
     }
 
     /**
@@ -31,11 +33,15 @@ class RoleController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'name' => 'required|unique:roles,name'
+            'name' => 'required|unique:roles,name',
+            'permissions' => 'array'
         ]);
-        Role::create([
-            'name' => $request->name
-        ]);
+        $role = Role::create(['name' => $request->name]);
+
+        // Attach selected permissions
+        if ($request->filled('permissions')) {
+            $role->syncPermissions($request->permissions);
+        }
 
         return redirect()->route('admin.roles.index')->with('success', 'Role created successfully.');
     }
@@ -51,24 +57,44 @@ class RoleController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(string $id)
+    public function edit(Role $role)
     {
-        //
+        $permissions = Permission::all();
+
+        // Get role's current permissions
+        $rolePermissions = $role->permissions->pluck('name')->toArray();
+
+        return view('backend.acl.role.edit', compact('role', 'permissions', 'rolePermissions'));
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(Request $request, Role $role)
     {
-        //
+        $request->validate([
+            'name' => 'required|unique:roles,name,' . $role->id,
+        ]);
+
+        $role->update(['name' => $request->name,]);
+
+        // Sync permissions
+        if ($request->filled('permissions')) {
+            $role->syncPermissions($request->permissions);
+        } else {
+            // If no permissions selected, clear all
+            $role->syncPermissions([]);
+        }
+
+        return redirect()->route('admin.roles.index')->with('success', 'Role updated successfully with permissions.');
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(string $id)
+    public function destroy(Role $role)
     {
-        //
+        $role->delete();
+        return redirect()->route('admin.roles.index')->with('success', 'Role deleted successfully.');
     }
 }

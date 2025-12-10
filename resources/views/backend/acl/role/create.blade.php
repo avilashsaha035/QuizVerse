@@ -29,6 +29,25 @@
                             @enderror
                         </div>
                     </div>
+
+                    <!-- Permissions -->
+                    <div class="row">
+                        <div class="col-md-12">
+                            <label class="form-label">Assign Permissions</label>
+                            <div class="border rounded p-3" style="max-height:300px; overflow-y:auto;">
+                                @foreach($permissions as $permission)
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="checkbox" name="permissions[]" value="{{ $permission->name }}"
+                                            id="perm_{{ $permission->id }}">
+                                        <label class="form-check-label" for="perm_{{ $permission->id }}"> {{ $permission->name }}</label>
+                                    </div>
+                                @endforeach
+                            </div>
+                            @error('permissions')
+                                <small class="text-danger">{{ $message }}</small>
+                            @enderror
+                        </div>
+                    </div>
                 </div>
 
                 <div class="card-footer bg-light">

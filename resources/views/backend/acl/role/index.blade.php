@@ -5,7 +5,7 @@
 
 @section('content')
     <div class="page-content-wrapper border">
-        <h5 class="mb-4 text-dark">Roles</h5>
+        <h5 class="mb-4 text-dark">Manage Roles</h5>
         <!-- Card -->
         <div class="card shadow-sm border rounded">
             <div class="card-header bg-success">

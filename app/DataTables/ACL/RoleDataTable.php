@@ -22,7 +22,22 @@ class RoleDataTable extends DataTable
     public function dataTable(QueryBuilder $query): EloquentDataTable
     {
         return (new EloquentDataTable($query))
-            ->addColumn('action', 'role.action')
+            ->addColumn('action', function ($data) {
+                $editUrl   = route('admin.roles.edit', $data->id);
+                $deleteUrl = route('admin.roles.destroy', $data->id);
+
+                return '
+                    <a href="'.$editUrl.'" class="btn btn-sm btn-primary"><i class="fa-regular fa-pen-to-square"></i> Edit</a>
+                    <form action="'.$deleteUrl.'" method="POST" style="display:inline-block;" class="delete-form">
+                        '.csrf_field().'
+                        '.method_field('DELETE').'
+                        <button type="button" class="btn btn-sm btn-danger delete-btn">
+                            <i class="fa-solid fa-trash"></i> Delete
+                        </button>
+                    </form>
+                ';
+            })
+            ->rawColumns(['action'])
             ->setRowId('id');
     }
 
@@ -31,7 +46,7 @@ class RoleDataTable extends DataTable
      */
     public function query(Role $model): QueryBuilder
     {
-        return $model->newQuery();
+        return $model->newQuery()->orderby('id');
     }
 
     /**
@@ -43,16 +58,16 @@ class RoleDataTable extends DataTable
                     ->setTableId('role-table')
                     ->columns($this->getColumns())
                     ->minifiedAjax()
-                    //->dom('Bfrtip')
+                    ->dom('Bfrtip')
                     ->orderBy(1)
                     ->selectStyleSingle()
                     ->buttons([
-                        Button::make('excel'),
-                        Button::make('csv'),
-                        Button::make('pdf'),
-                        Button::make('print'),
+                        // Button::make('excel'),
+                        // Button::make('csv'),
+                        // Button::make('pdf'),
+                        // Button::make('print'),
                         Button::make('reset'),
-                        Button::make('reload')
+                        // Button::make('reload')
                     ]);
     }
 
@@ -62,15 +77,9 @@ class RoleDataTable extends DataTable
     public function getColumns(): array
     {
         return [
-            Column::computed('action')
-                  ->exportable(false)
-                  ->printable(false)
-                  ->width(60)
-                  ->addClass('text-center'),
             Column::make('id'),
             Column::make('name'),
-            Column::make('created_at'),
-            Column::make('updated_at'),
+            Column::computed('action'),
         ];
     }
 
