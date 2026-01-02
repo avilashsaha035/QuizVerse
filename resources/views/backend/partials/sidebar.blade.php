@@ -1,7 +1,7 @@
 <nav class="navbar sidebar navbar-expand-xl navbar-dark bg-dark">
     <!-- Navbar brand for xl START -->
     <div class="d-flex align-items-center">
-        <a class="navbar-brand" href="index.html">
+        <a class="navbar-brand" href="{{ url('/') }}">
             <img class="navbar-brand-item" src="{{ asset('backend/assets/images/logo-light.svg') }}" alt="">
         </a>
     </div>
@@ -37,60 +37,83 @@
                 </li> --}}
 
                 <!-- Menu item 3 -->
-                <li class="nav-item">
-                    <a href="{{ route('admin.question.index') }}" class="nav-link {{ request()->routeIs('admin.question.index') ? 'active' : '' }}">
-                        <i class="fa-solid fa-database me-2"></i>Questions
-                    </a>
-                </li>
-
+                @can('manage_question')
+                    <li class="nav-item">
+                        <a href="{{ route('admin.question.index') }}" class="nav-link {{ request()->routeIs('admin.question.index') ? 'active' : '' }}">
+                            <i class="fa-solid fa-database me-2"></i>Questions
+                        </a>
+                    </li>
+                @endcan
                 <!-- Menu item 4 -->
-                <li class="nav-item">
-                    <a href="{{ route('admin.exams.index') }}" class="nav-link {{ request()->routeIs('admin.exams*') ? 'active' : '' }}">
-                        <i class="fa-solid fa-hourglass me-2"></i>Exams
-                    </a>
-                </li>
+                @can('manage_exam')
+                    <li class="nav-item">
+                        <a href="{{ route('admin.exams.index') }}" class="nav-link {{ request()->routeIs('admin.exams*') ? 'active' : '' }}">
+                            <i class="fa-solid fa-hourglass me-2"></i>Exams
+                        </a>
+                    </li>
+                @endcan
 
-                <!-- Menu item 4 -->
-                <li class="nav-item">
-                    <a class="nav-link" data-bs-toggle="collapse" href="#collapsexamsettings" role="button"
-                        aria-expanded="{{ request()->routeIs('admin.subject*') ? 'true' : 'false' }}" aria-controls="collapsexamsettings">
-                        <i class="fas fa-gears me-2"></i>Exam Settings
-                    </a>
-                    <!-- Submenu -->
-                    <ul class="nav collapse flex-column {{ request()->routeIs('admin.subject*') ? 'show' : '' }}" id="collapsexamsettings" data-bs-parent="#navbar-sidebar">
-                        <li class="nav-item">
-                            <a class="nav-link {{ request()->routeIs('admin.subject*') ? 'active' : '' }}" href="{{ route('admin.subject.index') }}"><i class="bi bi-dot me-2"></i>Subject</a>
-                        </li>
-                    </ul>
-                </li>
+                <!-- Menu item 5 -->
+                @can('manage_exam_setting')
+                    <li class="nav-item">
+                        <a class="nav-link" data-bs-toggle="collapse" href="#collapsexamsettings" role="button"
+                            aria-expanded="{{ request()->routeIs('admin.subject*') ? 'true' : 'false' }}" aria-controls="collapsexamsettings">
+                            <i class="fas fa-gears me-2"></i>Exam Settings
+                        </a>
+                        <!-- Submenu -->
+                        <ul class="nav collapse flex-column {{ request()->routeIs('admin.subject*') ? 'show' : '' }}" id="collapsexamsettings" data-bs-parent="#navbar-sidebar">
+                            <li class="nav-item">
+                                <a class="nav-link {{ request()->routeIs('admin.subject*') ? 'active' : '' }}" href="{{ route('admin.subject.index') }}"><i class="bi bi-dot me-2"></i>Subject</a>
+                            </li>
+                        </ul>
+                    </li>
+                @endcan
+
+                <!-- Menu item 6 -->
+                @can('manage_user')
+                    <li class="nav-item">
+                        <a class="nav-link" data-bs-toggle="collapse" href="#collapseuser" role="button"
+                            aria-expanded="{{ request()->routeIs('admin.user*') ? 'true' : 'false' }}" aria-controls="collapseuser">
+                            <i class="fas fa-users me-2"></i>User Management
+                        </a>
+                        <!-- Submenu -->
+                        <ul class="nav collapse flex-column {{ request()->routeIs('admin.user*') ? 'show' : '' }}" id="collapseuser" data-bs-parent="#navbar-sidebar">
+                            <li class="nav-item">
+                                <a class="nav-link {{ request()->routeIs('admin.user*') ? 'active' : '' }}" href="{{ route('admin.user.index') }}"><i class="bi bi-dot me-2"></i>User List</a>
+                            </li>
+                        </ul>
+                    </li>
+                @endcan
 
 
                 <!-- Title -->
                 <li class="nav-item ms-2 my-2">Site Settings</li>
 
                 <!-- Menu item 5 -->
-                <li class="nav-item">
-                    <a class="nav-link" data-bs-toggle="collapse" href="#collapseacl" role="button"
-                        aria-expanded="{{ request()->routeIs('admin.permissions*') || request()->routeIs('admin.roles*') ? 'true' : 'false' }}"aria-controls="collapseacl">
-                        <i class="fa-solid fa-user-shield me-2"></i>ACL Management
-                    </a>
-                    <!-- Submenu -->
-                    <ul class="nav collapse flex-column {{ request()->routeIs('admin.permissions*') || request()->routeIs('admin.roles*') ? 'show' : '' }}"
-                        id="collapseacl" data-bs-parent="#navbar-sidebar">
+                @can('manage_acl')
+                    <li class="nav-item">
+                        <a class="nav-link" data-bs-toggle="collapse" href="#collapseacl" role="button"
+                            aria-expanded="{{ request()->routeIs('admin.permissions*') || request()->routeIs('admin.roles*') ? 'true' : 'false' }}"aria-controls="collapseacl">
+                            <i class="fa-solid fa-user-shield me-2"></i>ACL Management
+                        </a>
+                        <!-- Submenu -->
+                        <ul class="nav collapse flex-column {{ request()->routeIs('admin.permissions*') || request()->routeIs('admin.roles*') ? 'show' : '' }}"
+                            id="collapseacl" data-bs-parent="#navbar-sidebar">
 
-                        <li class="nav-item">
-                            <a class="nav-link {{ request()->routeIs('admin.permissions*') ? 'active' : '' }}" href="{{ route('admin.permissions.index') }}">
-                                <i class="bi bi-dot me-2"></i>Manage Permission
-                            </a>
-                        </li>
+                            <li class="nav-item">
+                                <a class="nav-link {{ request()->routeIs('admin.permissions*') ? 'active' : '' }}" href="{{ route('admin.permissions.index') }}">
+                                    <i class="bi bi-dot me-2"></i>Manage Permission
+                                </a>
+                            </li>
 
-                        <li class="nav-item">
-                            <a class="nav-link {{ request()->routeIs('admin.roles*') ? 'active' : '' }}" href="{{ route('admin.roles.index') }}">
-                                <i class="bi bi-dot me-2"></i>Manage Role
-                            </a>
-                        </li>
-                    </ul>
-                </li>
+                            <li class="nav-item">
+                                <a class="nav-link {{ request()->routeIs('admin.roles*') ? 'active' : '' }}" href="{{ route('admin.roles.index') }}">
+                                    <i class="bi bi-dot me-2"></i>Manage Role
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
+                @endcan
 
                 <!-- Title -->
                 {{-- <li class="nav-item ms-2 my-2">Documentation</li> --}}

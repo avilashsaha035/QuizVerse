@@ -120,7 +120,7 @@
                             <div class="d-sm-flex">
                                 <!-- Avatar -->
                                 <div class="avatar avatar-md flex-shrink-0">
-                                    <img class="avatar-img rounded-circle" src="assets/images/avatar/09.jpg" alt="avatar">
+                                    <img class="avatar-img rounded-circle" src="{{ asset('backend/assets/images/avatar/09.jpg') }}" alt="avatar">
                                 </div>
                                 <!-- Info -->
                                 <div class="ms-0 ms-sm-2 mt-2 mt-sm-0">
@@ -181,7 +181,7 @@
                             <div class="d-sm-flex">
                                 <!-- Avatar -->
                                 <div class="avatar avatar-md flex-shrink-0">
-                                    <img class="avatar-img rounded-circle" src="assets/images/avatar/04.jpg" alt="avatar">
+                                    <img class="avatar-img rounded-circle" src="{{ asset('backend/assets/images/avatar/04.jpg') }}" alt="avatar">
                                 </div>
                                 <!-- Info -->
                                 <div class="ms-0 ms-sm-2 mt-2 mt-sm-0">
@@ -223,7 +223,7 @@
                             <div class="d-sm-flex align-items-center mb-1 mb-sm-0">
                                 <!-- Avatar -->
                                 <div class="avatar avatar-md flex-shrink-0">
-                                    <img class="avatar-img rounded-circle" src="assets/images/avatar/09.jpg" alt="avatar">
+                                    <img class="avatar-img rounded-circle" src="{{ asset('backend/assets/images/avatar/09.jpg') }}" alt="avatar">
                                 </div>
                                 <!-- Info -->
                                 <div class="ms-0 ms-sm-2 mt-2 mt-sm-0">
@@ -247,7 +247,7 @@
                             <div class="d-sm-flex align-items-center mb-1 mb-sm-0">
                                 <!-- Avatar -->
                                 <div class="avatar avatar-md flex-shrink-0">
-                                    <img class="avatar-img rounded-circle" src="assets/images/avatar/03.jpg" alt="avatar">
+                                    <img class="avatar-img rounded-circle" src="{{ asset('backend/assets/images/avatar/03.jpg') }}" alt="avatar">
                                 </div>
                                 <!-- Info -->
                                 <div class="ms-0 ms-sm-2 mt-2 mt-sm-0">
@@ -271,7 +271,7 @@
                             <div class="d-sm-flex align-items-center mb-1 mb-sm-0">
                                 <!-- Avatar -->
                                 <div class="avatar avatar-md flex-shrink-0">
-                                    <img class="avatar-img rounded-circle" src="assets/images/avatar/01.jpg" alt="avatar">
+                                    <img class="avatar-img rounded-circle" src="{{ asset('backend/assets/images/avatar/01.jpg') }}" alt="avatar">
                                 </div>
                                 <!-- Info -->
                                 <div class="ms-0 ms-sm-2 mt-2 mt-sm-0">
@@ -295,7 +295,7 @@
                             <div class="d-sm-flex align-items-center mb-1 mb-sm-0">
                                 <!-- Avatar -->
                                 <div class="avatar avatar-md flex-shrink-0">
-                                    <img class="avatar-img rounded-circle" src="assets/images/avatar/04.jpg" alt="avatar">
+                                    <img class="avatar-img rounded-circle" src="{{ asset('backend/assets/images/avatar/04.jpg') }}" alt="avatar">
                                 </div>
                                 <!-- Info -->
                                 <div class="ms-0 ms-sm-2 mt-2 mt-sm-0">
@@ -319,7 +319,7 @@
                             <div class="d-sm-flex align-items-center mb-1 mb-sm-0">
                                 <!-- Avatar -->
                                 <div class="avatar avatar-md flex-shrink-0">
-                                    <img class="avatar-img rounded-circle" src="assets/images/avatar/05.jpg" alt="avatar">
+                                    <img class="avatar-img rounded-circle" src="{{ asset('backend/assets/images/avatar/04.jpg') }}" alt="avatar">
                                 </div>
                                 <!-- Info -->
                                 <div class="ms-0 ms-sm-2 mt-2 mt-sm-0">

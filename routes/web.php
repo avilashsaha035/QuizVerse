@@ -8,6 +8,7 @@ use App\Http\Controllers\Backend\QuestionController;
 use App\Http\Controllers\Backend\PermissionController;
 use App\Http\Controllers\Backend\ExamSettingsController;
 use App\Http\Controllers\Backend\AdminDashboardController;
+use App\Http\Controllers\Backend\UserController;
 
 /*
 |--------------------------------------------------------------------------
@@ -63,6 +64,21 @@ Route::middleware('auth')->prefix('admin')->group(function () {
             'update'  => 'admin.subject.update',
             'destroy' => 'admin.subject.destroy',
         ]);
+});
+
+// ****** User mangement Route ****** //
+Route::middleware('auth')->prefix('admin')->group(function () {
+    Route::resource('user', UserController::class)
+        ->names([
+            'index'   => 'admin.user.index',
+            'create'  => 'admin.user.create',
+            'store'   => 'admin.user.store',
+            'show'    => 'admin.user.show',
+            'edit'    => 'admin.user.edit',
+            'update'  => 'admin.user.update',
+            'destroy' => 'admin.user.destroy',
+        ]);
+    Route::post('users/{user}/assign-role', [UserController::class, 'assignRole']) ->name('admin.users.assignRole');
 });
 
 // ***** Role Permission Route *****//

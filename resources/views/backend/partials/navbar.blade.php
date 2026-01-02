@@ -4,9 +4,9 @@
 
             <!-- Logo START -->
             <div class="d-flex align-items-center d-xl-none">
-                <a class="navbar-brand" href="index.html">
-                    <img class="light-mode-item navbar-brand-item h-30px" src="assets/images/logo-mobile.svg" alt="">
-                    <img class="dark-mode-item navbar-brand-item h-30px" src="assets/images/logo-mobile-light.svg" alt="">
+                <a class="navbar-brand" href="{{ url('/') }}">
+                    <img class="light-mode-item navbar-brand-item h-30px" src="{{ asset('backend/assets/images/logo-mobile.svg') }}" alt="">
+                    <img class="dark-mode-item navbar-brand-item h-30px" src="{{ asset('backend/assets/images/logo-mobile-light.svg') }}" alt="">
                 </a>
             </div>
             <!-- Logo END -->
@@ -91,7 +91,7 @@
                                             <a href="#" class="list-group-item-action border-0 border-bottom d-flex p-3">
                                                 <div class="me-3">
                                                     <div class="avatar avatar-md">
-                                                        <img class="avatar-img rounded-circle" src="assets/images/avatar/02.jpg" alt="avatar">
+                                                        <img class="avatar-img rounded-circle" src="{{ asset('backend/assets/images/avatar/02.jpg') }}" alt="avatar">
                                                     </div>
                                                 </div>
                                                 <div>
@@ -107,7 +107,7 @@
                                             <a href="#" class="list-group-item-action border-0 border-bottom d-flex p-3">
                                                 <div class="me-3">
                                                     <div class="avatar avatar-md">
-                                                        <img class="avatar-img rounded-circle" src="assets/images/avatar/05.jpg" alt="avatar">
+                                                        <img class="avatar-img rounded-circle" src="{{ asset('backend/assets/images/avatar/05.jpg') }}" alt="avatar">
                                                     </div>
                                                 </div>
                                                 <div>
@@ -122,7 +122,7 @@
                                             <a href="#" class="list-group-item-action border-0 border-bottom d-flex p-3">
                                                 <div class="me-3">
                                                     <div class="avatar avatar-md">
-                                                        <img class="avatar-img rounded-circle" src="assets/images/avatar/03.jpg" alt="avatar">
+                                                        <img class="avatar-img rounded-circle" src="{{ asset('backend/assets/images/avatar/03.jpg') }}" alt="avatar">
                                                     </div>
                                                 </div>
                                                 <div>
