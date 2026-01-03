@@ -168,14 +168,16 @@
                             </li>
                             <li> <hr class="dropdown-divider"></li>
                             <!-- Links -->
-                            <li><a class="dropdown-item" href="#"><i class="bi bi-person fa-fw me-2"></i>Edit Profile</a></li>
-                            <li><a class="dropdown-item" href="#"><i class="bi bi-gear fa-fw me-2"></i>Account Settings</a></li>
-                            <li><a class="dropdown-item" href="#"><i class="bi bi-info-circle fa-fw me-2"></i>Help</a></li>
-                            <li><a class="dropdown-item bg-danger-soft-hover" href="#"><i class="bi bi-power fa-fw me-2"></i>Sign Out</a></li>
+                            <li>
+                                <form method="POST" action="{{ route('logout') }}">
+                                    @csrf
+                                    <button type="submit" class="dropdown-item bg-danger-soft-hover" href="#"><i class="bi bi-power fa-fw me-2"></i>Sign Out</button>
+                                </form>
+                            </li>
                             <li> <hr class="dropdown-divider"></li>
 
                             <!-- Dark mode options START -->
-                            <li>
+                            {{-- <li>
                                 <div class="bg-light dark-mode-switch theme-icon-active d-flex align-items-center p-1 rounded mt-2">
                                     <!-- <span>Mode:</span> -->
                                     <button type="button" class="btn btn-sm mb-0" data-bs-theme-value="light">
@@ -198,7 +200,7 @@
                                         </svg> Auto
                                     </button>
                                 </div>
-                            </li>
+                            </li> --}}
                             <!-- Dark mode options END-->
                         </ul>
                         <!-- Profile dropdown END -->
