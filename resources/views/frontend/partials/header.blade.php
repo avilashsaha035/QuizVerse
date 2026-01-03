@@ -51,6 +51,13 @@
                                 <i class="fas fa-tachometer-alt mr-3 text-blue-500 group-hover:scale-110 transition-transform duration-200"></i>
                                 <span class="group-hover:translate-x-1 transition-transform duration-200">Dashboard</span>
                             </a>
+                            @if(auth()->user() && !auth()->user()->roles->isEmpty())
+                                <a href="{{ route('admin.dashboard') }}"
+                                class="block px-4 py-3 text-sm text-gray-700 dark:text-gray-200 hover:bg-gradient-to-r hover:from-blue-50 hover:to-blue-100 dark:hover:from-blue-900/30 dark:hover:to-blue-900/10 hover:text-blue-600 dark:hover:text-blue-300 transition-all duration-200 flex items-center group border-l-4 border-transparent hover:border-blue-500 pl-3">
+                                    <i class="fas fa-user-shield mr-3 text-blue-500 group-hover:scale-110 transition-transform duration-200"></i>
+                                    <span class="group-hover:translate-x-1 transition-transform duration-200">Admin Dashboard</span>
+                                </a>
+                            @endif
                             <a href="/profile"
                             class="block px-4 py-3 text-sm text-gray-700 dark:text-gray-200 hover:bg-gradient-to-r hover:from-emerald-50 hover:to-emerald-100 dark:hover:from-emerald-900/30 dark:hover:to-emerald-900/10 hover:text-emerald-600 dark:hover:text-emerald-300 transition-all duration-200 flex items-center group border-l-4 border-transparent hover:border-emerald-500 pl-3">
                                 <i class="fas fa-user mr-3 text-emerald-500 group-hover:scale-110 transition-transform duration-200"></i>
@@ -126,6 +133,12 @@
                         <i class="fas fa-tachometer-alt mr-3 text-blue-500 group-hover:scale-110 transition-transform duration-200"></i>
                         <span class="group-hover:translate-x-1 transition-transform duration-200">Dashboard</span>
                     </a>
+                    @if(auth()->user() && !auth()->user()->roles->isEmpty())
+                        <a href="{{ url('/dashboard') }}" class="block px-4 py-3 text-gray-700 dark:text-gray-300 hover:bg-gradient-to-r hover:from-blue-50 hover:to-blue-100 dark:hover:from-blue-900/30 dark:hover:to-blue-900/10 rounded-lg font-medium transition-all duration-200 group">
+                            <i class="fas fa-user-shield mr-3 text-blue-500 group-hover:scale-110 transition-transform duration-200"></i>
+                            <span class="group-hover:translate-x-1 transition-transform duration-200">Admin Dashboard</span>
+                        </a>
+                    @endif
                     <form method="POST" action="{{ route('logout') }}" class="block">
                         @csrf
                         <button type="submit" class="w-full text-left px-4 py-3 text-gray-700 dark:text-gray-300 hover:bg-gradient-to-r hover:from-red-50 hover:to-red-100 dark:hover:from-red-900/30 dark:hover:to-red-900/10 rounded-lg font-medium transition-all duration-200 group">
