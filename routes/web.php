@@ -2,7 +2,8 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ProfileController;
-use App\Http\Controllers\Backend\ExamController;
+use App\Http\Controllers\Frontend\ExamController as FrontendExamController;
+use App\Http\Controllers\Backend\ExamController as BackendExamController;
 use App\Http\Controllers\Backend\RoleController;
 use App\Http\Controllers\Backend\QuestionController;
 use App\Http\Controllers\Backend\PermissionController;
@@ -34,6 +35,12 @@ Route::middleware('auth')->group(function () {
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
+
+Route::middleware('auth')->group(function () {
+    Route::get('/exams', [FrontendExamController::class, 'exam'])->name('exam');
+});
+
+// Backend Routes
 Route::middleware('auth')->prefix('admin')->group(function () {
     Route::get('/dashboard', [AdminDashboardController::class, 'dashboard'])->name('admin.dashboard');
 
@@ -44,12 +51,12 @@ Route::middleware('auth')->prefix('admin')->group(function () {
 
 // ****** Exam Route ****** //
 Route::middleware('auth')->prefix('admin')->group(function () {
-    Route::get('/exams', [ExamController::class, 'index'])->name('admin.exams.index');
-    Route::get('/exams/create', [ExamController::class, 'create'])->name('admin.exams.create');
-    Route::post('/exams/store', [ExamController::class, 'store'])->name('admin.exams.store');
-    Route::get('/exams/{exam}/edit', [ExamController::class, 'edit'])->name('admin.exams.edit');
-    Route::put('/exams/{exam}', [ExamController::class, 'update'])->name('admin.exams.update');
-    Route::delete('/exams/{exam}', [ExamController::class, 'destroy'])->name('admin.exams.destroy');
+    Route::get('/exams', [BackendExamController::class, 'index'])->name('admin.exams.index');
+    Route::get('/exams/create', [BackendExamController::class, 'create'])->name('admin.exams.create');
+    Route::post('/exams/store', [BackendExamController::class, 'store'])->name('admin.exams.store');
+    Route::get('/exams/{exam}/edit', [BackendExamController::class, 'edit'])->name('admin.exams.edit');
+    Route::put('/exams/{exam}', [BackendExamController::class, 'update'])->name('admin.exams.update');
+    Route::delete('/exams/{exam}', [BackendExamController::class, 'destroy'])->name('admin.exams.destroy');
 });
 
 // ****** Exam-settings Route ****** //

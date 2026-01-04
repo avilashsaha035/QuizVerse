@@ -1,0 +1,159 @@
+@extends('layouts.app')
+
+@push('frontend_title')
+    Exams
+@endpush
+
+<style>
+    .line-clamp-2 {
+        display: -webkit-box;
+        -webkit-line-clamp: 2;
+        -webkit-box-orient: vertical;
+        overflow: hidden;
+    }
+
+    .card-hover {
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    .card-hover:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+    }
+</style>
+
+@section('content')
+    <div class="py-8 w-full">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <!-- Page Header -->
+            <div class="mb-8">
+                <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between">
+                    <div>
+                        <h1 class="text-2xl md:text-3xl font-bold text-gray-800 dark:text-gray-200">
+                            Available <span class="bg-gradient-to-r from-blue-600 to-emerald-500 bg-clip-text text-transparent">Exams</span>
+                        </h1>
+                        <p class="text-gray-600  mt-2 text-sm md:text-base">
+                            Test your knowledge with our curated MCQ exams
+                        </p>
+                    </div>
+
+                    <!-- Search and Filters -->
+                    <div class="mt-4 sm:mt-0 flex flex-col sm:flex-row items-start sm:items-center gap-4">
+                        <!-- Search Box -->
+                        <div class="relative">
+                            <input type="text"
+                                   placeholder="Search exams..."
+                                   class="pl-10 pr-4 py-2 border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 focus:outline-none dark:bg-gray-700 dark:text-white text-sm w-full sm:w-64"
+                                   id="examSearch">
+                            <i class="fas fa-search absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400"></i>
+                        </div>
+
+                        <!-- Filter Button -->
+                        <div class="relative">
+                            <button id="filterBtn"
+                                    class="flex items-center px-4 py-2 border border-gray-300 dark:border-gray-600 rounded-lg text-gray-700 dark:text-gray-300 hover:bg-gray-50 dark:hover:bg-gray-700 transition-colors duration-200 text-sm">
+                                <i class="fas fa-filter mr-2"></i>
+                                Filter
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Stats Bar -->
+                <div class="mt-6 flex flex-wrap items-center gap-4 text-sm">
+                    <div class="flex items-center text-gray-600 ">
+                        <i class="fas fa-layer-group mr-2 text-blue-500"></i>
+                        <span>Showing <span class="font-semibold text-gray-800 dark:text-gray-200">12</span> exams</span>
+                    </div>
+                    <div class="flex items-center text-gray-600 ">
+                        <i class="fas fa-clock mr-2 text-emerald-500"></i>
+                        <span>Avg. duration: <span class="font-semibold text-gray-800 dark:text-gray-200">30 min</span></span>
+                    </div>
+                    <div class="flex items-center text-gray-600 ">
+                        <i class="fas fa-star mr-2 text-amber-500"></i>
+                        <span>Popular: <span class="font-semibold text-gray-800 dark:text-gray-200">Web Development</span></span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Exams Grid -->
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+                <!-- Exam Card -->
+                @foreach ($exams as $exam)
+                    <div class="bg-white dark:bg-gray-800 rounded-xl shadow-lg overflow-hidden border border-gray-100 dark:border-gray-700 card-hover group">
+                        <a href="#">
+                            <img class="rounded-t-base" src="{{ $exam->thumbnail ? asset('storage/exam_thumbnails/' . $exam->thumbnail) : asset('images/default-exam.png') }}" alt="thumbnail" />
+                        </a>
+                        <div class="p-6">
+                            <h3 class="text-lg font-bold text-gray-800 dark:text-gray-200 mb-2 group-hover:text-purple-600 dark:group-hover:text-purple-400 transition-colors">
+                                {{ $exam->title }}
+                            </h3>
+
+                            <div class="space-y-1 mb-2">
+                                <div class="flex items-center text-sm text-gray-600 ">
+                                    <i class="fas fa-question-circle mr-1 text-blue-500 w-5"></i>
+                                    <span>{{ $exam->no_of_ques }} MCQ</span>
+                                </div>
+                                <div class="flex justify-between">
+                                    <div class="flex items-center text-sm text-gray-600 ">
+                                        <i class="fas fa-clock mr-1 text-emerald-500 w-5"></i>
+                                        <span>{{ $exam->duration_minutes }} minutes</span>
+                                    </div>
+                                    <div class="flex items-center text-sm text-gray-600 ">
+                                        <i class="fas fa-trophy mr-1 text-amber-500 w-5"></i>
+                                        <span>Pass Mark: {{ $exam->pass_marks }}</span>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="flex items-center justify-between">
+                                <a href="/exam/2/start"
+                                class="py-2 bg-gradient-to-r from-emerald-500 to-emerald-600 hover:from-emerald-600 hover:to-emerald-700 text-white rounded-lg font-semibold shadow-lg hover:shadow-xl transition-all duration-200 text-sm flex items-center justify-center min-w-[140px] hover:-translate-y-0.5 active:translate-y-0">
+                                    <i class="fas fa-play text-sm mr-1"></i>
+                                    <span class="whitespace-nowrap">Start Exam</span>
+                                </a>
+                            </div>
+
+                            <!-- Additional info -->
+                            <div class="mt-3 pt-2 border-t border-gray-100">
+                                <div class="flex items-center justify-between text-xs text-gray-500 ">
+                                    <div class="flex items-center">
+                                        <i class="fas fa-users mr-1"></i>
+                                        <span>1.2k attempts</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                @endforeach
+            </div>
+
+            <!-- Pagination -->
+            <div class="mt-12 flex items-center justify-between">
+                <div class="text-sm text-gray-600 ">
+                    Showing 1-6 of 12 exams
+                </div>
+                <div class="flex items-center space-x-2">
+                    <button class="px-3 py-2 border border-gray-300 dark:border-gray-600 rounded-lg text-gray-700 dark:text-gray-300 hover:bg-gray-50 dark:hover:bg-gray-700 disabled:opacity-50 disabled:cursor-not-allowed">
+                        <i class="fas fa-chevron-left"></i>
+                    </button>
+                    <button class="px-3 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700">1</button>
+                    <button class="px-3 py-2 border border-gray-300 dark:border-gray-600 rounded-lg text-gray-700 dark:text-gray-300 hover:bg-gray-50 dark:hover:bg-gray-700">2</button>
+                    <button class="px-3 py-2 border border-gray-300 dark:border-gray-600 rounded-lg text-gray-700 dark:text-gray-300 hover:bg-gray-50 dark:hover:bg-gray-700">3</button>
+                    <button class="px-3 py-2 border border-gray-300 dark:border-gray-600 rounded-lg text-gray-700 dark:text-gray-300 hover:bg-gray-50 dark:hover:bg-gray-700">
+                        <i class="fas fa-chevron-right"></i>
+                    </button>
+                </div>
+            </div>
+
+            <!-- No Exams Message (for empty state) -->
+            <div id="noExamsMessage" class="hidden mt-12 text-center">
+                <div class="max-w-md mx-auto">
+                    <i class="fas fa-search text-4xl text-gray-400 mb-4"></i>
+                    <h3 class="text-lg font-semibold text-gray-800 dark:text-gray-200 mb-2">No exams found</h3>
+                    <p class="text-gray-600 ">Try adjusting your search or filter criteria.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+@endsection
