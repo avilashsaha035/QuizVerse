@@ -8,6 +8,7 @@ use Illuminate\Support\Str;
 use Illuminate\Http\Request;
 use App\DataTables\ExamDataTable;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Log;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Storage;
 
@@ -112,26 +113,26 @@ class ExamController extends Controller
     public function update(Request $request, Exam $exam)
     {
         $validated = $request->validate([
-            'title'                     => 'required|string|max:255',
-            'exam_type'                 => 'required|string|max:50',
+            'title'                     => 'required|string',
+            'exam_type'                 => 'required|string',
             'thumbnail'                 => 'nullable|image|mimes:jpg,jpeg,png|max:2048',
-            'remove_existing_thumbnail' => 'nullable|integer|in:0,1',
+            'remove_existing_thumbnail' => 'nullable|integer',
             'description'               => 'nullable|string',
-            'duration_minutes'          => 'required|integer|min:1',
-            'no_of_ques'                => 'nullable|integer|min:1',
-            'pass_marks'                => 'nullable|integer|min:0',
+            'duration_minutes'          => 'required|integer',
+            'no_of_ques'                => 'nullable|integer',
+            'pass_marks'                => 'nullable|integer',
             'access_code'               => 'nullable|string|max:50',
-            'is_shuffling'              => 'nullable|integer|in:0,1',
-            'is_active'                 => 'nullable|integer|in:0,1',
+            'is_shuffling'              => 'nullable|integer',
+            'is_active'                 => 'nullable|integer',
             'start_date'                => 'nullable|date',
-            'start_time'                => 'nullable|date_format:H:i',
+            'start_time'                => 'nullable',
             'end_date'                  => 'nullable|date|after_or_equal:start_date',
-            'end_time'                  => 'nullable|date_format:H:i',
+            'end_time'                  => 'nullable',
 
-            'subject_ids'               => 'required|array|min:1',
+            'subject_ids'               => 'required|array',
             'subject_ids.*'             => 'required|integer|exists:subjects,id',
-            'subject_counts'            => 'required|array|min:1',
-            'subject_counts.*'          => 'required|integer|min:1',
+            'subject_counts'            => 'required|array',
+            'subject_counts.*'          => 'required|integer',
         ]);
 
         $subjectIds    = array_values($validated['subject_ids']);
@@ -164,11 +165,11 @@ class ExamController extends Controller
                 }
 
                 $file = $request->file('thumbnail');
-                $originalName = $file->getClientOriginalName();
+                $filename = time().'_'.uniqid().'.'.$file->getClientOriginalExtension();
 
                 // Store file in folder, but save only filename in DB
-                $file->storeAs('exam_thumbnails', $originalName, 'public');
-                $exam->thumbnail = $originalName;
+                $file->storeAs('exam_thumbnails', $filename, 'public');
+                $exam->thumbnail = $filename;
             }
 
             // Explicit assignment

@@ -50,6 +50,9 @@
                     <div class="col-md-12">
                         <label class="form-label">Thumbnail</label>
                         <input type="file" name="thumbnail" id="thumbnail" class="form-control" accept="image/*">
+                        @error('thumbnail')
+                            <div class="text-danger">{{ $message }}</div>
+                        @enderror
 
                         <!-- Current thumbnail -->
                         @if($exam->thumbnail)
@@ -226,86 +229,84 @@
 @endsection
 
 @push('scripts')
-<script>
-ClassicEditor
-.create(document.querySelector('#description'))
-.catch(error => {
-    console.error('CKEditor init error:', error);
-});
-</script>
+    <script>
+        ClassicEditor
+        .create(document.querySelector('#description'))
+        .catch(error => {
+            console.error('CKEditor init error:', error);
+        });
+    </script>
 
-<script>
-$(document).ready(function () {
-    const $fileInput = $("#thumbnail");
-    const $existingWrap = $("#existingThumbnail");
-    const $existingImg = $("#existingThumbnailImg");
-    const $previewWrap = $("#thumbnailPreview");
-    const $previewImg = $("#thumbnailPreviewImg");
-    const $removeBtn = $("#removeThumbnail");
-    const $removeExistingCheckbox = $("#remove_existing_thumbnail");
+    <script>
+        $(document).ready(function () {
+            const $fileInput = $("#thumbnail");
+            const $existingWrap = $("#existingThumbnail");
+            const $existingImg = $("#existingThumbnailImg");
+            const $previewWrap = $("#thumbnailPreview");
+            const $previewImg = $("#thumbnailPreviewImg");
+            const $removeBtn = $("#removeThumbnail");
+            const $removeExistingCheckbox = $("#remove_existing_thumbnail");
 
-    // If there is an existing image, show its container (already rendered by Blade)
-    if ($existingImg.length && $existingImg.attr('src')) {
-        $existingWrap.show();
-        $previewWrap.hide();
-    } else {
-        $existingWrap.hide();
-        $previewWrap.hide();
-    }
-
-    // When user selects a new file, show preview and hide existing image container
-    $fileInput.on("change", function (e) {
-        const file = e.target.files[0];
-        if (file) {
-            const reader = new FileReader();
-            reader.onload = function (event) {
-                $previewImg.attr("src", event.target.result);
-                $previewWrap.show();
-                $existingWrap.hide();
-                // Uncheck remove-existing if previously checked
-                if ($removeExistingCheckbox.length) {
-                    $removeExistingCheckbox.prop('checked', false);
-                }
-            };
-            reader.readAsDataURL(file);
-        } else {
-            // No file selected: hide preview, show existing if present
-            $previewImg.attr("src", "");
-            $previewWrap.hide();
+            // If there is an existing image, show its container (already rendered by Blade)
             if ($existingImg.length && $existingImg.attr('src')) {
                 $existingWrap.show();
+                $previewWrap.hide();
+            } else {
+                $existingWrap.hide();
+                $previewWrap.hide();
             }
-        }
-    });
 
-    // Remove new preview (clear file input)
-    $removeBtn.on("click", function () {
-        $fileInput.val("");
-        $previewImg.attr("src", "");
-        $previewWrap.hide();
-        if ($existingImg.length && $existingImg.attr('src')) {
-            $existingWrap.show();
-        }
-    });
-
-    // If user checks "remove existing", hide existing preview and ensure file input cleared
-    $removeExistingCheckbox.on("change", function () {
-        if ($(this).is(":checked")) {
-            // mark for removal; hide existing preview
-            $existingWrap.hide();
-            // clear any newly selected file as well
-            $fileInput.val("");
-            $previewImg.attr("src", "");
-            $previewWrap.hide();
-        } else {
-            // if unchecked, show existing image again (unless a new file is selected)
-            if ($fileInput.val() === "" && $existingImg.length && $existingImg.attr('src')) {
-                $existingWrap.show();
-            }
-        }
-    });
-});
-</script>
+            // When user selects a new file, show preview and hide existing image container
+            $fileInput.on("change", function (e) {
+                const file = e.target.files[0];
+                if (file) {
+                    const reader = new FileReader();
+                    reader.onload = function (event) {
+                        $previewImg.attr("src", event.target.result);
+                        $previewWrap.show();
+                        $existingWrap.hide();
+                        if ($removeExistingCheckbox.length) {
+                            $removeExistingCheckbox.prop('checked', false).prop('disabled', true);
+                        }
+                    };
+                    reader.readAsDataURL(file);
+                } else {
+                    $previewImg.attr("src", "");
+                    $previewWrap.hide();
+                    if ($existingImg.length && $existingImg.attr('src')) {
+                        $existingWrap.show();
+                    }
+                    $removeExistingCheckbox.prop('disabled', false); //re-enable
+                }
+            });
 
 
+            // Remove new preview (clear file input)
+            $removeBtn.on("click", function () {
+                $fileInput.val("");
+                $previewImg.attr("src", "");
+                $previewWrap.hide();
+                if ($existingImg.length && $existingImg.attr('src')) {
+                    $existingWrap.show();
+                }
+            });
+
+            // If user checks "remove existing", hide existing preview and ensure file input cleared
+            $removeExistingCheckbox.on("change", function () {
+                if ($(this).is(":checked")) {
+                    // mark for removal; hide existing preview
+                    $existingWrap.hide();
+                    // clear any newly selected file as well
+                    $fileInput.val("");
+                    $previewImg.attr("src", "");
+                    $previewWrap.hide();
+                } else {
+                    // if unchecked, show existing image again (unless a new file is selected)
+                    if ($fileInput.val() === "" && $existingImg.length && $existingImg.attr('src')) {
+                        $existingWrap.show();
+                    }
+                }
+            });
+        });
+    </script>
 @endpush
