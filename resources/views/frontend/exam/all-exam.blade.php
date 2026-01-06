@@ -63,97 +63,90 @@
                 <div class="mt-6 flex flex-wrap items-center gap-4 text-sm">
                     <div class="flex items-center text-gray-600 ">
                         <i class="fas fa-layer-group mr-2 text-blue-500"></i>
-                        <span>Showing <span class="font-semibold text-gray-800 dark:text-gray-200">12</span> exams</span>
+                        <span>Showing <span class="font-semibold text-gray-800 dark:text-gray-200">{{ count($exams) }}</span> exams</span>
                     </div>
                     <div class="flex items-center text-gray-600 ">
                         <i class="fas fa-clock mr-2 text-emerald-500"></i>
-                        <span>Avg. duration: <span class="font-semibold text-gray-800 dark:text-gray-200">30 min</span></span>
+                        <span>Avg. duration: <span class="font-semibold text-gray-800 dark:text-gray-200">{{ round($exams->avg('duration_minutes')) }} min</span></span>
                     </div>
                     <div class="flex items-center text-gray-600 ">
                         <i class="fas fa-star mr-2 text-amber-500"></i>
-                        <span>Popular: <span class="font-semibold text-gray-800 dark:text-gray-200">Web Development</span></span>
+                        <span>Popular: <span class="font-semibold text-gray-800 dark:text-gray-200">{{ strtoupper($exams->max('exam_type')) }}</span></span>
                     </div>
                 </div>
             </div>
 
-            <!-- Exams Grid -->
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
-                <!-- Exam Card -->
-                @foreach ($exams as $exam)
-                    <div class="bg-white dark:bg-gray-800 rounded-xl shadow-lg overflow-hidden border border-gray-100 dark:border-gray-700 card-hover group">
-                        <a href="#">
-                            <img class="rounded-t-base" src="{{ $exam->thumbnail ? asset('storage/exam_thumbnails/' . $exam->thumbnail) : asset('images/default-exam.png') }}" alt="thumbnail" />
-                        </a>
-                        <div class="p-6">
-                            <h3 class="text-lg font-bold text-gray-800 dark:text-gray-200 mb-2 group-hover:text-purple-600 dark:group-hover:text-purple-400 transition-colors">
-                                {{ $exam->title }}
-                            </h3>
+            @if ($exams->isEmpty())
+                <div id="noExamsMessage" class="text-center py-12">
+                    <div class="max-w-md mx-auto">
+                        <i class="fas fa-search text-4xl text-gray-400 mb-4"></i>
+                        <h3 class="text-lg font-semibold text-gray-800 dark:text-gray-200 mb-2">No exams found</h3>
+                        <p class="text-gray-600 ">Try adjusting your search or filter criteria.</p>
+                    </div>
+                </div>
+            @else
+                <!-- Exams Grid -->
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+                    <!-- Exam Card -->
+                    @foreach ($exams as $exam)
+                        <div class="bg-white dark:bg-gray-800 rounded-xl shadow-lg overflow-hidden border border-gray-100 dark:border-gray-700 card-hover group">
+                            <a href="#">
+                                <img class="rounded-t-base object-cover" src="{{ $exam->thumbnail ? asset('storage/exam_thumbnails/' . $exam->thumbnail) : asset('images/default-exam.png') }}" alt="thumbnail" />
+                            </a>
+                            <div class="p-6">
+                                <h3 class="text-lg font-bold text-gray-800 dark:text-gray-200 mb-2 group-hover:text-purple-600 dark:group-hover:text-purple-400 transition-colors">
+                                    {{ $exam->title }}
+                                </h3>
 
-                            <div class="space-y-1 mb-2">
-                                <div class="flex items-center text-sm text-gray-600 ">
-                                    <i class="fas fa-question-circle mr-1 text-blue-500 w-5"></i>
-                                    <span>{{ $exam->no_of_ques }} MCQ</span>
-                                </div>
-                                <div class="flex justify-between">
-                                    <div class="flex items-center text-sm text-gray-600 ">
-                                        <i class="fas fa-clock mr-1 text-emerald-500 w-5"></i>
-                                        <span>{{ $exam->duration_minutes }} minutes</span>
+                                <div class="space-y-1 mb-2">
+                                    <div class="flex justify-between text-sm text-gray-600">
+                                        <div>
+                                            <i class="fas fa-question-circle mr-1 text-blue-500 w-5"></i>
+                                            <span>{{ $exam->no_of_ques }} MCQ</span>
+                                        </div>
+                                        <span class="px-3 py-1 text-xs font-semibold rounded-full bg-purple-100 text-purple-600">
+                                            {{ strtoupper($exam->exam_type) }}
+                                        </span>
                                     </div>
-                                    <div class="flex items-center text-sm text-gray-600 ">
-                                        <i class="fas fa-trophy mr-1 text-amber-500 w-5"></i>
-                                        <span>Pass Mark: {{ $exam->pass_marks }}</span>
+                                    <div class="flex justify-between">
+                                        <div class="flex items-center text-sm text-gray-600 ">
+                                            <i class="fas fa-clock mr-1 text-emerald-500 w-5"></i>
+                                            <span>{{ $exam->duration_minutes }} minutes</span>
+                                        </div>
+                                        <div class="flex items-center text-sm text-gray-600 ">
+                                            <i class="fas fa-trophy mr-1 text-amber-500 w-5"></i>
+                                            <span>Pass Mark: {{ $exam->pass_marks }}</span>
+                                        </div>
                                     </div>
                                 </div>
-                            </div>
 
-                            <div class="flex items-center justify-between">
-                                <a href="/exam/2/start"
-                                class="py-2 bg-gradient-to-r from-emerald-500 to-emerald-600 hover:from-emerald-600 hover:to-emerald-700 text-white rounded-lg font-semibold shadow-lg hover:shadow-xl transition-all duration-200 text-sm flex items-center justify-center min-w-[140px] hover:-translate-y-0.5 active:translate-y-0">
-                                    <i class="fas fa-play text-sm mr-1"></i>
-                                    <span class="whitespace-nowrap">Start Exam</span>
-                                </a>
-                            </div>
+                                <div class="flex items-center justify-between">
+                                    <a href="{{ route('exam.rules', $exam->id) }}"
+                                    class="py-2 bg-gradient-to-r from-emerald-500 to-emerald-600 hover:from-emerald-600 hover:to-emerald-700 text-white rounded-lg font-semibold shadow-lg hover:shadow-xl transition-all duration-200 text-sm flex items-center justify-center min-w-[140px] hover:-translate-y-0.5 active:translate-y-0">
+                                        <i class="fas fa-play text-sm mr-1"></i>
+                                        <span class="whitespace-nowrap">Start Exam</span>
+                                    </a>
+                                </div>
 
-                            <!-- Additional info -->
-                            <div class="mt-3 pt-2 border-t border-gray-100">
-                                <div class="flex items-center justify-between text-xs text-gray-500 ">
-                                    <div class="flex items-center">
-                                        <i class="fas fa-users mr-1"></i>
-                                        <span>1.2k attempts</span>
+                                <!-- Additional info -->
+                                <div class="mt-3 pt-2 border-t border-gray-100">
+                                    <div class="flex items-center justify-between text-xs text-gray-500 ">
+                                        <div class="flex items-center">
+                                            <i class="fas fa-users mr-1"></i>
+                                            <span>1.2k attempts</span>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
-                    </div>
-                @endforeach
-            </div>
+                    @endforeach
+                </div>
 
-            <!-- Pagination -->
-            <div class="mt-12 flex items-center justify-between">
-                <div class="text-sm text-gray-600 ">
-                    Showing 1-6 of 12 exams
+                <!-- Pagination -->
+                <div class="mt-12">
+                    {{ $exams->links() }}
                 </div>
-                <div class="flex items-center space-x-2">
-                    <button class="px-3 py-2 border border-gray-300 dark:border-gray-600 rounded-lg text-gray-700 dark:text-gray-300 hover:bg-gray-50 dark:hover:bg-gray-700 disabled:opacity-50 disabled:cursor-not-allowed">
-                        <i class="fas fa-chevron-left"></i>
-                    </button>
-                    <button class="px-3 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700">1</button>
-                    <button class="px-3 py-2 border border-gray-300 dark:border-gray-600 rounded-lg text-gray-700 dark:text-gray-300 hover:bg-gray-50 dark:hover:bg-gray-700">2</button>
-                    <button class="px-3 py-2 border border-gray-300 dark:border-gray-600 rounded-lg text-gray-700 dark:text-gray-300 hover:bg-gray-50 dark:hover:bg-gray-700">3</button>
-                    <button class="px-3 py-2 border border-gray-300 dark:border-gray-600 rounded-lg text-gray-700 dark:text-gray-300 hover:bg-gray-50 dark:hover:bg-gray-700">
-                        <i class="fas fa-chevron-right"></i>
-                    </button>
-                </div>
-            </div>
-
-            <!-- No Exams Message (for empty state) -->
-            <div id="noExamsMessage" class="hidden mt-12 text-center">
-                <div class="max-w-md mx-auto">
-                    <i class="fas fa-search text-4xl text-gray-400 mb-4"></i>
-                    <h3 class="text-lg font-semibold text-gray-800 dark:text-gray-200 mb-2">No exams found</h3>
-                    <p class="text-gray-600 ">Try adjusting your search or filter criteria.</p>
-                </div>
-            </div>
+            @endif
         </div>
     </div>
 @endsection

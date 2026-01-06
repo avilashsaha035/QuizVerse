@@ -103,14 +103,18 @@
     </head>
 
     <body class="font-sans antialiased">
-        <!-- header -->
-        @include('frontend.partials.header')
+        <div class="min-h-screen flex flex-col">
+            <!-- header -->
+            @include('frontend.partials.header')
 
-        <!-- main content -->
-        @yield('content')
+            <!-- main content -->
+            <main class="flex-grow">
+                @yield('content')
+            </main>
 
-        <!-- footer -->
-        @include('frontend.partials.footer')
+            <!-- footer -->
+            @include('frontend.partials.footer')
+        </div>
 
         <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
 
@@ -163,5 +167,7 @@
                 );
             });
         </script>
+
+        @stack('frontend_scripts')
     </body>
 </html>

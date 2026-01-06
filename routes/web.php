@@ -36,8 +36,11 @@ Route::middleware('auth')->group(function () {
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
 
+Route::get('/exams', [FrontendExamController::class, 'exam'])->name('exam');
 Route::middleware('auth')->group(function () {
-    Route::get('/exams', [FrontendExamController::class, 'exam'])->name('exam');
+    Route::get('/exam/{id}/rules', [FrontendExamController::class, 'rules'])->name('exam.rules');
+    Route::get('/exam/{exam}/start', [FrontendExamController::class, 'start'])->name('exam.start');
+
 });
 
 // Backend Routes
