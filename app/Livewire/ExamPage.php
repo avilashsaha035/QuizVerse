@@ -16,7 +16,12 @@ class ExamPage extends Component
 
     public function mount($examId) {
         $this->exam = Exam::with('questions.options')->findOrFail($examId);
-        $this->questions = $this->exam->questions->toArray();
+        $this->questions = $this->exam->questions;
+        foreach ($this->questions as $question) {
+            if (!array_key_exists($question->id, $this->answers)) {
+                $this->answers[$question->id] = null;
+            }
+        }
         $this->timeRemaining = $this->exam->duration_minutes * 60;
     }
 
@@ -47,7 +52,7 @@ class ExamPage extends Component
     public function submit() {
         // Save attempt, calculate score, etc.
         // Example: ExamAttempt::create([...]);
-        return redirect()->route('exam.summary', $this->examId);
+        return redirect()->route('exam', $this->examId);
     }
 
     public function render()
