@@ -212,6 +212,15 @@ class ExamController extends Controller
             }
             $exam->subjects()->sync($syncData);
 
+            // Refresh exam_questions pivot
+            $exam->questions()->detach(); // clear old questions
+            foreach ($subjectIds as $i => $subjectId) {
+                $questions = Question::where('subject_id', $subjectId)->inRandomOrder()->take($subjectCounts[$i])->get();
+                foreach ($questions as $index => $question) {
+                    $exam->questions()->syncWithoutDetaching([ $question->id => ['order' => $index + 1], ]); // 'syncWithoutDetaching()' keep old questions and add new
+                }
+            }
+
             DB::commit();
             return redirect()->route('admin.exams.index')->with('success', 'Exam updated successfully!');
             // return back()->with('success', 'Exam updated successfully!');
