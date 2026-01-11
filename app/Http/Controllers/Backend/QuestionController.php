@@ -20,9 +20,12 @@ class QuestionController extends Controller
         $request->validate([
             'file' => 'required|file|mimes:xlsx,csv',
         ]);
+        try{
+            Excel::import(new QuestionsImport, $request->file('file'));
 
-        Excel::import(new QuestionsImport, $request->file('file'));
-
-        return back()->with('success', 'Questions imported successfully!');
+            return back()->with('success', 'Questions imported successfully!');
+        } catch (\Exception $e) {
+            return back()->withErrors(['error' => $e->getMessage()]);
+        }
     }
 }

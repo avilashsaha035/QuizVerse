@@ -52,5 +52,14 @@
 @endsection
 
 @push('scripts')
-  {{ $dataTable->scripts(attributes: ['type' => 'module']) }}
+    {{ $dataTable->scripts(attributes: ['type' => 'module']) }}
+    <script>
+        @if ($errors->any())
+            Swal.fire({
+                icon: 'error',
+                title: 'Import Failed',
+                text: @json($errors->first()),
+            });
+        @endif
+    </script>
 @endpush

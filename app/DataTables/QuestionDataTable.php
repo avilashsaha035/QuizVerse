@@ -22,9 +22,11 @@ class QuestionDataTable extends DataTable
     public function dataTable(QueryBuilder $query): EloquentDataTable
     {
         return (new EloquentDataTable($query))
-            ->addColumn('action', 'question.action')
             ->addColumn('question_text', function ($data) {
                 return $data->question_text ?? 'N/A';
+            })
+            ->addColumn('subject_name', function ($data) {
+                return $data->subject->name ?? 'N/A';
             })
             ->setRowId('id');
     }
@@ -34,7 +36,7 @@ class QuestionDataTable extends DataTable
      */
     public function query(Question $model): QueryBuilder
     {
-        return $model->newQuery();
+        return $model->newQuery()->with('subject');
     }
 
     /**
@@ -65,15 +67,14 @@ class QuestionDataTable extends DataTable
     public function getColumns(): array
     {
         return [
-            Column::computed('action')
-                  ->exportable(false)
-                  ->printable(false)
-                  ->width(60)
-                  ->addClass('text-center'),
+            // Column::computed('action')
+            //       ->exportable(false)
+            //       ->printable(false)
+            //       ->width(60)
+            //       ->addClass('text-center'),
             Column::make('id'),
             Column::make('question_text'),
-            Column::make('created_at'),
-            Column::make('updated_at'),
+            Column::make('subject_name')->title('Subject'),
         ];
     }
 

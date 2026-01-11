@@ -17,7 +17,11 @@ class QuestionsImport implements ToCollection, WithHeadingRow
         foreach ($rows as $row) {
             $question = new Question();
             $question->question_text = $row['question_text'];
-            $question->subject_id    = Subject::where('slug', $row['subject_slug'])->value('id');
+            $subject = Subject::where('slug', $row['subject_slug'])->first();
+            if (!$subject) {
+                throw new \Exception("Subject with slug '{$row['subject_slug']}' not found.");
+            }
+            $question->subject_id    = $subject->id;
             $question->exam_type     = $row['exam_type'];
             // $question->language      = $row['language'] ?? 'en';
             $question->created_by    = Auth::id();
