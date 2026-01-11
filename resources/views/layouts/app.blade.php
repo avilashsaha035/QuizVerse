@@ -17,6 +17,9 @@
         <!-- Scripts -->
         @vite(['resources/css/app.css', 'resources/js/app.js'])
 
+        <!-- Livewire styles -->
+        @livewireStyles
+
         <style>
             /* Vibrant Blue Gradient for Positive Energy */
             .gradient-bg {
@@ -167,6 +170,9 @@
                 );
             });
         </script>
+
+        <!-- Livewire scripts -->
+        @livewireScripts
 
         @stack('frontend_scripts')
     </body>

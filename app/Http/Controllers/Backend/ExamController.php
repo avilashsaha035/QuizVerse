@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Backend;
 
 use App\Models\Exam;
 use App\Models\Subject;
+use App\Models\Question;
 use Illuminate\Support\Str;
 use Illuminate\Http\Request;
 use App\DataTables\ExamDataTable;
@@ -40,9 +41,9 @@ class ExamController extends Controller
             'is_shuffling'     => 'nullable|integer|in:0,1',
             'is_active'        => 'nullable|integer|in:0,1',
             'start_date'       => 'nullable|date',
-            'start_time'       => 'nullable|date_format:H:i',
+            'start_time'       => 'nullable',
             'end_date'         => 'nullable|date|after_or_equal:start_date',
-            'end_time'         => 'nullable|date_format:H:i',
+            'end_time'         => 'nullable',
             'subject_ids'      => 'required|array|min:1',
             'subject_ids.*'    => 'exists:subjects,id',
             'subject_counts'   => 'required|array|min:1',
@@ -88,6 +89,18 @@ class ExamController extends Controller
                 $exam->subjects()->attach($subjectId, [
                     'question_count' => $validated['subject_counts'][$i],
                 ]);
+
+                // Fetch questions from this subject
+                $questions = Question::where('subject_id', $subjectId)
+                            ->inRandomOrder()
+                            ->take($validated['subject_counts'][$i])->get();
+
+                // Attach them to exam_questions pivot
+                foreach ($questions as $index => $question) {
+                    $exam->questions()->syncWithoutDetaching([
+                        $question->id => ['order' => $index + 1],
+                    ]);
+                }
             }
 
             DB::commit();

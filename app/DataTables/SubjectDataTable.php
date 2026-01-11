@@ -50,7 +50,7 @@ class SubjectDataTable extends DataTable
      */
     public function query(Subject $model): QueryBuilder
     {
-        return $model->newQuery();
+        return $model->newQuery()->orderBy('id');
     }
 
     /**

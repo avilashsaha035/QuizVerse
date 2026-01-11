@@ -17,4 +17,9 @@ class ExamController extends Controller
         $exam = Exam::select('id', 'title', 'description')->findOrFail($id);
         return view('frontend.exam.rules', compact('exam'));
     }
+
+    public function start($id) {
+        $exam = Exam::findOrFail($id);
+        return view('frontend.exam.exam-start', compact('exam'));
+    }
 }
