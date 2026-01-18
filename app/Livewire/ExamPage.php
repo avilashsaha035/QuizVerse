@@ -49,6 +49,12 @@ class ExamPage extends Component
         }
     }
 
+    public function goTo($index){
+        if ($index >= 0 && $index < count($this->questions)) {
+            $this->currentIndex = $index;
+        }
+    }
+
     public function submit() {
         // Save attempt, calculate score, etc.
         // Example: ExamAttempt::create([...]);
