@@ -5,331 +5,558 @@
 @endpush
 
 @section('content')
-    <!-- Hero Section with Vibrant Blue Gradient -->
-    <section class="gradient-bg text-white pt-20 pb-16 md:pt-28 md:pb-24 relative overflow-hidden">
-        <!-- Animated background elements -->
+    <!-- Hero Section -->
+    <section class="bg-gradient-to-br from-blue-900 via-blue-800 to-blue-600 text-white pt-8 md:pt-12 pb-8 md:pb-16 relative overflow-hidden">
+        <!-- Animated background particles -->
         <div class="absolute inset-0 overflow-hidden">
-            <div class="absolute -top-40 -right-40 w-80 h-80 bg-blue-400 rounded-full mix-blend-multiply filter blur-3xl opacity-20 animate-pulse"></div>
-            <div class="absolute -bottom-40 -left-40 w-80 h-80 bg-blue-300 rounded-full mix-blend-multiply filter blur-3xl opacity-20 animate-pulse delay-1000"></div>
-            <div class="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-80 h-80 bg-blue-500 rounded-full mix-blend-multiply filter blur-3xl opacity-10 animate-pulse delay-500"></div>
+            <div class="absolute top-1/4 left-1/4 w-64 h-64 bg-blue-400 rounded-full mix-blend-multiply filter blur-3xl opacity-20 animate-pulse floating"></div>
+            <div class="absolute bottom-1/4 right-1/4 w-72 h-72 bg-emerald-400 rounded-full mix-blend-multiply filter blur-3xl opacity-20 animate-pulse delay-1000 floating" style="animation-delay: 2s;"></div>
+            <div class="absolute top-3/4 left-3/4 w-48 h-48 bg-purple-400 rounded-full mix-blend-multiply filter blur-3xl opacity-20 animate-pulse delay-500 floating" style="animation-delay: 1s;"></div>
         </div>
 
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-            <div class="grid md:grid-cols-2 gap-12 items-center">
+        <div class="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+            <div class="grid lg:grid-cols-2 gap-8 md:gap-12 items-center">
+                <!-- Left Content -->
                 <div class="text-left">
-                    <h1 class="text-4xl md:text-5xl lg:text-6xl font-bold leading-tight mb-6">
+                    <div class="inline-flex items-center px-3 py-1 rounded-full bg-white/10 backdrop-blur-sm border border-white/20 mb-6">
+                        <span class="w-2 h-2 rounded-full bg-emerald-400 animate-pulse mr-2"></span>
+                        <span class="text-sm font-medium">Trusted by 10,000+ Students</span>
+                    </div>
+
+                    <h1 class="text-4xl md:text-5xl lg:text-6xl font-bold leading-tight mb-6 fade-in">
                         Master Exams with
-                        <span class="text-emerald-300 bg-gradient-to-r from-emerald-400 to-emerald-200 bg-clip-text text-transparent">Smart Practice</span>
+                        <span class="gradient-animate">AI-Powered</span>
+                        Practice
                     </h1>
-                    <p class="text-lg md:text-xl text-blue-100 mb-8 max-w-2xl">
-                        Take unlimited MCQ exams, track your progress, and improve your skills with instant feedback.
-                        The intelligent way to prepare for your next challenge.
+
+                    <p class="text-lg md:text-xl text-blue-100 mb-8 max-w-2xl fade-in" style="animation-delay: 0.2s;">
+                        Transform your exam preparation with intelligent analytics, personalized feedback, and adaptive learning paths designed for maximum success.
                     </p>
-                    <div class="flex flex-col sm:flex-row gap-4">
+
+                    <!-- Stats -->
+                    <div class="grid grid-cols-2 md:grid-cols-3 gap-4 mb-8">
+                        <div class="glass-card rounded-xl p-4 fade-in" style="animation-delay: 0.3s;">
+                            <div class="text-2xl md:text-3xl font-bold text-white mb-1">
+                                <span class="counter">98</span>%
+                            </div>
+                            <div class="text-sm text-blue-200">Success Rate</div>
+                        </div>
+                        <div class="glass-card rounded-xl p-4 fade-in" style="animation-delay: 0.4s;">
+                            <div class="text-2xl md:text-3xl font-bold text-white mb-1">
+                                <span class="counter">2500</span>+
+                            </div>
+                            <div class="text-sm text-blue-200">Exam Categories</div>
+                        </div>
+                        <div class="glass-card rounded-xl p-4 fade-in" style="animation-delay: 0.5s;">
+                            <div class="text-2xl md:text-3xl font-bold text-white mb-1">
+                                <span class="counter">4.9</span>/5
+                            </div>
+                            <div class="text-sm text-blue-200">Student Rating</div>
+                        </div>
+                    </div>
+
+                    <!-- CTA Buttons -->
+                    <div class="flex flex-col sm:flex-row gap-4 fade-in" style="animation-delay: 0.6s;">
                         @auth
                             <a href="{{ url('/dashboard') }}"
-                               class="px-6 py-3 md:px-8 md:py-4 bg-white text-blue-600 rounded-lg md:rounded-xl font-semibold text-base md:text-lg shadow-2xl hover-lift hover:bg-gray-50 hover:scale-105 transition-all duration-300 inline-flex items-center justify-center pulse-glow">
-                                <i class="fas fa-rocket mr-3 text-blue-500"></i>
-                                Go to Dashboard
+                               class="group relative px-6 py-3 md:px-8 md:py-4 bg-gradient-to-r from-emerald-500 to-emerald-600 text-white rounded-xl font-semibold text-base md:text-lg shadow-2xl hover:shadow-3xl transition-all duration-300 hover-lift overflow-hidden">
+                                <div class="absolute inset-0 bg-gradient-to-r from-emerald-600 to-emerald-700 transform -translate-x-full group-hover:translate-x-0 transition-transform duration-500"></div>
+                                <span class="relative flex items-center justify-center">
+                                    <i class="fas fa-rocket mr-3 text-lg group-hover:rotate-12 transition-transform duration-300"></i>
+                                    Go to Dashboard
+                                </span>
                             </a>
                             <a href="/exams"
-                               class="px-6 py-3 md:px-8 md:py-4 bg-transparent border-2 border-white text-white rounded-lg md:rounded-xl font-semibold text-base md:text-lg hover-lift hover:bg-white hover:text-blue-600 hover:scale-105 transition-all duration-300 inline-flex items-center justify-center">
-                                <i class="fas fa-play mr-3"></i>
-                                Start Exam
+                               class="group px-6 py-3 md:px-8 md:py-4 bg-white/10 backdrop-blur-sm border-2 border-white/30 text-white rounded-xl font-semibold text-base md:text-lg hover:bg-white hover:text-blue-600 transition-all duration-300 hover-lift">
+                                <i class="fas fa-play mr-3 group-hover:scale-110 transition-transform duration-300"></i>
+                                Start Exam Now
                             </a>
                         @else
                             <a href="{{ route('register') }}"
-                               class="px-6 py-3 md:px-8 md:py-4 bg-white text-blue-600 rounded-lg md:rounded-xl font-semibold text-base md:text-lg shadow-2xl hover-lift hover:bg-gray-50 hover:scale-105 transition-all duration-300 inline-flex items-center justify-center pulse-glow">
-                                <i class="fas fa-user-plus mr-3 text-blue-500"></i>
-                                Start Free Trial
+                               class="group relative px-6 py-3 md:px-8 md:py-4 bg-gradient-to-r from-emerald-500 to-emerald-600 text-white rounded-xl font-semibold text-base md:text-lg shadow-2xl hover:shadow-3xl transition-all duration-300 hover-lift overflow-hidden pulse-glow">
+                                <div class="absolute inset-0 bg-gradient-to-r from-emerald-600 to-emerald-700 transform -translate-x-full group-hover:translate-x-0 transition-transform duration-500"></div>
+                                <span class="relative flex items-center justify-center">
+                                    <i class="fas fa-magic mr-3 text-lg group-hover:rotate-12 transition-transform duration-300"></i>
+                                    Start Free Trial
+                                </span>
                             </a>
                             <a href="{{ route('login') }}"
-                               class="px-6 py-3 md:px-8 md:py-4 bg-transparent border-2 border-white text-white rounded-lg md:rounded-xl font-semibold text-base md:text-lg hover-lift hover:bg-white hover:text-blue-600 hover:scale-105 transition-all duration-300 inline-flex items-center justify-center">
-                                <i class="fas fa-sign-in-alt mr-3"></i>
+                               class="group px-6 py-3 md:px-8 md:py-4 bg-white/10 backdrop-blur-sm border-2 border-white/30 text-white rounded-xl font-semibold text-base md:text-lg hover:bg-white hover:text-blue-600 transition-all duration-300 hover-lift">
+                                <i class="fas fa-sign-in-alt mr-3 group-hover:scale-110 transition-transform duration-300"></i>
                                 Sign In
                             </a>
                         @endauth
                     </div>
-                    <div class="mt-8 md:mt-10 flex items-center">
-                        <div class="flex -space-x-2">
-                            <div class="w-8 h-8 md:w-10 md:h-10 rounded-full border-2 border-white bg-gradient-to-br from-blue-300 to-blue-400 shadow-lg"></div>
-                            <div class="w-8 h-8 md:w-10 md:h-10 rounded-full border-2 border-white bg-gradient-to-br from-blue-400 to-blue-500 shadow-lg"></div>
-                            <div class="w-8 h-8 md:w-10 md:h-10 rounded-full border-2 border-white bg-gradient-to-br from-emerald-400 to-emerald-500 shadow-lg"></div>
-                            <div class="w-8 h-8 md:w-10 md:h-10 rounded-full border-2 border-white bg-gradient-to-br from-emerald-500 to-emerald-600 shadow-lg"></div>
-                        </div>
-                        <div class="ml-4">
-                            <p class="text-sm md:text-base font-semibold text-blue-100">Join 10,000+ Successful Learners</p>
-                            <div class="flex items-center mt-1">
-                                <i class="fas fa-star text-emerald-300 mr-1 animate-pulse"></i>
-                                <i class="fas fa-star text-emerald-300 mr-1 animate-pulse delay-100"></i>
-                                <i class="fas fa-star text-emerald-300 mr-1 animate-pulse delay-200"></i>
-                                <i class="fas fa-star text-emerald-300 mr-1 animate-pulse delay-300"></i>
-                                <i class="fas fa-star text-emerald-300 mr-1 animate-pulse delay-400"></i>
-                                <span class="ml-2 text-blue-200 text-sm md:text-base">4.9/5 from 2,500+ reviews</span>
+
+                    <!-- Trust Badges -->
+                    <div class="mt-8 flex flex-wrap items-center gap-4">
+                        <div class="flex items-center">
+                            <div class="flex -space-x-3">
+                                @for($i = 1; $i <= 5; $i++)
+                                    <div class="w-8 h-8 md:w-10 md:h-10 rounded-full border-2 border-blue-800 bg-gradient-to-br from-blue-400 to-blue-500 shadow-lg transform hover:scale-110 transition-transform duration-300"></div>
+                                @endfor
+                            </div>
+                            <div class="ml-3">
+                                <div class="text-sm font-semibold">Join 10,000+ Learners</div>
+                                <div class="flex items-center text-xs text-blue-200">
+                                    <i class="fas fa-star text-yellow-400 mr-1"></i>
+                                    <span>Rated 4.9/5</span>
+                                </div>
                             </div>
                         </div>
                     </div>
                 </div>
-                <div class="relative">
-                    <div class="relative mx-auto max-w-md">
-                        <div class="bg-white/15 backdrop-blur-lg rounded-xl md:rounded-2xl p-6 md:p-8 feature-card border border-white/30 shadow-2xl card-hover">
-                            <div class="flex items-center justify-between mb-4 md:mb-6">
-                                <div class="flex items-center">
-                                    <div class="w-2 h-2 md:w-3 md:h-3 rounded-full bg-red-400 mr-2 animate-pulse"></div>
-                                    <div class="w-2 h-2 md:w-3 md:h-3 rounded-full bg-amber-400 mr-2 animate-pulse delay-300"></div>
-                                    <div class="w-2 h-2 md:w-3 md:h-3 rounded-full bg-emerald-400 animate-pulse delay-500"></div>
-                                </div>
-                                <span class="text-xs md:text-sm font-medium bg-gradient-to-r from-blue-400 to-emerald-400 bg-clip-text text-transparent">Live Exam Preview</span>
-                            </div>
 
-                            <div class="bg-gray-900/80 backdrop-blur-sm rounded-lg md:rounded-xl p-4 md:p-6 mb-4 md:mb-6 border border-gray-700">
-                                <div class="flex items-center justify-between mb-3 md:mb-4">
-                                    <div class="text-xs md:text-sm text-gray-300">
-                                        <span class="font-semibold bg-gradient-to-r from-blue-400 to-blue-300 bg-clip-text text-transparent">Question 7</span> of 50
-                                    </div>
-                                    <div class="text-xs md:text-sm text-gray-300">
-                                        Time: <span class="font-bold text-emerald-300">12:45</span>
-                                    </div>
-                                </div>
-
-                                <h3 class="text-white font-medium mb-3 md:mb-4 text-sm md:text-base">
-                                    Which of the following is a key feature of Laravel's Eloquent ORM?
-                                </h3>
-
-                                <div class="space-y-2 md:space-y-3">
-                                    <div class="bg-gray-800/80 rounded-lg p-2 md:p-3 hover:bg-gray-700/80 cursor-pointer transition-all duration-200 hover:scale-[1.02]">
-                                        <div class="flex items-center">
-                                            <div class="w-5 h-5 md:w-6 md:h-6 rounded-full border border-gray-400 flex items-center justify-center mr-2 md:mr-3 bg-gray-700">
-                                                <span class="text-xs md:text-sm text-gray-300">A</span>
+                <!-- Right Side: Header Slider -->
+                <div class="relative fade-in" style="animation-delay: 0.7s;">
+                    <div class="header-slider rounded-2xl overflow-hidden shadow-2xl">
+                        <div class="swiper-wrapper">
+                            <!-- Slide 1 -->
+                            <div class="swiper-slide">
+                                <div class="swiper-slide-header" style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);">
+                                    <div class="slide-overlay">
+                                        <div class="slide-content">
+                                            <div class="inline-flex items-center px-3 py-1 rounded-full bg-white/20 backdrop-blur-sm mb-4">
+                                                <i class="fas fa-chart-line mr-2"></i>
+                                                <span class="text-sm font-medium">Real-time Analytics</span>
                                             </div>
-                                            <span class="text-gray-200 text-xs md:text-sm">Active Record Implementation</span>
+                                            <h3 class="text-2xl md:text-3xl font-bold mb-3">Track Your Progress</h3>
+                                            <p class="text-blue-100 mb-4">Monitor performance with detailed analytics and personalized insights</p>
+                                            <a href="#" class="inline-flex items-center text-white font-semibold hover:text-emerald-300 transition-colors duration-300">
+                                                Learn More <i class="fas fa-arrow-right ml-2"></i>
+                                            </a>
                                         </div>
                                     </div>
-                                    <div class="bg-gradient-to-r from-emerald-600 to-emerald-500 rounded-lg p-2 md:p-3 shadow-lg hover:shadow-emerald-500/25">
-                                        <div class="flex items-center">
-                                            <div class="w-5 h-5 md:w-6 md:h-6 rounded-full border border-white flex items-center justify-center mr-2 md:mr-3 bg-emerald-500">
-                                                <span class="text-xs md:text-sm text-white">B</span>
-                                            </div>
-                                            <span class="text-white text-xs md:text-sm font-medium">Database Migrations</span>
-                                        </div>
-                                    </div>
-                                    <div class="bg-gray-800/80 rounded-lg p-2 md:p-3 hover:bg-gray-700/80 cursor-pointer transition-all duration-200 hover:scale-[1.02]">
-                                        <div class="flex items-center">
-                                            <div class="w-5 h-5 md:w-6 md:h-6 rounded-full border border-gray-400 flex items-center justify-center mr-2 md:mr-3 bg-gray-700">
-                                                <span class="text-xs md:text-sm text-gray-300">C</span>
-                                            </div>
-                                            <span class="text-gray-200 text-xs md:text-sm">Built-in Authentication</span>
-                                        </div>
-                                    </div>
-                                    <div class="bg-gray-800/80 rounded-lg p-2 md:p-3 hover:bg-gray-700/80 cursor-pointer transition-all duration-200 hover:scale-[1.02]">
-                                        <div class="flex items-center">
-                                            <div class="w-5 h-5 md:w-6 md:h-6 rounded-full border border-gray-400 flex items-center justify-center mr-2 md:mr-3 bg-gray-700">
-                                                <span class="text-xs md:text-sm text-gray-300">D</span>
-                                            </div>
-                                            <span class="text-gray-200 text-xs md:text-sm">Blade Templating</span>
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <div class="flex justify-between mt-4 md:mt-6">
-                                    <button class="px-3 py-1 md:px-4 md:py-2 bg-gray-800 text-gray-300 rounded-lg hover:bg-gray-700 transition-all duration-200 text-xs md:text-sm hover:scale-105">
-                                        <i class="fas fa-arrow-left mr-1 md:mr-2"></i>Previous
-                                    </button>
-                                    <button class="px-3 py-1 md:px-4 md:py-2 bg-gradient-to-r from-blue-600 to-blue-500 text-white rounded-lg hover:from-blue-700 hover:to-blue-600 transition-all duration-200 text-xs md:text-sm shadow-lg hover:shadow-xl hover:scale-105">
-                                        Next<i class="fas fa-arrow-right ml-1 md:ml-2"></i>
-                                    </button>
                                 </div>
                             </div>
 
-                            <div class="text-center">
-                                <div class="inline-flex space-x-1">
-                                    @for($i = 1; $i <= 10; $i++)
-                                        <div class="w-2 h-2 md:w-3 md:h-3 rounded-full {{ $i == 7 ? 'bg-gradient-to-br from-blue-400 to-blue-500' : ($i < 7 ? 'bg-gradient-to-br from-emerald-400 to-emerald-500' : 'bg-gray-600') }}"></div>
-                                    @endfor
+                            <!-- Slide 2 -->
+                            <div class="swiper-slide">
+                                <div class="swiper-slide-header" style="background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);">
+                                    <div class="slide-overlay">
+                                        <div class="slide-content">
+                                            <div class="inline-flex items-center px-3 py-1 rounded-full bg-white/20 backdrop-blur-sm mb-4">
+                                                <i class="fas fa-brain mr-2"></i>
+                                                <span class="text-sm font-medium">Adaptive Learning</span>
+                                            </div>
+                                            <h3 class="text-2xl md:text-3xl font-bold mb-3">Smart Practice Mode</h3>
+                                            <p class="text-blue-100 mb-4">AI-powered questions adapt to your learning pace and skill level</p>
+                                            <a href="#" class="inline-flex items-center text-white font-semibold hover:text-emerald-300 transition-colors duration-300">
+                                                Try Now <i class="fas fa-play ml-2"></i>
+                                            </a>
+                                        </div>
+                                    </div>
                                 </div>
-                                <p class="text-xs md:text-sm text-gray-300 mt-2">
-                                    <span class="text-emerald-300">Answered: 6/50</span> • <span class="text-amber-300">Skipped: 1</span>
-                                </p>
+                            </div>
+
+                            <!-- Slide 3 -->
+                            <div class="swiper-slide">
+                                <div class="swiper-slide-header" style="background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);">
+                                    <div class="slide-overlay">
+                                        <div class="slide-content">
+                                            <div class="inline-flex items-center px-3 py-1 rounded-full bg-white/20 backdrop-blur-sm mb-4">
+                                                <i class="fas fa-trophy mr-2"></i>
+                                                <span class="text-sm font-medium">Certification</span>
+                                            </div>
+                                            <h3 class="text-2xl md:text-3xl font-bold mb-3">Get Certified</h3>
+                                            <p class="text-blue-100 mb-4">Earn verifiable certificates for completed exams and courses</p>
+                                            <a href="#" class="inline-flex items-center text-white font-semibold hover:text-emerald-300 transition-colors duration-300">
+                                                View Certificates <i class="fas fa-award ml-2"></i>
+                                            </a>
+                                        </div>
+                                    </div>
+                                </div>
                             </div>
                         </div>
+
+                        <!-- Slider Controls -->
+                        <div class="swiper-pagination !bottom-4"></div>
+                        <div class="swiper-button-next !text-white !right-4"></div>
+                        <div class="swiper-button-prev !text-white !left-4"></div>
                     </div>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Features Section -->
-    <section id="features" class="py-16 md:py-20 bg-gradient-to-b from-blue-50 to-white dark:from-gray-900 dark:to-gray-800">
+    <!-- Features Section - Modern Design -->
+    <section id="features" class="py-16 md:py-24 bg-gradient-to-b from-white via-blue-50/50 to-white dark:from-gray-900 dark:via-gray-800/50 dark:to-gray-900">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="text-center mb-12 md:mb-16">
-                <h2 class="text-3xl md:text-4xl font-bold text-gray-800 dark:text-white mb-4">
-                    Why Choose <span class="bg-gradient-to-r from-blue-600 to-emerald-500 bg-clip-text text-transparent">QuizVerse</span>?
+            <div class="text-center mb-16 md:mb-20">
+                <span class="inline-block px-4 py-2 rounded-full bg-gradient-to-r from-blue-100 to-emerald-100 dark:from-blue-900/30 dark:to-emerald-900/30 text-blue-600 dark:text-blue-400 font-semibold text-sm mb-4 fade-in">
+                    <i class="fas fa-bolt mr-2"></i>POWERFUL FEATURES
+                </span>
+                <h2 class="text-3xl md:text-4xl lg:text-5xl font-bold text-gray-900 dark:text-white mb-4 fade-in">
+                    Everything You Need to
+                    <span class="bg-gradient-to-r from-blue-600 to-emerald-500 bg-clip-text text-transparent">Excel</span>
                 </h2>
-                <p class="text-lg md:text-xl text-gray-600 dark:text-gray-300 max-w-3xl mx-auto">
-                    Our platform is designed to provide the best exam preparation experience
+                <p class="text-lg md:text-xl text-gray-600 dark:text-gray-300 max-w-3xl mx-auto fade-in" style="animation-delay: 0.2s;">
+                    A comprehensive suite of tools designed to optimize your learning experience and maximize results
                 </p>
             </div>
 
             <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-6 md:gap-8">
                 <!-- Feature 1 -->
-                <div class="bg-white dark:bg-gray-800 rounded-xl md:rounded-2xl p-6 md:p-8 shadow-lg hover-lift transition-all duration-300 card-hover border border-transparent hover:border-blue-200 dark:hover:border-blue-900/50">
-                    <div class="w-12 h-12 md:w-16 md:h-16 rounded-lg md:rounded-xl bg-gradient-to-br from-blue-100 to-blue-50 dark:from-blue-900/30 dark:to-blue-900/10 flex items-center justify-center mb-4 md:mb-6 shadow-inner">
-                        <i class="fas fa-file-import text-xl md:text-3xl text-blue-600 dark:text-blue-400"></i>
+                <div class="group relative fade-in">
+                    <div class="absolute inset-0 bg-gradient-to-r from-blue-500 to-emerald-500 rounded-2xl blur opacity-0 group-hover:opacity-20 transition duration-500"></div>
+                    <div class="relative bg-white dark:bg-gray-800 rounded-2xl p-6 md:p-8 shadow-xl hover:shadow-2xl transition-all duration-300 border border-gray-100 dark:border-gray-700 group-hover:border-blue-200 dark:group-hover:border-blue-500/30 card-hover">
+                        <div class="w-14 h-14 md:w-16 md:h-16 rounded-xl bg-gradient-to-br from-blue-500 to-blue-600 group-hover:from-blue-600 group-hover:to-blue-700 flex items-center justify-center mb-6 shadow-lg group-hover:shadow-blue-500/25 transition-all duration-300">
+                            <i class="fas fa-file-import text-2xl text-white"></i>
+                        </div>
+                        <h3 class="text-xl font-bold text-gray-900 dark:text-white mb-3 group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors duration-300">
+                            Smart Import
+                        </h3>
+                        <p class="text-gray-600 dark:text-gray-300 mb-4">
+                            Upload questions via CSV/Excel with AI-powered validation and organization
+                        </p>
+                        <div class="flex items-center text-blue-600 dark:text-blue-400 font-medium group-hover:translate-x-2 transition-transform duration-300">
+                            Learn More <i class="fas fa-arrow-right ml-2"></i>
+                        </div>
                     </div>
-                    <h3 class="text-lg md:text-xl font-bold text-gray-800 dark:text-white mb-2 md:mb-3">
-                        Easy Question Import
-                    </h3>
-                    <p class="text-sm md:text-base text-gray-600 dark:text-gray-300">
-                        Admins can upload questions via CSV/Excel files. Bulk import saves time and effort.
-                    </p>
                 </div>
 
                 <!-- Feature 2 -->
-                <div class="bg-white dark:bg-gray-800 rounded-xl md:rounded-2xl p-6 md:p-8 shadow-lg hover-lift transition-all duration-300 card-hover border border-transparent hover:border-emerald-200 dark:hover:border-emerald-900/50">
-                    <div class="w-12 h-12 md:w-16 md:h-16 rounded-lg md:rounded-xl bg-gradient-to-br from-emerald-100 to-emerald-50 dark:from-emerald-900/30 dark:to-emerald-900/10 flex items-center justify-center mb-4 md:mb-6 shadow-inner">
-                        <i class="fas fa-forward text-xl md:text-3xl text-emerald-600 dark:text-emerald-400"></i>
+                <div class="group relative fade-in" style="animation-delay: 0.1s;">
+                    <div class="absolute inset-0 bg-gradient-to-r from-emerald-500 to-green-500 rounded-2xl blur opacity-0 group-hover:opacity-20 transition duration-500"></div>
+                    <div class="relative bg-white dark:bg-gray-800 rounded-2xl p-6 md:p-8 shadow-xl hover:shadow-2xl transition-all duration-300 border border-gray-100 dark:border-gray-700 group-hover:border-emerald-200 dark:group-hover:border-emerald-500/30 card-hover">
+                        <div class="w-14 h-14 md:w-16 md:h-16 rounded-xl bg-gradient-to-br from-emerald-500 to-emerald-600 group-hover:from-emerald-600 group-hover:to-emerald-700 flex items-center justify-center mb-6 shadow-lg group-hover:shadow-emerald-500/25 transition-all duration-300">
+                            <i class="fas fa-forward text-2xl text-white"></i>
+                        </div>
+                        <h3 class="text-xl font-bold text-gray-900 dark:text-white mb-3 group-hover:text-emerald-600 dark:group-hover:text-emerald-400 transition-colors duration-300">
+                            Smart Navigation
+                        </h3>
+                        <p class="text-gray-600 dark:text-gray-300 mb-4">
+                            Intelligent question skipping and bookmarking with progress tracking
+                        </p>
+                        <div class="flex items-center text-emerald-600 dark:text-emerald-400 font-medium group-hover:translate-x-2 transition-transform duration-300">
+                            Try Feature <i class="fas fa-play ml-2"></i>
+                        </div>
                     </div>
-                    <h3 class="text-lg md:text-xl font-bold text-gray-800 dark:text-white mb-2 md:mb-3">
-                        Navigate Questions
-                    </h3>
-                    <p class="text-sm md:text-base text-gray-600 dark:text-gray-300">
-                        Move forward/backward between questions. Track unanswered questions easily.
-                    </p>
                 </div>
 
                 <!-- Feature 3 -->
-                <div class="bg-white dark:bg-gray-800 rounded-xl md:rounded-2xl p-6 md:p-8 shadow-lg hover-lift transition-all duration-300 card-hover border border-transparent hover:border-blue-200 dark:hover:border-blue-900/50">
-                    <div class="w-12 h-12 md:w-16 md:h-16 rounded-lg md:rounded-xl bg-gradient-to-br from-blue-100 to-blue-50 dark:from-blue-900/30 dark:to-blue-900/10 flex items-center justify-center mb-4 md:mb-6 shadow-inner">
-                        <i class="fas fa-bolt text-xl md:text-3xl text-blue-600 dark:text-blue-400"></i>
+                <div class="group relative fade-in" style="animation-delay: 0.2s;">
+                    <div class="absolute inset-0 bg-gradient-to-r from-purple-500 to-pink-500 rounded-2xl blur opacity-0 group-hover:opacity-20 transition duration-500"></div>
+                    <div class="relative bg-white dark:bg-gray-800 rounded-2xl p-6 md:p-8 shadow-xl hover:shadow-2xl transition-all duration-300 border border-gray-100 dark:border-gray-700 group-hover:border-purple-200 dark:group-hover:border-purple-500/30 card-hover">
+                        <div class="w-14 h-14 md:w-16 md:h-16 rounded-xl bg-gradient-to-br from-purple-500 to-purple-600 group-hover:from-purple-600 group-hover:to-purple-700 flex items-center justify-center mb-6 shadow-lg group-hover:shadow-purple-500/25 transition-all duration-300">
+                            <i class="fas fa-bolt text-2xl text-white"></i>
+                        </div>
+                        <h3 class="text-xl font-bold text-gray-900 dark:text-white mb-3 group-hover:text-purple-600 dark:group-hover:text-purple-400 transition-colors duration-300">
+                            Instant Results
+                        </h3>
+                        <p class="text-gray-600 dark:text-gray-300 mb-4">
+                            Real-time scoring with detailed analytics and performance breakdown
+                        </p>
+                        <div class="flex items-center text-purple-600 dark:text-purple-400 font-medium group-hover:translate-x-2 transition-transform duration-300">
+                            See Demo <i class="fas fa-chart-bar ml-2"></i>
+                        </div>
                     </div>
-                    <h3 class="text-lg md:text-xl font-bold text-gray-800 dark:text-white mb-2 md:mb-3">
-                        Instant Results
-                    </h3>
-                    <p class="text-sm md:text-base text-gray-600 dark:text-gray-300">
-                        Get your score immediately after exam completion. Review correct/incorrect answers.
-                    </p>
                 </div>
 
                 <!-- Feature 4 -->
-                <div class="bg-white dark:bg-gray-800 rounded-xl md:rounded-2xl p-6 md:p-8 shadow-lg hover-lift transition-all duration-300 card-hover border border-transparent hover:border-emerald-200 dark:hover:border-emerald-900/50">
-                    <div class="w-12 h-12 md:w-16 md:h-16 rounded-lg md:rounded-xl bg-gradient-to-br from-emerald-100 to-emerald-50 dark:from-emerald-900/30 dark:to-emerald-900/10 flex items-center justify-center mb-4 md:mb-6 shadow-inner">
-                        <i class="fas fa-chart-line text-xl md:text-3xl text-emerald-600 dark:text-emerald-400"></i>
+                <div class="group relative fade-in" style="animation-delay: 0.3s;">
+                    <div class="absolute inset-0 bg-gradient-to-r from-orange-500 to-red-500 rounded-2xl blur opacity-0 group-hover:opacity-20 transition duration-500"></div>
+                    <div class="relative bg-white dark:bg-gray-800 rounded-2xl p-6 md:p-8 shadow-xl hover:shadow-2xl transition-all duration-300 border border-gray-100 dark:border-gray-700 group-hover:border-orange-200 dark:group-hover:border-orange-500/30 card-hover">
+                        <div class="w-14 h-14 md:w-16 md:h-16 rounded-xl bg-gradient-to-br from-orange-500 to-orange-600 group-hover:from-orange-600 group-hover:to-orange-700 flex items-center justify-center mb-6 shadow-lg group-hover:shadow-orange-500/25 transition-all duration-300">
+                            <i class="fas fa-chart-line text-2xl text-white"></i>
+                        </div>
+                        <h3 class="text-xl font-bold text-gray-900 dark:text-white mb-3 group-hover:text-orange-600 dark:group-hover:text-orange-400 transition-colors duration-300">
+                            Progress AI
+                        </h3>
+                        <p class="text-gray-600 dark:text-gray-300 mb-4">
+                            AI-powered insights and personalized improvement recommendations
+                        </p>
+                        <div class="flex items-center text-orange-600 dark:text-orange-400 font-medium group-hover:translate-x-2 transition-transform duration-300">
+                            View Insights <i class="fas fa-robot ml-2"></i>
+                        </div>
                     </div>
-                    <h3 class="text-lg md:text-xl font-bold text-gray-800 dark:text-white mb-2 md:mb-3">
-                        Progress Tracking
-                    </h3>
-                    <p class="text-sm md:text-base text-gray-600 dark:text-gray-300">
-                        Monitor your performance over time. Identify weak areas and improve systematically.
-                    </p>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- How It Works -->
-    <section id="how-it-works" class="py-16 md:py-20 bg-gradient-to-b from-white to-blue-50 dark:from-gray-800 dark:to-gray-900">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="text-center mb-12 md:mb-16">
-                <h2 class="text-3xl md:text-4xl font-bold text-gray-800 dark:text-white mb-4">
-                    How It <span class="bg-gradient-to-r from-blue-600 to-blue-500 bg-clip-text text-transparent">Works</span>
+    <!-- How It Works - Timeline Design -->
+    <section id="how-it-works" class="py-16 md:py-24 bg-gradient-to-b from-blue-50/50 to-white dark:from-gray-800/50 dark:to-gray-900 relative overflow-hidden">
+        <div class="absolute inset-0 bg-grid-gray-900/[0.02] bg-grid-pattern opacity-10"></div>
+
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative">
+            <div class="text-center mb-16 md:mb-20">
+                <span class="inline-block px-4 py-2 rounded-full bg-gradient-to-r from-blue-100 to-purple-100 dark:from-blue-900/30 dark:to-purple-900/30 text-purple-600 dark:text-purple-400 font-semibold text-sm mb-4 fade-in">
+                    <i class="fas fa-play-circle mr-2"></i>3 SIMPLE STEPS
+                </span>
+                <h2 class="text-3xl md:text-4xl lg:text-5xl font-bold text-gray-900 dark:text-white mb-4 fade-in">
+                    Start Learning in
+                    <span class="bg-gradient-to-r from-purple-600 to-pink-500 bg-clip-text text-transparent">Minutes</span>
                 </h2>
-                <p class="text-lg md:text-xl text-gray-600 dark:text-gray-300 max-w-3xl mx-auto">
-                    Get started in just a few simple steps
+                <p class="text-lg md:text-xl text-gray-600 dark:text-gray-300 max-w-3xl mx-auto fade-in" style="animation-delay: 0.2s;">
+                    Our streamlined process ensures you can focus on what matters most – learning
                 </p>
             </div>
 
-            <div class="grid md:grid-cols-3 gap-8 md:gap-12">
-                <!-- Step 1 -->
-                <div class="relative">
-                    <div class="flex flex-col items-center text-center">
-                        <div class="w-16 h-16 md:w-20 md:h-20 rounded-full bg-gradient-to-br from-blue-600 to-blue-500 text-white flex items-center justify-center text-xl md:text-2xl font-bold mb-4 md:mb-6 z-10 shadow-xl hover:scale-110 transition-transform duration-300 cursor-pointer">
-                            1
-                        </div>
-                        <h3 class="text-lg md:text-xl font-bold text-gray-800 dark:text-white mb-2 md:mb-3">Sign Up & Login</h3>
-                        <p class="text-sm md:text-base text-gray-600 dark:text-gray-300">
-                            Create your account and verify your email. Secure authentication ensures your data safety.
-                        </p>
-                    </div>
-                    <div class="hidden md:block absolute top-8 left-2/3 w-full h-0.5 bg-gradient-to-r from-blue-300 to-emerald-300 dark:from-blue-700 dark:to-emerald-700"></div>
-                </div>
+            <div class="relative">
+                <!-- Timeline line -->
+                <div class="hidden lg:block absolute left-1/2 transform -translate-x-1/2 h-full w-0.5 bg-gradient-to-b from-blue-500 via-purple-500 to-emerald-500"></div>
 
-                <!-- Step 2 -->
-                <div class="relative">
-                    <div class="flex flex-col items-center text-center">
-                        <div class="w-16 h-16 md:w-20 md:h-20 rounded-full bg-gradient-to-br from-emerald-600 to-emerald-500 text-white flex items-center justify-center text-xl md:text-2xl font-bold mb-4 md:mb-6 z-10 shadow-xl hover:scale-110 transition-transform duration-300 cursor-pointer">
-                            2
+                <div class="space-y-12 lg:space-y-0">
+                    <!-- Step 1 -->
+                    <div class="relative lg:grid lg:grid-cols-2 lg:gap-12 items-center fade-in">
+                        <div class="lg:text-right lg:pr-12 mb-8 lg:mb-0">
+                            <div class="inline-flex items-center justify-center w-16 h-16 rounded-full bg-gradient-to-br from-blue-500 to-blue-600 text-white text-xl font-bold mb-4 shadow-xl lg:ml-auto hover:scale-110 transition-transform duration-300 cursor-pointer group">
+                                1
+                                <div class="absolute inset-0 rounded-full bg-gradient-to-br from-blue-600 to-blue-700 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                            </div>
+                            <h3 class="text-2xl font-bold text-gray-900 dark:text-white mb-3">Quick Sign Up</h3>
+                            <p class="text-gray-600 dark:text-gray-300">
+                                Create your account in 30 seconds with email or social login. Get instant access to our platform.
+                            </p>
                         </div>
-                        <h3 class="text-lg md:text-xl font-bold text-gray-800 dark:text-white mb-2 md:mb-3">Choose Your Exam</h3>
-                        <p class="text-sm md:text-base text-gray-600 dark:text-gray-300">
-                            Browse available exams by category, difficulty, or topic. Select one that matches your goal.
-                        </p>
+                        <div class="relative">
+                            <div class="bg-white dark:bg-gray-800 rounded-2xl p-6 shadow-xl border border-gray-100 dark:border-gray-700 card-hover">
+                                <div class="flex items-center mb-4">
+                                    <div class="w-12 h-12 rounded-lg bg-gradient-to-br from-blue-100 to-blue-50 dark:from-blue-900/30 dark:to-blue-900/10 flex items-center justify-center mr-4">
+                                        <i class="fas fa-user-plus text-blue-600 dark:text-blue-400 text-xl"></i>
+                                    </div>
+                                    <div>
+                                        <h4 class="font-bold text-gray-900 dark:text-white">Instant Access</h4>
+                                        <p class="text-sm text-gray-500 dark:text-gray-400">Start immediately after registration</p>
+                                    </div>
+                                </div>
+                                <div class="space-y-3">
+                                    <div class="flex items-center text-sm">
+                                        <i class="fas fa-check-circle text-emerald-500 mr-2"></i>
+                                        <span>No credit card required</span>
+                                    </div>
+                                    <div class="flex items-center text-sm">
+                                        <i class="fas fa-check-circle text-emerald-500 mr-2"></i>
+                                        <span>7-day free trial</span>
+                                    </div>
+                                    <div class="flex items-center text-sm">
+                                        <i class="fas fa-check-circle text-emerald-500 mr-2"></i>
+                                        <span>Social login available</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
                     </div>
-                    <div class="hidden md:block absolute top-8 left-2/3 w-full h-0.5 bg-gradient-to-r from-emerald-300 to-blue-300 dark:from-emerald-700 dark:to-blue-700"></div>
-                </div>
 
-                <!-- Step 3 -->
-                <div class="relative">
-                    <div class="flex flex-col items-center text-center">
-                        <div class="w-16 h-16 md:w-20 md:h-20 rounded-full bg-gradient-to-br from-blue-600 to-emerald-500 text-white flex items-center justify-center text-xl md:text-2xl font-bold mb-4 md:mb-6 z-10 shadow-xl hover:scale-110 transition-transform duration-300 cursor-pointer">
-                            3
+                    <!-- Step 2 -->
+                    <div class="relative lg:grid lg:grid-cols-2 lg:gap-12 items-center fade-in" style="animation-delay: 0.3s;">
+                        <div class="lg:order-2 lg:pl-12 mb-8 lg:mb-0">
+                            <div class="inline-flex items-center justify-center w-16 h-16 rounded-full bg-gradient-to-br from-purple-500 to-purple-600 text-white text-xl font-bold mb-4 shadow-xl lg:mr-auto hover:scale-110 transition-transform duration-300 cursor-pointer group">
+                                2
+                                <div class="absolute inset-0 rounded-full bg-gradient-to-br from-purple-600 to-purple-700 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                            </div>
+                            <h3 class="text-2xl font-bold text-gray-900 dark:text-white mb-3">Choose Your Path</h3>
+                            <p class="text-gray-600 dark:text-gray-300">
+                                Select from thousands of exams across various categories and difficulty levels.
+                            </p>
                         </div>
-                        <h3 class="text-lg md:text-xl font-bold text-gray-800 dark:text-white mb-2 md:mb-3">Take Exam & Get Results</h3>
-                        <p class="text-sm md:text-base text-gray-600 dark:text-gray-300">
-                            Answer questions at your pace, review instantly, and track progress to improve.
-                        </p>
+                        <div class="lg:order-1 relative">
+                            <div class="bg-white dark:bg-gray-800 rounded-2xl p-6 shadow-xl border border-gray-100 dark:border-gray-700 card-hover">
+                                <div class="flex items-center mb-4">
+                                    <div class="w-12 h-12 rounded-lg bg-gradient-to-br from-purple-100 to-purple-50 dark:from-purple-900/30 dark:to-purple-900/10 flex items-center justify-center mr-4">
+                                        <i class="fas fa-compass text-purple-600 dark:text-purple-400 text-xl"></i>
+                                    </div>
+                                    <div>
+                                        <h4 class="font-bold text-gray-900 dark:text-white">Smart Discovery</h4>
+                                        <p class="text-sm text-gray-500 dark:text-gray-400">AI-powered exam recommendations</p>
+                                    </div>
+                                </div>
+                                <div class="grid grid-cols-2 gap-3">
+                                    <div class="bg-gradient-to-br from-blue-50 to-blue-100 dark:from-blue-900/20 dark:to-blue-900/10 rounded-lg p-3 text-center">
+                                        <div class="text-lg font-bold text-blue-600 dark:text-blue-400">250+</div>
+                                        <div class="text-xs text-gray-600 dark:text-gray-400">Categories</div>
+                                    </div>
+                                    <div class="bg-gradient-to-br from-purple-50 to-purple-100 dark:from-purple-900/20 dark:to-purple-900/10 rounded-lg p-3 text-center">
+                                        <div class="text-lg font-bold text-purple-600 dark:text-purple-400">10K+</div>
+                                        <div class="text-xs text-gray-600 dark:text-gray-400">Questions</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Step 3 -->
+                    <div class="relative lg:grid lg:grid-cols-2 lg:gap-12 items-center fade-in" style="animation-delay: 0.6s;">
+                        <div class="lg:text-right lg:pr-12 mb-8 lg:mb-0">
+                            <div class="inline-flex items-center justify-center w-16 h-16 rounded-full bg-gradient-to-br from-emerald-500 to-emerald-600 text-white text-xl font-bold mb-4 shadow-xl lg:ml-auto hover:scale-110 transition-transform duration-300 cursor-pointer group">
+                                3
+                                <div class="absolute inset-0 rounded-full bg-gradient-to-br from-emerald-600 to-emerald-700 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                            </div>
+                            <h3 class="text-2xl font-bold text-gray-900 dark:text-white mb-3">Learn & Grow</h3>
+                            <p class="text-gray-600 dark:text-gray-300">
+                                Take exams, receive instant feedback, and track your progress with detailed analytics.
+                            </p>
+                        </div>
+                        <div class="relative">
+                            <div class="bg-white dark:bg-gray-800 rounded-2xl p-6 shadow-xl border border-gray-100 dark:border-gray-700 card-hover">
+                                <div class="flex items-center mb-4">
+                                    <div class="w-12 h-12 rounded-lg bg-gradient-to-br from-emerald-100 to-emerald-50 dark:from-emerald-900/30 dark:to-emerald-900/10 flex items-center justify-center mr-4">
+                                        <i class="fas fa-trophy text-emerald-600 dark:text-emerald-400 text-xl"></i>
+                                    </div>
+                                    <div>
+                                        <h4 class="font-bold text-gray-900 dark:text-white">Achieve Success</h4>
+                                        <p class="text-sm text-gray-500 dark:text-gray-400">Track and celebrate your progress</p>
+                                    </div>
+                                </div>
+                                <div class="space-y-2">
+                                    <div class="flex justify-between text-sm">
+                                        <span class="text-gray-600 dark:text-gray-400">Accuracy</span>
+                                        <span class="font-bold text-emerald-600">94%</span>
+                                    </div>
+                                    <div class="w-full bg-gray-200 dark:bg-gray-700 rounded-full h-2">
+                                        <div class="bg-gradient-to-r from-emerald-500 to-emerald-600 h-2 rounded-full" style="width: 94%"></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- CTA Section -->
-    <section class="py-16 md:py-20 gradient-bg relative overflow-hidden">
-        <!-- Animated background elements -->
-        <div class="absolute inset-0 overflow-hidden">
-            <div class="absolute top-0 left-1/4 w-64 h-64 bg-blue-400 rounded-full mix-blend-multiply filter blur-3xl opacity-20 animate-pulse"></div>
-            <div class="absolute bottom-0 right-1/4 w-64 h-64 bg-blue-300 rounded-full mix-blend-multiply filter blur-3xl opacity-20 animate-pulse delay-700"></div>
+    <!-- Final CTA Section -->
+    <section class="py-16 md:py-24 relative overflow-hidden">
+        <!-- Background gradient -->
+        <div class="absolute inset-0 bg-gradient-to-br from-blue-900 via-purple-900 to-gray-900"></div>
+
+        <!-- Animated particles -->
+        <div class="absolute inset-0">
+            @for($i = 1; $i <= 20; $i++)
+                <div class="absolute w-2 h-2 bg-white rounded-full opacity-20"
+                     style="top: {{ rand(0, 100) }}%; left: {{ rand(0, 100) }}%;
+                            animation: float {{ rand(10, 30) }}s linear infinite;
+                            animation-delay: {{ $i * 0.5 }}s;"></div>
+            @endfor
         </div>
 
         <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center relative z-10">
-            <h2 class="text-3xl md:text-4xl lg:text-5xl font-bold text-white mb-4 md:mb-6">
-                Ready to Ace Your Next Exam?
+            <!-- Floating badge -->
+            <div class="inline-flex items-center px-4 py-2 rounded-full bg-white/10 backdrop-blur-sm border border-white/20 mb-8 animate-pulse">
+                <span class="w-2 h-2 rounded-full bg-emerald-400 animate-pulse mr-2"></span>
+                <span class="text-sm font-medium text-white">LIMITED TIME OFFER</span>
+            </div>
+
+            <h2 class="text-3xl md:text-4xl lg:text-5xl font-bold text-white mb-6">
+                Ready to Transform Your
+                <span class="gradient-animate">Learning Journey</span>?
             </h2>
-            <p class="text-lg md:text-xl text-blue-100 mb-8 md:mb-10 max-w-2xl mx-auto">
-                Join thousands of learners who have improved their scores with QuizVerse
+
+            <p class="text-lg md:text-xl text-blue-200 mb-8 max-w-2xl mx-auto">
+                Join thousands of successful students who have achieved their goals with QuizVerse
             </p>
 
+            <!-- Stats -->
+            <div class="grid grid-cols-3 gap-4 mb-8 max-w-md mx-auto">
+                <div class="text-center">
+                    <div class="text-3xl font-bold text-white mb-1">10K+</div>
+                    <div class="text-sm text-blue-300">Active Students</div>
+                </div>
+                <div class="text-center">
+                    <div class="text-3xl font-bold text-white mb-1">98%</div>
+                    <div class="text-sm text-blue-300">Success Rate</div>
+                </div>
+                <div class="text-center">
+                    <div class="text-3xl font-bold text-white mb-1">24/7</div>
+                    <div class="text-sm text-blue-300">Support</div>
+                </div>
+            </div>
+
             @auth
-                <div class="flex flex-col sm:flex-row gap-4 md:gap-6 justify-center">
+                <div class="flex flex-col sm:flex-row gap-4 justify-center">
                     <a href="{{ url('/dashboard') }}"
-                       class="inline-flex items-center px-6 py-3 md:px-8 md:py-4 bg-white text-blue-600 rounded-lg md:rounded-xl font-bold text-base md:text-lg shadow-2xl hover-lift hover:bg-gray-50 hover:scale-105 transition-all duration-300 pulse-glow">
-                        <i class="fas fa-play-circle mr-3 text-lg md:text-xl text-blue-500"></i>
-                        Start Your First Exam
+                       class="group relative inline-flex items-center px-8 py-4 bg-gradient-to-r from-emerald-500 to-emerald-600 text-white rounded-xl font-bold text-lg shadow-2xl hover:shadow-3xl transition-all duration-300 overflow-hidden hover-lift">
+                        <div class="absolute inset-0 bg-gradient-to-r from-emerald-600 to-emerald-700 transform -translate-x-full group-hover:translate-x-0 transition-transform duration-500"></div>
+                        <span class="relative flex items-center justify-center">
+                            <i class="fas fa-rocket text-xl mr-3 group-hover:rotate-45 transition-transform duration-300"></i>
+                            Launch Dashboard
+                        </span>
                     </a>
                     <a href="/exams"
-                       class="inline-flex items-center px-6 py-3 md:px-8 md:py-4 bg-transparent border-2 border-white text-white rounded-lg md:rounded-xl font-bold text-base md:text-lg hover-lift hover:bg-white hover:text-blue-600 hover:scale-105 transition-all duration-300">
-                        <i class="fas fa-list mr-3 text-lg md:text-xl"></i>
-                        Browse All Exams
+                       class="group inline-flex items-center px-8 py-4 bg-white/10 backdrop-blur-sm border-2 border-white/30 text-white rounded-xl font-bold text-lg hover:bg-white hover:text-blue-600 transition-all duration-300 hover-lift">
+                        <i class="fas fa-play-circle text-xl mr-3 group-hover:scale-110 transition-transform duration-300"></i>
+                        Explore Exams
                     </a>
                 </div>
             @else
-                <div class="flex flex-col sm:flex-row gap-4 md:gap-6 justify-center">
+                <div class="flex flex-col sm:flex-row gap-4 justify-center">
                     <a href="{{ route('register') }}"
-                       class="inline-flex items-center px-6 py-3 md:px-8 md:py-4 bg-white text-blue-600 rounded-lg md:rounded-xl font-bold text-base md:text-lg shadow-2xl hover-lift hover:bg-gray-50 hover:scale-105 transition-all duration-300 pulse-glow">
-                        <i class="fas fa-user-plus mr-3 text-lg md:text-xl text-blue-500"></i>
-                        Sign Up for Free
+                       class="group relative inline-flex items-center px-8 py-4 bg-gradient-to-r from-emerald-500 to-emerald-600 text-white rounded-xl font-bold text-lg shadow-2xl hover:shadow-3xl transition-all duration-300 overflow-hidden hover-lift pulse-glow">
+                        <div class="absolute inset-0 bg-gradient-to-r from-emerald-600 to-emerald-700 transform -translate-x-full group-hover:translate-x-0 transition-transform duration-500"></div>
+                        <span class="relative flex items-center justify-center">
+                            <i class="fas fa-crown text-xl mr-3 group-hover:rotate-12 transition-transform duration-300"></i>
+                            Start Free Trial
+                        </span>
                     </a>
                     <a href="{{ route('login') }}"
-                       class="inline-flex items-center px-6 py-3 md:px-8 md:py-4 bg-transparent border-2 border-white text-white rounded-lg md:rounded-xl font-bold text-base md:text-lg hover-lift hover:bg-white hover:text-blue-600 hover:scale-105 transition-all duration-300">
-                        <i class="fas fa-sign-in-alt mr-3 text-lg md:text-xl"></i>
-                        Login to Continue
+                       class="group inline-flex items-center px-8 py-4 bg-white/10 backdrop-blur-sm border-2 border-white/30 text-white rounded-xl font-bold text-lg hover:bg-white hover:text-blue-600 transition-all duration-300 hover-lift">
+                        <i class="fas fa-sign-in-alt text-xl mr-3 group-hover:scale-110 transition-transform duration-300"></i>
+                        Existing User? Login
                     </a>
                 </div>
             @endauth
 
-            <p class="text-blue-200 mt-6 md:mt-8 text-sm md:text-base">
-                <i class="fas fa-shield-alt mr-2"></i>No credit card required • 7-day free trial • Cancel anytime
+            <p class="text-blue-300 mt-8 text-sm">
+                <i class="fas fa-shield-alt mr-2"></i>Secure & Encrypted • 7-Day Free Trial • Cancel Anytime
             </p>
         </div>
     </section>
 @endsection
+
+@push('frontend_scripts')
+<script>
+    // Add floating animation to elements
+    document.querySelectorAll('.floating').forEach(el => {
+        el.style.setProperty('--float-distance', Math.random() * 20 + 10 + 'px');
+    });
+
+    // Initialize scroll animations
+    const observerOptions = {
+        threshold: 0.1,
+        rootMargin: '0px 0px -50px 0px'
+    };
+
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.classList.add('visible');
+            }
+        });
+    }, observerOptions);
+
+    document.querySelectorAll('.fade-in').forEach(el => {
+        observer.observe(el);
+    });
+
+    // Counter animation
+    function animateCounter(element, start, end, duration) {
+        let startTimestamp = null;
+        const step = (timestamp) => {
+            if (!startTimestamp) startTimestamp = timestamp;
+            const progress = Math.min((timestamp - startTimestamp) / duration, 1);
+            element.innerHTML = Math.floor(progress * (end - start) + start);
+            if (progress < 1) {
+                window.requestAnimationFrame(step);
+            }
+        };
+        window.requestAnimationFrame(step);
+    }
+
+    // Animate counters when they come into view
+    const counterObserver = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                const counter = entry.target;
+                const target = parseInt(counter.getAttribute('data-target'));
+                animateCounter(counter, 0, target, 2000);
+                counterObserver.unobserve(counter);
+            }
+        });
+    }, { threshold: 0.5 });
+
+    document.querySelectorAll('.counter').forEach(counter => {
+        counterObserver.observe(counter);
+    });
+</script>
+@endpush

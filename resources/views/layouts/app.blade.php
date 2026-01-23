@@ -14,6 +14,9 @@
         <!-- Font Awesome -->
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
+        <!-- Swiper CSS for Header Slider -->
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css">
+
         <!-- Scripts -->
         @vite(['resources/css/app.css', 'resources/js/app.js'])
 
@@ -102,6 +105,115 @@
                 box-shadow: 0 25px 50px -12px rgba(37, 99, 235, 0.25);
                 border-color: rgba(59, 130, 246, 0.2);
             }
+
+            /* Header slider styles */
+            .header-slider {
+                width: 100%;
+                height: 100%;
+                border-radius: 1rem;
+                overflow: hidden;
+            }
+
+            .swiper-slide-header {
+                border-radius: 1rem;
+                overflow: hidden;
+                position: relative;
+                height: 400px;
+            }
+
+            .slide-overlay {
+                position: absolute;
+                inset: 0;
+                background: linear-gradient(to right, rgba(37, 99, 235, 0.9), rgba(37, 99, 235, 0.7));
+                display: flex;
+                align-items: center;
+                padding: 2rem;
+            }
+
+            .slide-content {
+                max-width: 60%;
+                color: white;
+            }
+
+            .swiper-pagination-bullet {
+                width: 12px !important;
+                height: 12px !important;
+                background: white !important;
+                opacity: 0.5 !important;
+            }
+
+            .swiper-pagination-bullet-active {
+                opacity: 1 !important;
+                background: #10b981 !important;
+            }
+
+            /* Floating animation */
+            @keyframes float {
+                0%, 100% {
+                    transform: translateY(0);
+                }
+                50% {
+                    transform: translateY(-20px);
+                }
+            }
+
+            .floating {
+                animation: float 6s ease-in-out infinite;
+            }
+
+            /* Typewriter effect */
+            @keyframes typing {
+                from { width: 0 }
+                to { width: 100% }
+            }
+
+            .typewriter {
+                overflow: hidden;
+                white-space: nowrap;
+                animation: typing 3.5s steps(40, end);
+            }
+
+            /* Gradient text animation */
+            @keyframes gradient-shift {
+                0% { background-position: 0% 50%; }
+                50% { background-position: 100% 50%; }
+                100% { background-position: 0% 50%; }
+            }
+
+            .gradient-animate {
+                background: linear-gradient(-45deg, #3b82f6, #10b981, #8b5cf6, #ef4444);
+                background-size: 400% 400%;
+                -webkit-background-clip: text;
+                background-clip: text;
+                color: transparent;
+                animation: gradient-shift 8s ease infinite;
+            }
+
+            /* Scroll animations */
+            .fade-in {
+                opacity: 0;
+                transform: translateY(30px);
+                transition: opacity 0.8s ease, transform 0.8s ease;
+            }
+
+            .fade-in.visible {
+                opacity: 1;
+                transform: translateY(0);
+            }
+
+            /* Modern card with glass effect */
+            .glass-card {
+                background: rgba(255, 255, 255, 0.1);
+                backdrop-filter: blur(10px);
+                border: 1px solid rgba(255, 255, 255, 0.2);
+                box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+            }
+
+            /* Statistics counter animation */
+            .counter {
+                font-feature-settings: "tnum";
+                font-variant-numeric: tabular-nums;
+            }
         </style>
     </head>
 
@@ -120,6 +232,8 @@
         </div>
 
         <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+        <!-- Swiper JS for Header Slider -->
+        <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
 
         <script>
             $(function() {
@@ -168,6 +282,67 @@
                         $(this).css('transform', 'translateX(0)');
                     }
                 );
+
+                // Scroll animation
+                function checkScroll() {
+                    $('.fade-in').each(function() {
+                        const elementTop = $(this).offset().top;
+                        const elementBottom = elementTop + $(this).outerHeight();
+                        const viewportTop = $(window).scrollTop();
+                        const viewportBottom = viewportTop + $(window).height();
+
+                        if (elementBottom > viewportTop && elementTop < viewportBottom) {
+                            $(this).addClass('visible');
+                        }
+                    });
+                }
+
+                // Check scroll on load and scroll
+                $(window).on('scroll load', checkScroll);
+
+                // Initialize counters
+                $('.counter').each(function() {
+                    $(this).prop('Counter', 0).animate({
+                        Counter: $(this).text()
+                    }, {
+                        duration: 2000,
+                        easing: 'swing',
+                        step: function(now) {
+                            $(this).text(Math.ceil(now));
+                        }
+                    });
+                });
+            });
+
+            // Initialize Swiper header slider
+            document.addEventListener('DOMContentLoaded', function() {
+                const swiper = new Swiper('.header-slider', {
+                    // Optional parameters
+                    direction: 'horizontal',
+                    loop: true,
+                    autoplay: {
+                        delay: 5000,
+                        disableOnInteraction: false,
+                    },
+                    speed: 800,
+                    effect: 'fade',
+                    fadeEffect: {
+                        crossFade: true
+                    },
+
+                    // If we need pagination
+                    pagination: {
+                        el: '.swiper-pagination',
+                        clickable: true,
+                        dynamicBullets: true,
+                    },
+
+                    // Navigation arrows
+                    navigation: {
+                        nextEl: '.swiper-button-next',
+                        prevEl: '.swiper-button-prev',
+                    },
+                });
             });
         </script>
 

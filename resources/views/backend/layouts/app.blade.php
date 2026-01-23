@@ -10,7 +10,7 @@
     <meta name="description" content="Eduport- LMS, Education and Course Theme">
 
     <!-- Favicon -->
-    <link rel="shortcut icon" href="{{ asset('backend/assets/images/favicon.ico') }}">
+    <link rel="shortcut icon" href="{{ asset('assets/backend/images/favicon.ico') }}">
 
     <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -19,10 +19,10 @@
           href="https://fonts.googleapis.com/css2?family=Heebo:wght@400;500;700&family=Roboto:wght@400;500;700&display=swap">
 
     <!-- Vendor CSS -->
-    <link rel="stylesheet" href="{{ asset('backend/assets/vendor/font-awesome/css/all.min.css') }}">
-    <link rel="stylesheet" href="{{ asset('backend/assets/vendor/bootstrap-icons/bootstrap-icons.css') }}">
-    <link rel="stylesheet" href="{{ asset('backend/assets/vendor/apexcharts/css/apexcharts.css') }}">
-    <link rel="stylesheet" href="{{ asset('backend/assets/vendor/overlay-scrollbar/css/overlayscrollbars.min.css') }}">
+    <link rel="stylesheet" href="{{ asset('assets/backend/vendor/font-awesome/css/all.min.css') }}">
+    <link rel="stylesheet" href="{{ asset('assets/backend/vendor/bootstrap-icons/bootstrap-icons.css') }}">
+    <link rel="stylesheet" href="{{ asset('assets/backend/vendor/apexcharts/css/apexcharts.css') }}">
+    <link rel="stylesheet" href="{{ asset('assets/backend/vendor/overlay-scrollbar/css/overlayscrollbars.min.css') }}">
 
     <!-- Font Awesome (latest) -->
     <link rel="stylesheet"
@@ -53,7 +53,7 @@
 
 
     <!-- Theme CSS (includes Bootstrap 5.3.3) -->
-    <link rel="stylesheet" href="{{ asset('backend/assets/css/style.css') }}">
+    <link rel="stylesheet" href="{{ asset('assets/backend/css/style.css') }}">
 
     @vite(['resources/sass/app.scss', 'resources/js/app.js'])
     @stack('css')
@@ -83,7 +83,7 @@
     <script>window.$ = window.jQuery = jQuery;</script>
 
     <!-- Bootstrap JS -->
-    <script src="{{ asset('backend/assets/vendor/bootstrap/dist/js/bootstrap.bundle.min.js') }}"></script>
+    <script src="{{ asset('assets/backend/vendor/bootstrap/dist/js/bootstrap.bundle.min.js') }}"></script>
     <!-- Sweet Alert -->
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <!-- CKEditor 5 Classic build -->
@@ -121,12 +121,12 @@
     </script>
 
     <!-- Vendors -->
-    <script src="{{ asset('backend/assets/vendor/purecounterjs/dist/purecounter_vanilla.js') }}"></script>
-    <script src="{{ asset('backend/assets/vendor/apexcharts/js/apexcharts.min.js') }}"></script>
-    <script src="{{ asset('backend/assets/vendor/overlay-scrollbar/js/overlayscrollbars.min.js') }}"></script>
+    <script src="{{ asset('assets/backend/vendor/purecounterjs/dist/purecounter_vanilla.js') }}"></script>
+    <script src="{{ asset('assets/backend/vendor/apexcharts/js/apexcharts.min.js') }}"></script>
+    <script src="{{ asset('assets/backend/vendor/overlay-scrollbar/js/overlayscrollbars.min.js') }}"></script>
 
     <!-- Template Functions -->
-    <script src="{{ asset('backend/assets/js/functions.js') }}"></script>
+    <script src="{{ asset('assets/backend/js/functions.js') }}"></script>
 
     <!-- Page-level scripts -->
     @stack('scripts')
