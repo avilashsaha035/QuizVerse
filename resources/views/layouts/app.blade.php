@@ -15,7 +15,8 @@
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
         <!-- Swiper CSS for Header Slider -->
-        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css">
+        <!-- <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css"> -->
+        <link rel="stylesheet" href="{{ asset('assets/frontend/css/swipper-silder.css') }}">
 
         <!-- Scripts -->
         @vite(['resources/css/app.css', 'resources/js/app.js'])
@@ -233,10 +234,12 @@
 
         <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
         <!-- Swiper JS for Header Slider -->
-        <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+        <!-- <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script> -->
+        <script src="{{ asset('assets/frontend/script/swiper-bundle.min.js') }}"></script>
 
         <script>
-            $(function() {
+            $(document).ready(function() {
+
                 // Mobile menu toggle
                 $('#mobileMenuBtn').on('click', function() {
                     $('#mobileMenu').toggleClass('hidden');
@@ -247,8 +250,10 @@
                     e.stopPropagation();
                     const menu = $('#userDropdownMenu');
                     menu.toggleClass('hidden');
+
                     if (!menu.hasClass('hidden')) {
-                        menu.removeClass('dropdown-enter').addClass('dropdown-enter-active');
+                        menu.removeClass('dropdown-enter')
+                            .addClass('dropdown-enter-active');
                     }
                 });
 
@@ -264,6 +269,7 @@
                     if (this.hash !== '') {
                         e.preventDefault();
                         const hash = this.hash;
+
                         $('html, body').animate({
                             scrollTop: $(hash).offset().top - 100
                         }, 800);
@@ -312,37 +318,36 @@
                         }
                     });
                 });
-            });
 
-            // Initialize Swiper header slider
-            document.addEventListener('DOMContentLoaded', function() {
+                // Initialize Swiper header slider (jQuery version)
                 const swiper = new Swiper('.header-slider', {
-                    // Optional parameters
                     direction: 'horizontal',
                     loop: true,
+
                     autoplay: {
                         delay: 5000,
-                        disableOnInteraction: false,
+                        disableOnInteraction: false
                     },
+
                     speed: 800,
+
                     effect: 'fade',
                     fadeEffect: {
                         crossFade: true
                     },
 
-                    // If we need pagination
                     pagination: {
                         el: '.swiper-pagination',
                         clickable: true,
-                        dynamicBullets: true,
+                        dynamicBullets: true
                     },
 
-                    // Navigation arrows
                     navigation: {
                         nextEl: '.swiper-button-next',
-                        prevEl: '.swiper-button-prev',
-                    },
+                        prevEl: '.swiper-button-prev'
+                    }
                 });
+
             });
         </script>
 

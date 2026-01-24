@@ -37,19 +37,19 @@
                     <div class="grid grid-cols-2 md:grid-cols-3 gap-4 mb-8">
                         <div class="glass-card rounded-xl p-4 fade-in" style="animation-delay: 0.3s;">
                             <div class="text-2xl md:text-3xl font-bold text-white mb-1">
-                                <span class="counter">98</span>%
+                                <span class="counter" data-target="98" data-suffix="%">0</span>
                             </div>
                             <div class="text-sm text-blue-200">Success Rate</div>
                         </div>
                         <div class="glass-card rounded-xl p-4 fade-in" style="animation-delay: 0.4s;">
                             <div class="text-2xl md:text-3xl font-bold text-white mb-1">
-                                <span class="counter">2500</span>+
+                                <span class="counter" data-target="2500" data-suffix="+">0</span>
                             </div>
                             <div class="text-sm text-blue-200">Exam Categories</div>
                         </div>
                         <div class="glass-card rounded-xl p-4 fade-in" style="animation-delay: 0.5s;">
                             <div class="text-2xl md:text-3xl font-bold text-white mb-1">
-                                <span class="counter">4.9</span>/5
+                                <span class="counter" data-target="4.9" data-suffix="/5" data-decimal="1">0</span>
                             </div>
                             <div class="text-sm text-blue-200">Student Rating</div>
                         </div>
@@ -87,99 +87,36 @@
                             </a>
                         @endauth
                     </div>
-
-                    <!-- Trust Badges -->
-                    <div class="mt-8 flex flex-wrap items-center gap-4">
-                        <div class="flex items-center">
-                            <div class="flex -space-x-3">
-                                @for($i = 1; $i <= 5; $i++)
-                                    <div class="w-8 h-8 md:w-10 md:h-10 rounded-full border-2 border-blue-800 bg-gradient-to-br from-blue-400 to-blue-500 shadow-lg transform hover:scale-110 transition-transform duration-300"></div>
-                                @endfor
-                            </div>
-                            <div class="ml-3">
-                                <div class="text-sm font-semibold">Join 10,000+ Learners</div>
-                                <div class="flex items-center text-xs text-blue-200">
-                                    <i class="fas fa-star text-yellow-400 mr-1"></i>
-                                    <span>Rated 4.9/5</span>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
                 </div>
 
                 <!-- Right Side: Header Slider -->
                 <div class="relative fade-in" style="animation-delay: 0.7s;">
-                    <div class="header-slider rounded-2xl overflow-hidden shadow-2xl">
-                        <div class="swiper-wrapper">
-                            <!-- Slide 1 -->
-                            <div class="swiper-slide">
-                                <div class="swiper-slide-header" style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);">
-                                    <div class="slide-overlay">
-                                        <div class="slide-content">
-                                            <div class="inline-flex items-center px-3 py-1 rounded-full bg-white/20 backdrop-blur-sm mb-4">
-                                                <i class="fas fa-chart-line mr-2"></i>
-                                                <span class="text-sm font-medium">Real-time Analytics</span>
-                                            </div>
-                                            <h3 class="text-2xl md:text-3xl font-bold mb-3">Track Your Progress</h3>
-                                            <p class="text-blue-100 mb-4">Monitor performance with detailed analytics and personalized insights</p>
-                                            <a href="#" class="inline-flex items-center text-white font-semibold hover:text-emerald-300 transition-colors duration-300">
-                                                Learn More <i class="fas fa-arrow-right ml-2"></i>
-                                            </a>
-                                        </div>
-                                    </div>
-                                </div>
+                    <div class="header-slider swiper rounded-2xl overflow-hidden shadow-2xl" style="height: 420px; position: relative;">
+                        <div class="swiper-wrapper" style="height: 100%;">
+                            <div class="swiper-slide" style="position: relative; height: 100%;">
+                                <img src="https://picsum.photos/1600/900?random=21" style="width: 100%; height: 100%; object-fit: cover; position: absolute; inset: 0;" alt="Slide 1"/>
                             </div>
 
-                            <!-- Slide 2 -->
-                            <div class="swiper-slide">
-                                <div class="swiper-slide-header" style="background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);">
-                                    <div class="slide-overlay">
-                                        <div class="slide-content">
-                                            <div class="inline-flex items-center px-3 py-1 rounded-full bg-white/20 backdrop-blur-sm mb-4">
-                                                <i class="fas fa-brain mr-2"></i>
-                                                <span class="text-sm font-medium">Adaptive Learning</span>
-                                            </div>
-                                            <h3 class="text-2xl md:text-3xl font-bold mb-3">Smart Practice Mode</h3>
-                                            <p class="text-blue-100 mb-4">AI-powered questions adapt to your learning pace and skill level</p>
-                                            <a href="#" class="inline-flex items-center text-white font-semibold hover:text-emerald-300 transition-colors duration-300">
-                                                Try Now <i class="fas fa-play ml-2"></i>
-                                            </a>
-                                        </div>
-                                    </div>
-                                </div>
+                            <div class="swiper-slide" style="position: relative; height: 100%;">
+                                <img src="https://picsum.photos/1600/900?random=22" style="width: 100%; height: 100%; object-fit: cover; position: absolute; inset: 0;" alt="Slide 2"/>
                             </div>
 
-                            <!-- Slide 3 -->
-                            <div class="swiper-slide">
-                                <div class="swiper-slide-header" style="background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);">
-                                    <div class="slide-overlay">
-                                        <div class="slide-content">
-                                            <div class="inline-flex items-center px-3 py-1 rounded-full bg-white/20 backdrop-blur-sm mb-4">
-                                                <i class="fas fa-trophy mr-2"></i>
-                                                <span class="text-sm font-medium">Certification</span>
-                                            </div>
-                                            <h3 class="text-2xl md:text-3xl font-bold mb-3">Get Certified</h3>
-                                            <p class="text-blue-100 mb-4">Earn verifiable certificates for completed exams and courses</p>
-                                            <a href="#" class="inline-flex items-center text-white font-semibold hover:text-emerald-300 transition-colors duration-300">
-                                                View Certificates <i class="fas fa-award ml-2"></i>
-                                            </a>
-                                        </div>
-                                    </div>
-                                </div>
+                            <div class="swiper-slide" style="position: relative; height: 100%;">
+                                <img src="https://picsum.photos/1600/900?random=23" style="width: 100%; height: 100%; object-fit: cover; position: absolute; inset: 0;" alt="Slide 3"/>
                             </div>
                         </div>
 
-                        <!-- Slider Controls -->
-                        <div class="swiper-pagination !bottom-4"></div>
-                        <div class="swiper-button-next !text-white !right-4"></div>
-                        <div class="swiper-button-prev !text-white !left-4"></div>
+                        <!-- Controls -->
+                        <div class="swiper-pagination"></div>
+                        <!-- <div class="swiper-button-next"></div>
+                        <div class="swiper-button-prev"></div> -->
                     </div>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Features Section - Modern Design -->
+    <!-- Features Section -->
     <section id="features" class="py-16 md:py-24 bg-gradient-to-b from-white via-blue-50/50 to-white dark:from-gray-900 dark:via-gray-800/50 dark:to-gray-900">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="text-center mb-16 md:mb-20">
@@ -275,7 +212,7 @@
         </div>
     </section>
 
-    <!-- How It Works - Timeline Design -->
+    <!-- How It Works -->
     <section id="how-it-works" class="py-16 md:py-24 bg-gradient-to-b from-blue-50/50 to-white dark:from-gray-800/50 dark:to-gray-900 relative overflow-hidden">
         <div class="absolute inset-0 bg-grid-gray-900/[0.02] bg-grid-pattern opacity-10"></div>
 
@@ -505,58 +442,75 @@
 @endsection
 
 @push('frontend_scripts')
-<script>
-    // Add floating animation to elements
-    document.querySelectorAll('.floating').forEach(el => {
-        el.style.setProperty('--float-distance', Math.random() * 20 + 10 + 'px');
-    });
+    <script>
+        $(document).ready(function() {
+            // Simple jQuery Counter Animation
+            function initCounterAnimation() {
+                $('.counter').each(function() {
+                    const $counter = $(this);
 
-    // Initialize scroll animations
-    const observerOptions = {
-        threshold: 0.1,
-        rootMargin: '0px 0px -50px 0px'
-    };
+                    // Don't re-animate
+                    if ($counter.data('animated')) return;
 
-    const observer = new IntersectionObserver((entries) => {
-        entries.forEach(entry => {
-            if (entry.isIntersecting) {
-                entry.target.classList.add('visible');
+                    // Check if element is in viewport
+                    const elementTop = $counter.offset().top;
+                    const elementBottom = elementTop + $counter.outerHeight();
+                    const viewportTop = $(window).scrollTop();
+                    const viewportBottom = viewportTop + $(window).height();
+
+                    // If not in viewport, skip
+                    if (elementBottom < viewportTop || elementTop > viewportBottom) {
+                        return;
+                    }
+
+                    // Mark as animated
+                    $counter.data('animated', true);
+
+                    // Get counter data
+                    const target = parseFloat($counter.data('target')) || parseFloat($counter.text());
+                    const suffix = $counter.data('suffix') || '';
+                    const isDecimal = target.toString().includes('.');
+
+                    // Store original content for suffix
+                    const originalSuffix = suffix;
+
+                    // Start animation
+                    $({ countNum: 0 }).animate({ countNum: target }, {
+                        duration: 2000,
+                        easing: 'swing',
+                        step: function(now) {
+                            // For decimal values (like 4.9)
+                            if (isDecimal) {
+                                $counter.text(now.toFixed(1) + originalSuffix);
+                            }
+                            // For percentage (98%)
+                            else if (originalSuffix === '%') {
+                                $counter.text(Math.floor(now) + originalSuffix);
+                            }
+                            // For other values (2500+)
+                            else {
+                                $counter.text(Math.floor(now) + originalSuffix);
+                            }
+                        },
+                        complete: function() {
+                            // Ensure final value is correct
+                            if (isDecimal) {
+                                $counter.text(target.toFixed(1) + originalSuffix);
+                            } else {
+                                $counter.text(target + originalSuffix);
+                            }
+                        }
+                    });
+                });
             }
+
+            // Run on scroll and load
+            $(window).on('scroll', initCounterAnimation);
+            $(document).ready(initCounterAnimation);
+            $(window).on('load', initCounterAnimation);
+
+            // Also trigger after a short delay to catch any dynamically loaded content
+            setTimeout(initCounterAnimation, 500);
         });
-    }, observerOptions);
-
-    document.querySelectorAll('.fade-in').forEach(el => {
-        observer.observe(el);
-    });
-
-    // Counter animation
-    function animateCounter(element, start, end, duration) {
-        let startTimestamp = null;
-        const step = (timestamp) => {
-            if (!startTimestamp) startTimestamp = timestamp;
-            const progress = Math.min((timestamp - startTimestamp) / duration, 1);
-            element.innerHTML = Math.floor(progress * (end - start) + start);
-            if (progress < 1) {
-                window.requestAnimationFrame(step);
-            }
-        };
-        window.requestAnimationFrame(step);
-    }
-
-    // Animate counters when they come into view
-    const counterObserver = new IntersectionObserver((entries) => {
-        entries.forEach(entry => {
-            if (entry.isIntersecting) {
-                const counter = entry.target;
-                const target = parseInt(counter.getAttribute('data-target'));
-                animateCounter(counter, 0, target, 2000);
-                counterObserver.unobserve(counter);
-            }
-        });
-    }, { threshold: 0.5 });
-
-    document.querySelectorAll('.counter').forEach(counter => {
-        counterObserver.observe(counter);
-    });
-</script>
+    </script>
 @endpush
