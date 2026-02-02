@@ -4,6 +4,7 @@ namespace App\Livewire;
 
 use App\Models\Exam;
 use Livewire\Component;
+use App\Models\ExamAttemptUser;
 
 class ExamPage extends Component
 {
@@ -55,10 +56,30 @@ class ExamPage extends Component
         }
     }
 
-    public function submit() {
-        // Save attempt, calculate score, etc.
-        // Example: ExamAttempt::create([...]);
-        return redirect()->route('exam', $this->examId);
+    public function submit()
+    {
+        $score = 0;
+        foreach ($this->questions as $question) {
+            $correctOption = $question->options->where('is_correct', true)->first();
+            if ($this->answers[$question->id] == $correctOption->id) {
+                $score++;
+            }
+        }
+
+        // Calculate percentile (example: percentage of correct answers)
+        $percentile = ($score / count($this->questions)) * 100;
+
+        // Save attempt without mass assignment
+        $attempt = new ExamAttemptUser();
+        $attempt->user_id      = auth()->id();
+        $attempt->exam_id      = $this->examId;
+        $attempt->started_at   = now(); // or track when exam started
+        $attempt->submitted_at = now();
+        $attempt->score        = $score;
+        $attempt->percentile   = $percentile;
+        $attempt->save();
+
+        return redirect()->route('exam.result', $this->examId);
     }
 
     public function render()

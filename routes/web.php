@@ -40,10 +40,10 @@ Route::get('/exams', [FrontendExamController::class, 'exam'])->name('exam');
 Route::middleware('auth')->group(function () {
     Route::get('/exam/{id}/rules', [FrontendExamController::class, 'rules'])->name('exam.rules');
     Route::get('/exam/{id}/start', [FrontendExamController::class, 'start'])->name('exam.start');
-
+    Route::get('/exam/{id}/result', [FrontendExamController::class, 'result'])->name('exam.result');
 });
 
-// Backend Routes
+//=================================== Backend Routes =======================================//
 Route::middleware('auth')->prefix('admin')->group(function () {
     Route::get('/dashboard', [AdminDashboardController::class, 'dashboard'])->name('admin.dashboard');
 
