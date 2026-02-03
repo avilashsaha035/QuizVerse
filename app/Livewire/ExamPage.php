@@ -4,6 +4,7 @@ namespace App\Livewire;
 
 use App\Models\Exam;
 use Livewire\Component;
+use App\Models\userAnswer;
 use App\Models\ExamAttemptUser;
 
 class ExamPage extends Component
@@ -59,17 +60,18 @@ class ExamPage extends Component
     public function submit()
     {
         $score = 0;
+
+        // Calculate score
         foreach ($this->questions as $question) {
-            $correctOption = $question->options->where('is_correct', true)->first();
+            $correctOption = $question->options->where('is_correct', '1')->first();
             if ($this->answers[$question->id] == $correctOption->id) {
                 $score++;
             }
         }
 
-        // Calculate percentile (example: percentage of correct answers)
         $percentile = ($score / count($this->questions)) * 100;
 
-        // Save attempt without mass assignment
+        // Save attempt
         $attempt = new ExamAttemptUser();
         $attempt->user_id      = auth()->id();
         $attempt->exam_id      = $this->examId;
@@ -78,6 +80,20 @@ class ExamPage extends Component
         $attempt->score        = $score;
         $attempt->percentile   = $percentile;
         $attempt->save();
+
+        // Save each answer into user_answers
+        foreach ($this->questions as $question) {
+            $selectedOptionId = $this->answers[$question->id] ?? null;
+            $correctOption    = $question->options->where('is_correct', '1')->first();
+
+            $userAnswer = new userAnswer();
+            $userAnswer->exam_attempt_users_id = $attempt->id;
+            $userAnswer->question_id           = $question->id;
+            $userAnswer->selected_option_id    = $selectedOptionId;
+            $userAnswer->is_correct            = ($selectedOptionId == optional($correctOption)->id);
+            $userAnswer->answered_at           = now();
+            $userAnswer->save();
+        }
 
         return redirect()->route('exam.result', $this->examId);
     }

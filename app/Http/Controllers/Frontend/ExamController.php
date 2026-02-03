@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Frontend;
 
 use App\Models\Exam;
+use App\Models\userAnswer;
 use Illuminate\Http\Request;
 use App\Models\ExamAttemptUser;
 use App\Http\Controllers\Controller;
@@ -33,6 +34,9 @@ class ExamController extends Controller
             ->latest('submitted_at')
             ->firstOrFail();
 
-        return view('frontend.exam.result', compact('exam', 'attempt'));
+        // Load all answers for this attempt
+        $userAnswers = userAnswer::where('exam_attempt_users_id', $attempt->id)->get()->keyBy('question_id'); // easy lookup by question_id
+
+        return view('frontend.exam.result', compact('exam', 'attempt', 'userAnswers'));
     }
 }
