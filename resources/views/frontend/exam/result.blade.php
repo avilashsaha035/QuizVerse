@@ -51,6 +51,10 @@
                                 @endif
                             </div>
                         @endforeach
+
+                        <p class="font-medium text-blue-600">
+                            <strong>Explanation:</strong> {{ $question->explanation?->explanation_text }}
+                        </p>
                     </div>
                 @endforeach
             </div>

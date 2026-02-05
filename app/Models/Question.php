@@ -10,7 +10,7 @@ class Question extends Model
 {
     use HasFactory;
 
-     protected $fillable = [
+    protected $fillable = [
         'question_text',
         'subject_id',
         'exam_type',
@@ -26,5 +26,8 @@ class Question extends Model
     }
     public function subject() {
         return $this->belongsTo(Subject::class);
+    }
+    public function explanation() {
+        return $this->hasOne(QuestionExplanation::class);
     }
 }

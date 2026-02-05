@@ -27,7 +27,7 @@ class ExamController extends Controller
 
     public function result($id)
     {
-        $exam = Exam::with('questions.options')->findOrFail($id);
+        $exam = Exam::with(['questions.options', 'questions.explanation'])->findOrFail($id);
 
         $attempt = ExamAttemptUser::where('exam_id', $id)
             ->where('user_id', auth()->id())
