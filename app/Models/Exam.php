@@ -30,12 +30,15 @@ class Exam extends Model
         'created_by',
     ];
 
-    public function subjects()
-    {
+    public function subjects() {
         return $this->belongsToMany(Subject::class, 'exam_subjects')->withPivot('question_count')->withTimestamps();
     }
 
     public function questions() {
         return $this->belongsToMany(Question::class, 'exam_questions')->withPivot('order')->withTimestamps();
+    }
+
+    public function attempts() {
+        return $this->hasMany(ExamAttemptUser::class);
     }
 }

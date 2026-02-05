@@ -121,11 +121,16 @@
                                 </div>
 
                                 <div class="flex items-center justify-between">
-                                    <a href="{{ route('exam.rules', $exam->id) }}"
-                                    class="py-2 bg-gradient-to-r from-emerald-500 to-emerald-600 hover:from-emerald-600 hover:to-emerald-700 text-white rounded-lg font-semibold shadow-lg hover:shadow-xl transition-all duration-200 text-sm flex items-center justify-center min-w-[140px] hover:-translate-y-0.5 active:translate-y-0">
-                                        <i class="fas fa-play text-sm mr-1"></i>
-                                        <span class="whitespace-nowrap">Start Exam</span>
-                                    </a>
+                                    @if (auth()->check() && $exam->attempts_allowed > $user_total_attempts)
+                                        <a href="{{ route('exam.rules', $exam->id) }}"
+                                            class="py-2 bg-gradient-to-r from-emerald-500 to-emerald-600 hover:from-emerald-600 hover:to-emerald-700 text-white rounded-lg font-semibold shadow-lg hover:shadow-xl transition-all duration-200 text-sm flex items-center justify-center min-w-[110px] hover:-translate-y-0.5 active:translate-y-0">
+                                            <i class="fas fa-play text-sm mr-1"></i>
+                                            <span class="whitespace-nowrap">Start Exam</span>
+                                        </a>
+                                    @else
+                                        <p class="text-red-400 text-sm p-2"><i class="fa-solid fa-ban"></i> No Attempts Available!!</p>
+                                    @endif
+                                    <p class="text-xs text-gray-600"> Remaining: {{ $exam->attempts_allowed - $user_total_attempts }} Attempts</p>
                                 </div>
 
                                 <!-- Additional info -->

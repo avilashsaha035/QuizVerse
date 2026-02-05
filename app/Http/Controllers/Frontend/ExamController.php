@@ -12,7 +12,9 @@ class ExamController extends Controller
 {
     public function exam() {
         $exams =  Exam::where('is_active', 1)->orderBy('updated_at', 'desc')->paginate(6);
-        return view('frontend.exam.all-exam', compact('exams'));
+        $user_total_attempts = ExamAttemptUser::where('user_id', auth()->id())->count();
+        // dd($user_total_attempts);
+        return view('frontend.exam.all-exam', compact('exams', 'user_total_attempts'));
     }
 
     public function rules($id) {

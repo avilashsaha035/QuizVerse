@@ -40,6 +40,7 @@ class ExamController extends Controller
             'access_code'      => 'nullable|string|max:50',
             'is_shuffling'     => 'nullable|integer|in:0,1',
             'is_active'        => 'nullable|integer|in:0,1',
+            'attempts_allowed' => 'nullable',
             'start_date'       => 'nullable|date',
             'start_time'       => 'nullable',
             'end_date'         => 'nullable|date|after_or_equal:start_date',
@@ -77,6 +78,7 @@ class ExamController extends Controller
             $exam->access_code      = $validated['access_code'] ?? null;
             $exam->is_shuffling     = $validated['is_shuffling'] ?? 0;
             $exam->is_active        = $validated['is_active'] ?? 0;
+            $exam->attempts_allowed = $validated['attempts_allowed'] ?? null;
             $exam->start_date       = $validated['start_date'] ?? null;
             $exam->start_time       = $validated['start_time'] ?? null;
             $exam->end_date         = $validated['end_date'] ?? null;
@@ -137,6 +139,7 @@ class ExamController extends Controller
             'access_code'               => 'nullable|string|max:50',
             'is_shuffling'              => 'nullable|integer',
             'is_active'                 => 'nullable|integer',
+            'attempts_allowed'          => 'nullable',
             'start_date'                => 'nullable|date',
             'start_time'                => 'nullable',
             'end_date'                  => 'nullable|date|after_or_equal:start_date',
@@ -198,6 +201,7 @@ class ExamController extends Controller
             $exam->access_code      = $validated['access_code'] ?? null;
             $exam->is_shuffling     = $validated['is_shuffling'] ?? 0;
             $exam->is_active        = $validated['is_active'] ?? 0;
+            $exam->attempts_allowed = $validated['attempts_allowed'] ?? null;
             $exam->start_date       = $validated['start_date'] ?? null;
             $exam->start_time       = $validated['start_time'] ?? null;
             $exam->end_date         = $validated['end_date'] ?? null;

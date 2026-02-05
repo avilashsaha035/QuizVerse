@@ -104,26 +104,28 @@
 
                 <!-- Optional security + active -->
                 <div class="row g-3 mt-3">
-                    <div class="col-md-4">
+                    <div class="col-md-3">
                         <label class="form-label">Access code (optional)</label>
-                        <input type="text" name="access_code" class="form-control"
-                               value="{{ old('access_code', $exam->access_code) }}" placeholder="Leave blank for open access">
+                        <input type="text" name="access_code" class="form-control" value="{{ old('access_code', $exam->access_code) }}" placeholder="Leave blank for open access">
                     </div>
 
-                    <div class="col-md-4">
+                    <div class="col-md-3">
                         <label class="form-label">Shuffle questions?</label>
                         <div class="form-check form-switch mt-2">
-                            <input class="form-check-input" type="checkbox" id="is_shuffling" name="is_shuffling" value="1"
-                                   {{ old('is_shuffling', $exam->is_shuffling) ? 'checked' : '' }}>
+                            <input class="form-check-input" type="checkbox" id="is_shuffling" name="is_shuffling" value="1" {{ old('is_shuffling', $exam->is_shuffling) ? 'checked' : '' }}>
                         </div>
                     </div>
 
-                    <div class="col-md-4">
+                    <div class="col-md-3">
                         <label class="form-label">Active</label>
                         <div class="form-check form-switch mt-2">
-                            <input class="form-check-input" type="checkbox" id="is_active" name="is_active" value="1"
-                                   {{ old('is_active', $exam->is_active) ? 'checked' : '' }}>
+                            <input class="form-check-input" type="checkbox" id="is_active" name="is_active" value="1" {{ old('is_active', $exam->is_active) ? 'checked' : '' }}>
                         </div>
+                    </div>
+
+                    <div class="col-md-3">
+                        <label class="form-label">Attempts Allowed</label>
+                        <input type="number" name="attempts_allowed" class="form-control" value="{{ old('attempts_allowed', $exam->attempts_allowed) }}">
                     </div>
                 </div>
 
