@@ -6,15 +6,21 @@ use App\Models\Exam;
 use App\Models\userAnswer;
 use Illuminate\Http\Request;
 use App\Models\ExamAttemptUser;
+use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\Controller;
 
 class ExamController extends Controller
 {
-    public function exam() {
-        $exams =  Exam::where('is_active', 1)->orderBy('updated_at', 'desc')->paginate(6);
-        $user_total_attempts = ExamAttemptUser::where('user_id', auth()->id())->count();
-        // dd($user_total_attempts);
-        return view('frontend.exam.all-exam', compact('exams', 'user_total_attempts'));
+    public function exam()
+    {
+        $exams = Exam::where('is_active', 1)
+            ->with(['attempts' => function ($query) {
+                $query->where('user_id', auth()->id());
+            }])
+            ->orderBy('updated_at', 'desc')
+            ->paginate(6);
+
+        return view('frontend.exam.all-exam', compact('exams'));
     }
 
     public function rules($id) {

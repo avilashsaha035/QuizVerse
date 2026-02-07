@@ -86,9 +86,13 @@
                 </div>
             @else
                 <!-- Exams Grid -->
-                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-3 gap-6">
                     <!-- Exam Card -->
                     @foreach ($exams as $exam)
+                        @php
+                            $attempts_used = $exam->attempts->count();
+                            $remaining_attempts = $exam->attempts_allowed - $attempts_used;
+                        @endphp
                         <div class="bg-white dark:bg-gray-800 rounded-xl shadow-lg overflow-hidden border border-gray-100 dark:border-gray-700 card-hover group">
                             <a href="#">
                                 <img class="rounded-t-base object-cover" src="{{ $exam->thumbnail ? asset('storage/exam_thumbnails/' . $exam->thumbnail) : asset('images/default-exam.png') }}" alt="thumbnail" />
@@ -120,17 +124,24 @@
                                     </div>
                                 </div>
 
-                                <div class="flex items-center justify-between">
-                                    @if (!auth()->check() || (auth()->check() && $exam->attempts_allowed > $user_total_attempts))
-                                        <a href="{{ route('exam.rules', $exam->id) }}"
-                                            class="py-2 bg-gradient-to-r from-emerald-500 to-emerald-600 hover:from-emerald-600 hover:to-emerald-700 text-white rounded-lg font-semibold shadow-lg hover:shadow-xl transition-all duration-200 text-sm flex items-center justify-center min-w-[110px] hover:-translate-y-0.5 active:translate-y-0">
-                                            <i class="fas fa-play text-sm mr-1"></i>
-                                            <span class="whitespace-nowrap">Start Exam</span>
-                                        </a>
-                                    @else
-                                        <p class="text-red-400 text-sm p-2"><i class="fa-solid fa-ban"></i> No Attempts Available!!</p>
-                                    @endif
-                                    <p class="text-xs text-gray-600">{{ $exam->attempts_allowed - $user_total_attempts }} Attempts Remaining</p>
+                                <div class="flex justify-between">
+                                    <div class="flex items-center">
+                                        @if (!auth()->check() || $remaining_attempts > 0)
+                                            <a href="{{ route('exam.rules', $exam->id) }}"
+                                                class="py-2 bg-gradient-to-r from-emerald-500 to-emerald-600 hover:from-emerald-600 hover:to-emerald-700 text-white rounded-lg font-semibold shadow-lg hover:shadow-xl transition-all duration-200 text-sm flex items-center justify-center min-w-[110px] hover:-translate-y-0.5 active:translate-y-0">
+                                                <i class="fas fa-play text-sm mr-1"></i>
+                                                <span class="whitespace-nowrap">Start Exam</span>
+                                            </a>
+                                        @else
+                                            <p class="text-red-400 text-sm p-2"><i class="fa-solid fa-ban"></i> No Attempts Available!!</p>
+                                        @endif
+                                    </div>
+
+                                    <div class="flex items-center">
+                                        @if (auth()->check() && $remaining_attempts != 0)
+                                            <p class="text-sm font-semibold text-amber-500"><i class="fa-solid fa-clock-rotate-left fa-flip-horizontal mr-1"></i> {{ $remaining_attempts }} Attempts Remaining</p>
+                                        @endif
+                                    </div>
                                 </div>
 
                                 <!-- Additional info -->
