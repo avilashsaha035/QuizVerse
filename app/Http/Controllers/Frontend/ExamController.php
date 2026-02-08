@@ -14,9 +14,14 @@ class ExamController extends Controller
     public function exam()
     {
         $exams = Exam::where('is_active', 1)
-            ->with(['attempts' => function ($query) {
-                $query->where('user_id', auth()->id());
-            }])
+            ->with([
+                'attempts' => function ($query) {
+                    $query->where('user_id', auth()->id());
+                },
+                'lastAttempt' => function ($query) {
+                    $query->where('user_id', auth()->id());
+                }
+            ])
             ->orderBy('updated_at', 'desc')
             ->paginate(6);
 

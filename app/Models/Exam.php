@@ -41,4 +41,8 @@ class Exam extends Model
     public function attempts() {
         return $this->hasMany(ExamAttemptUser::class);
     }
+
+    public function lastAttempt() {
+        return $this->hasOne(ExamAttemptUser::class)->latest('submitted_at');
+    }
 }

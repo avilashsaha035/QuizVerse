@@ -138,8 +138,12 @@
                                     </div>
 
                                     <div class="flex items-center">
-                                        @if (auth()->check() && $remaining_attempts != 0)
-                                            <p class="text-sm font-semibold text-amber-500"><i class="fa-solid fa-clock-rotate-left fa-flip-horizontal mr-1"></i> {{ $remaining_attempts }} Attempts Remaining</p>
+                                        @if (auth()->check())
+                                            @if ($remaining_attempts != 0)
+                                                <p class="text-sm font-semibold text-amber-500"><i class="fa-solid fa-clock-rotate-left fa-flip-horizontal mr-1"></i> {{ $remaining_attempts }} Attempts Remaining</p>
+                                            @elseif ($exam->lastAttempt)
+                                                <a href="{{ route('exam.result', $exam->id) }}" class="text-gray-600"> <i class="fa-solid fa-square-poll-vertical text-blue-600 mr-1"></i> see result</a>
+                                            @endif
                                         @endif
                                     </div>
                                 </div>

@@ -43,7 +43,7 @@ Route::middleware('auth')->group(function () {
     Route::get('/exam/{id}/result', [FrontendExamController::class, 'result'])->name('exam.result');
 });
 
-//=================================== Backend Routes =======================================//
+//=================================*** Backend Routes ***====================================//
 Route::middleware('auth')->prefix('admin')->group(function () {
     Route::get('/dashboard', [AdminDashboardController::class, 'dashboard'])->name('admin.dashboard');
 
