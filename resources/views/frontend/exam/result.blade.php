@@ -61,5 +61,6 @@
         </div>
 
         {{-- <a href="{{ route('exam', $exam->id) }}" class="mt-6 inline-block px-4 py-2 bg-emerald-600 text-white rounded-lg"> <i class="fa-solid fa-arrow-rotate-left"></i> Retake Exam</a> --}}
+        <a href="{{ route('exam', $exam->id) }}" class="mt-6 inline-block px-4 py-2 bg-slate-600 text-white rounded-lg"> <i class="fa-solid fa-backward mr-1"></i> back to exam</a>
     </div>
 @endsection
