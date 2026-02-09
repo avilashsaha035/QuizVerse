@@ -30,6 +30,12 @@ class ExamController extends Controller
 
     public function rules($id) {
         $exam = Exam::select('id', 'title', 'description')->findOrFail($id);
+
+        $attemptUsed = ExamAttemptUser::where('exam_id', $id)->where('user_id', auth()->id())->count();
+        if ($attemptUsed >= $exam->attempts_allowed) {
+            return redirect()->route('exam.result', $exam->id) ->with('error', 'No attempts remaining for this exam.');
+        }
+
         return view('frontend.exam.rules', compact('exam'));
     }
 
