@@ -185,9 +185,14 @@
                         <div class="relative">
                             <div class="h-20 bg-gradient-to-r from-blue-600 to-emerald-500"></div>
                             <div class="absolute -bottom-8 left-6">
-                                <div class="w-16 h-16 rounded-full border-4 border-white dark:border-gray-800 bg-gradient-to-br from-blue-400 to-blue-300 flex items-center justify-center">
-                                    <span class="text-white font-bold text-xl">{{ substr(Auth::user()->name, 0, 1) }}</span>
+                                <div class="w-16 h-16 rounded-full border-4 border-white bg-gradient-to-br from-blue-400 to-blue-300 flex items-center justify-center overflow-hidden">
+                                    @if(auth()->user()->participant && auth()->user()->participant->profile_image)
+                                        <img src="{{ asset('storage/' . auth()->user()->participant->profile_image) }}" alt="Profile Picture" class="w-full h-full object-cover">
+                                    @else
+                                        <span class="text-white font-bold text-xl"> {{ substr(auth()->user()->name, 0, 1) }}</span>
+                                    @endif
                                 </div>
+
                             </div>
                         </div>
                         <div class="pt-12 px-6 pb-6">
@@ -199,11 +204,6 @@
                                    class="flex items-center justify-center w-full px-4 py-2 bg-gradient-to-r from-blue-600 to-blue-500 hover:from-blue-700 hover:to-blue-600 text-white rounded-lg font-medium shadow hover:shadow-md transition-all duration-200 text-sm">
                                     <i class="fas fa-user-edit mr-2"></i>
                                     Edit Profile
-                                </a>
-                                <a href="/settings"
-                                   class="flex items-center justify-center w-full px-4 py-2 border border-gray-300 dark:border-gray-600 text-gray-700 dark:text-gray-300 hover:bg-gray-50 dark:hover:bg-gray-700 rounded-lg font-medium transition-colors duration-200 text-sm">
-                                    <i class="fas fa-cog mr-2"></i>
-                                    Settings
                                 </a>
                             </div>
 
