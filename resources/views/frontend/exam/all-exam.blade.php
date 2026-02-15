@@ -126,12 +126,27 @@
 
                                 <div class="flex justify-between">
                                     <div class="flex items-center">
+                                        @php
+                                            $now = Carbon\Carbon::now();
+                                            $examStart = Carbon\Carbon::createFromFormat('Y-m-d H:i:s', $exam->start_date . ' ' . $exam->start_time);
+                                            $examEnd   = Carbon\Carbon::createFromFormat('Y-m-d H:i:s', $exam->end_date . ' ' . $exam->end_time);
+
+                                            $examStarted = $now->greaterThanOrEqualTo($examStart);
+                                            $examEnded   = $now->greaterThan($examEnd);
+                                        @endphp
+
                                         @if (!auth()->check() || $remaining_attempts > 0)
-                                            <a href="{{ route('exam.rules', $exam->id) }}"
-                                                class="py-2 bg-gradient-to-r from-emerald-500 to-emerald-600 hover:from-emerald-600 hover:to-emerald-700 text-white rounded-lg font-semibold shadow-lg hover:shadow-xl transition-all duration-200 text-sm flex items-center justify-center min-w-[110px] hover:-translate-y-0.5 active:translate-y-0">
-                                                <i class="fas fa-play text-sm mr-1"></i>
-                                                <span class="whitespace-nowrap">Start Exam</span>
-                                            </a>
+                                            @if ($examStarted && !$examEnded)
+                                                <a href="{{ route('exam.rules', $exam->id) }}"
+                                                    class="py-2 bg-gradient-to-r from-emerald-500 to-emerald-600 hover:from-emerald-600 hover:to-emerald-700 text-white rounded-lg font-semibold shadow-lg hover:shadow-xl transition-all duration-200 text-sm flex items-center justify-center min-w-[110px] hover:-translate-y-0.5 active:translate-y-0">
+                                                    <i class="fas fa-play text-sm mr-1"></i>
+                                                    <span class="whitespace-nowrap">Start Exam</span>
+                                                </a>
+                                            @elseif(!$examStarted)
+                                                <p class="text-yellow-500 text-sm p-2"><i class="fa-solid fa-clock"></i> Exam not started yet</p>
+                                            @else
+                                                <p class="text-red-400 text-sm p-2"><i class="fa-solid fa-ban"></i> Exam has ended</p>
+                                            @endif
                                         @else
                                             <p class="text-red-400 text-sm p-2"><i class="fa-solid fa-ban"></i> No Attempts Available!!</p>
                                         @endif
