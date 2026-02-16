@@ -93,7 +93,7 @@
                             $attempts_used = $exam->attempts->count();
                             $remaining_attempts = $exam->attempts_allowed - $attempts_used;
                         @endphp
-                        <div class="bg-white dark:bg-gray-800 rounded-xl shadow-lg overflow-hidden border border-gray-100 dark:border-gray-700 card-hover group">
+                        <div class="bg-white rounded-xl shadow-lg overflow-hidden border border-gray-100 card-hover group">
                             <a href="#">
                                 <img class="rounded-t-base object-cover" src="{{ $exam->thumbnail ? asset('storage/exam_thumbnails/' . $exam->thumbnail) : asset('images/default-exam.png') }}" alt="thumbnail" />
                             </a>
@@ -143,7 +143,7 @@
                                                     <span class="whitespace-nowrap">Start Exam</span>
                                                 </a>
                                             @elseif(!$examStarted)
-                                                <p class="text-yellow-500 text-sm p-2"><i class="fa-solid fa-clock"></i> Exam not started yet</p>
+                                                <p class="text-gray-600 text-sm"><i class="fa-solid fa-bullhorn text-red-600 mr-2"></i> Starts from: {{ \Carbon\Carbon::parse($exam->start_date)->format('d M, Y')  }} </p>
                                             @else
                                                 <p class="text-red-400 text-sm p-2"><i class="fa-solid fa-ban"></i> Exam has ended</p>
                                             @endif
@@ -154,8 +154,8 @@
 
                                     <div class="flex items-center">
                                         @if (auth()->check())
-                                            @if ($remaining_attempts != 0)
-                                                <p class="text-sm font-semibold text-amber-500"><i class="fa-solid fa-clock-rotate-left fa-flip-horizontal mr-1"></i> {{ $remaining_attempts }} Attempts Remaining</p>
+                                            @if (($examStarted && !$examEnded) && $remaining_attempts != 0)
+                                                <p class="text-xs font-semibold text-amber-500"><i class="fa-solid fa-clock-rotate-left fa-flip-horizontal mr-1"></i> {{ $remaining_attempts }} Attempts Remaining</p>
                                             @elseif ($exam->lastAttempt)
                                                 <a href="{{ route('exam.result', $exam->id) }}" class="text-gray-600"> <i class="fa-solid fa-square-poll-vertical text-blue-600 mr-1"></i> see result</a>
                                             @endif
