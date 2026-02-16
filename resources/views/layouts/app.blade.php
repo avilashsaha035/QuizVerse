@@ -21,6 +21,9 @@
         <!-- Toastr -->
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css">
 
+        <!-- Croppie -->
+        <link rel="stylesheet" href="https://unpkg.com/croppie/croppie.css" />
+
         <!-- Scripts -->
         @vite(['resources/css/app.css', 'resources/js/app.js'])
 
@@ -239,6 +242,9 @@
         <!-- Swiper JS for Header Slider -->
         <!-- <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script> -->
         <script src="{{ asset('assets/frontend/script/swiper-bundle.min.js') }}"></script>
+
+        <!-- Croppie -->
+        <script src="https://unpkg.com/croppie/croppie.min.js"></script>
 
         <!-- Toastr -->
         <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
