@@ -101,11 +101,13 @@
     <script>
         $(function() {
             var croppieInstance;
+            var originalFileName = null;
+
             // Open modal
             $('#editImageBtn').on('click', function() {
                 $('#imageModal').removeClass('hidden');
                 croppieInstance = new Croppie($('#croppie-container')[0], {
-                    viewport: { width: 200, height: 200, type: 'circle' },
+                    viewport: { width: 200, height: 200, type: 'square' },
                     boundary: { width: 250, height: 250 },
                     enableZoom: true
                 });
@@ -119,13 +121,17 @@
                 }
             });
 
-            // Load image into Croppie
+            // Load image into Croppie and store original filename
             $('#upload').on('change', function(event) {
-                var reader = new FileReader();
-                reader.onload = function(e) {
-                    croppieInstance.bind({ url: e.target.result });
-                };
-                reader.readAsDataURL(event.target.files[0]);
+                var file = event.target.files[0];
+                if (file) {
+                    originalFileName = file.name; // keep original name
+                    var reader = new FileReader();
+                    reader.onload = function(e) {
+                        croppieInstance.bind({ url: e.target.result });
+                    };
+                    reader.readAsDataURL(file);
+                }
             });
 
             // Crop & Save
@@ -134,25 +140,27 @@
                     type: 'blob',
                     size: 'viewport'
                 }).then(function(blob) {
-                    var file = new File([blob], "profile.png", { type: "image/png" });
+                    // fallback if no original name
+                    var filename = originalFileName ? originalFileName : 'profile.png';
 
-                    // Attach to hidden file input
+                    // create new File with original name
+                    var file = new File([blob], filename, { type: blob.type });
+
+                    // attach to hidden file input
                     var dataTransfer = new DataTransfer();
                     dataTransfer.items.add(file);
                     $('#croppedFile')[0].files = dataTransfer.files;
 
-                    // Update preview
+                    // update preview
                     var previewUrl = URL.createObjectURL(blob);
                     $('#profilePreview').attr('src', previewUrl);
 
-                    // Close modal
+                    // close modal
                     $('#imageModal').addClass('hidden');
                     croppieInstance.destroy();
 
-                    // Option A: auto-submit the form immediately
+                    // optionally auto-submit
                     $('#mainProfileForm').submit();
-
-                    // Option B: let user click "Update Profile" later
                 });
             });
         });
