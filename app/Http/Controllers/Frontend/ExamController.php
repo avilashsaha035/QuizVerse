@@ -29,7 +29,7 @@ class ExamController extends Controller
     }
 
     public function rules($id) {
-        $exam = Exam::select('id', 'title', 'description')->findOrFail($id);
+        $exam = Exam::select('id', 'title', 'description', 'attempts_allowed')->findOrFail($id);
 
         $attemptUsed = ExamAttemptUser::where('exam_id', $id)->where('user_id', auth()->id())->count();
         if ($attemptUsed >= $exam->attempts_allowed) {

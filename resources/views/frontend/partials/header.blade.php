@@ -51,7 +51,7 @@
                                 <i class="fas fa-tachometer-alt mr-3 text-blue-500 group-hover:scale-110 transition-transform duration-200"></i>
                                 <span class="group-hover:translate-x-1 transition-transform duration-200">Dashboard</span>
                             </a>
-                            @if(auth()->user() && !auth()->user()->roles->isEmpty())
+                            @if(auth()->user() && auth()->user()->hasRole('admin'))
                                 <a href="{{ route('admin.dashboard') }}"
                                 class="block px-4 py-3 text-sm text-gray-700 dark:text-gray-200 hover:bg-gradient-to-r hover:from-blue-50 hover:to-blue-100 dark:hover:from-blue-900/30 dark:hover:to-blue-900/10 hover:text-blue-600 dark:hover:text-blue-300 transition-all duration-200 flex items-center group border-l-4 border-transparent hover:border-blue-500 pl-3">
                                     <i class="fas fa-user-shield mr-3 text-blue-500 group-hover:scale-110 transition-transform duration-200"></i>
