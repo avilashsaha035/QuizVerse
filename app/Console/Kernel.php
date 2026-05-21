@@ -12,7 +12,13 @@ class Kernel extends ConsoleKernel
      */
     protected function schedule(Schedule $schedule): void
     {
-        // $schedule->command('inspire')->hourly();
+        // Send exam reminders every minute (checks for exams starting in the next hour)
+        $schedule->command('exam:send-reminders')
+            ->everyMinute()
+            ->withoutOverlapping()
+            ->onFailure(function () {
+                \Log::error('Failed to send exam reminders');
+            });
     }
 
     /**
