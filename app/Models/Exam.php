@@ -32,36 +32,54 @@ class Exam extends Model
     ];
 
     public function getStartDatetimeAttribute()
-{
-    return Carbon::parse($this->start_date . ' ' . $this->start_time);
-}
+    {
+        return Carbon::parse($this->start_date . ' ' . $this->start_time);
+    }
 
-public function getEndDatetimeAttribute()
-{
-    return Carbon::parse($this->end_date . ' ' . $this->end_time);
-}
+    public function getEndDatetimeAttribute()
+    {
+        return Carbon::parse($this->end_date . ' ' . $this->end_time);
+    }
 
-public function getIsActiveNowAttribute()
-{
-    $now = Carbon::now();
-    return $now->greaterThanOrEqualTo($this->start_datetime)
-        && $now->lessThanOrEqualTo($this->end_datetime);
-}
+    public function getIsActiveNowAttribute()
+    {
+        $now = Carbon::now();
+        return $now->greaterThanOrEqualTo($this->start_datetime)
+            && $now->lessThanOrEqualTo($this->end_datetime);
+    }
 
-public function getHasStartedAttribute()
-{
-    return Carbon::now()->greaterThanOrEqualTo($this->start_datetime);
-}
+    public function getHasStartedAttribute()
+    {
+        return Carbon::now()->greaterThanOrEqualTo($this->start_datetime);
+    }
 
-public function getHasEndedAttribute()
-{
-    return Carbon::now()->greaterThan($this->end_datetime);
-}
+    public function getHasEndedAttribute()
+    {
+        return Carbon::now()->greaterThan($this->end_datetime);
+    }
 
-public function getFormattedStartDateAttribute()
-{
-    return Carbon::parse($this->start_date)->format('d M, Y');
-}
+    public function getFormattedStartDateAttribute()
+    {
+        return Carbon::parse($this->start_date)->format('d M, Y');
+    }
+
+    public function getFormattedStartTimeAttribute()
+    {
+        if (!$this->start_time) {
+            return null;
+        }
+
+        return Carbon::parse($this->start_time)->format('g:i A');
+    }
+
+    public function getFormattedStartDatetimeAttribute()
+    {
+        if (!$this->start_date || !$this->start_time) {
+            return null;
+        }
+
+        return Carbon::parse($this->start_date . ' ' . $this->start_time)->format('d M, Y g:i A');
+    }
 
     public function subjects() {
         return $this->belongsToMany(Subject::class, 'exam_subjects')->withPivot('question_count')->withTimestamps();

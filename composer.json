@@ -12,6 +12,7 @@
         "laravel/tinker": "^2.8",
         "livewire/livewire": "^3.7",
         "maatwebsite/excel": "^3.1",
+        "predis/predis": "^3.4",
         "spatie/laravel-permission": "^6.23",
         "yajra/laravel-datatables": "10.0"
     },

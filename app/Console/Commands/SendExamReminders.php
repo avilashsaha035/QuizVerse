@@ -33,33 +33,33 @@ class SendExamReminders extends Command
             $now = Carbon::now();
             $oneHourLater = $now->copy()->addHour();
 
-            // Find exams that start between now and 1 hour from now
-            $upcomingExams = Exam::where('is_active', true)
-                ->whereRaw("CONCAT(start_date, ' ', start_time) > ?", [$now->format('Y-m-d H:i:s')])
-                ->whereRaw("CONCAT(start_date, ' ', start_time) <= ?", [$oneHourLater->format('Y-m-d H:i:s')])
+            $activeExams = Exam::where('is_active', true)
+                ->whereNotNull('start_date')
+                ->whereNotNull('start_time')
                 ->get();
+
+            $upcomingExams = $activeExams->filter(function (Exam $exam) use ($now, $oneHourLater) {
+                $startsAt = Carbon::parse("{$exam->start_date} {$exam->start_time}");
+                return $startsAt->greaterThan($now) && $startsAt->lessThanOrEqualTo($oneHourLater);
+            });
 
             $totalEmailsSent = 0;
 
             foreach ($upcomingExams as $exam) {
-                // Get participants for this exam
-                $participants = $exam->attempts()
-                    ->selectRaw('DISTINCT user_id')
-                    ->pluck('user_id');
+                $examStart = Carbon::parse("{$exam->start_date} {$exam->start_time}");
+                $this->info("Exam '{$exam->title}' starts at {$examStart->format('Y-m-d H:i:s')}");
 
-                // If no participants found via attempts, try to get from participants table if it exists
+                $participants = User::whereHas('participant')
+                    ->pluck('id');
+
                 if ($participants->isEmpty()) {
-                    $participants = User::whereHas('participant')
-                        ->pluck('id');
+                    $participants = User::whereNotNull('email')->pluck('id');
                 }
 
-                foreach ($participants as $userId) {
+                foreach ($participants->unique() as $userId) {
                     $user = User::find($userId);
                     if ($user && $user->email) {
-                        // Dispatch the job to Redis queue
-                        SendExamReminderEmail::dispatch($exam, $user)
-                            ->onQueue('default');
-
+                        SendExamReminderEmail::dispatch($exam, $user)->onQueue('default');
                         $totalEmailsSent++;
                     }
                 }

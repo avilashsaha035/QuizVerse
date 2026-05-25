@@ -74,7 +74,7 @@
             <p>Please ensure you are in a suitable environment and have a stable internet connection before the exam starts.</p>
 
             <p>
-                <a href="{{ route('exams.show', $exam->slug) }}" class="button">Go to Exam</a>
+                <a href="{{ route('exam.rules', $exam->id) }}" class="button">Go to Exam</a>
             </p>
 
             <p>Good luck with your exam!</p>

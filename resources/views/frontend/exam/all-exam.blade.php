@@ -138,7 +138,7 @@
                                                 {{-- Exam hasn't started yet --}}
                                                 <p class="text-gray-600 text-sm">
                                                     <i class="fa-solid fa-bullhorn text-red-600 mr-2"></i>
-                                                    Starts from: {{ $exam->formatted_start_date }}
+                                                    Starts from: {{ $exam->formatted_start_date }} @if($exam->formatted_start_time) at {{ $exam->formatted_start_time }} @endif
                                                 </p>
                                             @else
                                                 {{-- Exam has ended --}}
@@ -156,7 +156,7 @@
 
                                     <div class="flex items-center">
                                         @if (auth()->check())
-                                            @if (($examStarted && !$examEnded) && $remaining_attempts != 0)
+                                            @if ($exam->is_active_now && $remaining_attempts > 0)
                                                 <p class="text-xs font-semibold text-amber-500"><i class="fa-solid fa-clock-rotate-left fa-flip-horizontal mr-1"></i> {{ $remaining_attempts }} Attempts Remaining</p>
                                             @elseif ($exam->lastAttempt)
                                                 <a href="{{ route('exam.result', $exam->id) }}" class="text-gray-600"> <i class="fa-solid fa-square-poll-vertical text-blue-600 mr-1"></i> see result</a>
