@@ -23,7 +23,7 @@
 </style>
 
 @section('content')
-    <div class="py-8 w-full">
+    <div class="py-8 w-full h-screen">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <!-- Page Header -->
             <div class="mb-8">
