@@ -115,6 +115,14 @@
                     </li>
                 @endcan
 
+                @can('manage_site_setting')
+                    <li class="nav-item">
+                        <a href="{{ route('admin.settings.edit') }}" class="nav-link {{ request()->routeIs('admin.settings*') ? 'active' : '' }}">
+                            <i class="fa-solid fa-sliders me-2"></i>General Settings
+                        </a>
+                    </li>
+                @endcan
+
                 <!-- Title -->
                 {{-- <li class="nav-item ms-2 my-2">Documentation</li> --}}
 

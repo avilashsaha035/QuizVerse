@@ -19,6 +19,7 @@ class PermissionSeeder extends Seeder
             'manage_exam_setting',
             'manage_user',
             'manage_acl',
+            'manage_site_setting',
         ];
 
         foreach ($permissions as $permission) {

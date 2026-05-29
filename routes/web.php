@@ -10,6 +10,7 @@ use App\Http\Controllers\Backend\PermissionController;
 use App\Http\Controllers\Backend\ExamSettingsController;
 use App\Http\Controllers\Backend\AdminDashboardController;
 use App\Http\Controllers\Backend\UserController;
+use App\Http\Controllers\Backend\SiteSettingController;
 
 /*
 |--------------------------------------------------------------------------
@@ -112,6 +113,12 @@ Route::middleware('auth')->prefix('admin')->group(function () {
             'update'  => 'admin.permissions.update',
             'destroy' => 'admin.permissions.destroy',
         ]);
+});
+
+// ***** Site Settings Route *****//
+Route::middleware('auth')->prefix('admin')->group(function () {
+    Route::get('/settings', [SiteSettingController::class, 'edit'])->name('admin.settings.edit');
+    Route::post('/settings', [SiteSettingController::class, 'update'])->name('admin.settings.update');
 });
 
 require __DIR__.'/auth.php';
