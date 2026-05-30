@@ -1,8 +1,36 @@
 <footer class="bg-gray-900 text-gray-300">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10 grid grid-cols-1 md:grid-cols-3 gap-8">
         <div>
-            <h3 class="text-lg font-semibold text-white">QuizVerse</h3>
-            <p class="mt-2 text-sm">Your trusted platform for practice exams and learning.</p>
+            <h3 class="text-lg font-semibold text-white">
+                @if(isset($siteSettings) && $siteSettings->logo)
+                    <img src="{{ asset('storage/' . $siteSettings->logo) }}" alt="QuizVerse" class="h-8 w-auto object-contain mb-2">
+                @else
+                    QuizVerse
+                @endif
+            </h3>
+            <p class="mt-2 text-sm text-gray-400">Your trusted platform for practice exams and learning.</p>
+            @if(isset($siteSettings))
+                <ul class="mt-4 space-y-2 text-sm">
+                    @if($siteSettings->address)
+                        <li class="flex items-start text-gray-400">
+                            <i class="fas fa-map-marker-alt mt-1 mr-2 text-blue-500"></i>
+                            <span>{{ $siteSettings->address }}</span>
+                        </li>
+                    @endif
+                    @if($siteSettings->email)
+                        <li class="flex items-center text-gray-400">
+                            <i class="fas fa-envelope mr-2 text-blue-500"></i>
+                            <a href="mailto:{{ $siteSettings->email }}" class="hover:text-white transition-colors duration-200">{{ $siteSettings->email }}</a>
+                        </li>
+                    @endif
+                    @if($siteSettings->contact_number)
+                        <li class="flex items-center text-gray-400">
+                            <i class="fas fa-phone-alt mr-2 text-blue-500"></i>
+                            <a href="tel:{{ $siteSettings->contact_number }}" class="hover:text-white transition-colors duration-200">{{ $siteSettings->contact_number }}</a>
+                        </li>
+                    @endif
+                </ul>
+            @endif
         </div>
         <div>
             <h3 class="text-lg font-semibold text-white">Quick Links</h3>

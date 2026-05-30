@@ -2,8 +2,14 @@
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div class="flex justify-between items-center h-16">
             <!-- Logo with gradient -->
-            <a href="/" class="text-2xl font-bold bg-gradient-to-r from-blue-600 to-emerald-500 bg-clip-text text-transparent hover:from-blue-700 hover:to-emerald-600 transition-all duration-300">
-                QuizVerse
+            <a href="/" class="flex items-center">
+                @if(isset($siteSettings) && $siteSettings->logo)
+                    <img src="{{ asset('storage/' . $siteSettings->logo) }}" alt="QuizVerse" class="h-10 w-auto object-contain">
+                @else
+                    <span class="text-2xl font-bold bg-gradient-to-r from-blue-600 to-emerald-500 bg-clip-text text-transparent hover:from-blue-700 hover:to-emerald-600 transition-all duration-300">
+                        QuizVerse
+                    </span>
+                @endif
             </a>
 
             <!-- Navigation -->

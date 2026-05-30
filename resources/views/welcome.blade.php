@@ -93,23 +93,17 @@
                 <div class="relative fade-in" style="animation-delay: 0.7s;">
                     <div class="header-slider swiper rounded-2xl overflow-hidden shadow-2xl" style="height: 420px; position: relative;">
                         <div class="swiper-wrapper" style="height: 100%;">
-                            <div class="swiper-slide" style="position: relative; height: 100%;">
-                                <img src="https://picsum.photos/1600/900?random=21" style="width: 100%; height: 100%; object-fit: cover; position: absolute; inset: 0;" alt="Slide 1"/>
-                            </div>
-
-                            <div class="swiper-slide" style="position: relative; height: 100%;">
-                                <img src="https://picsum.photos/1600/900?random=22" style="width: 100%; height: 100%; object-fit: cover; position: absolute; inset: 0;" alt="Slide 2"/>
-                            </div>
-
-                            <div class="swiper-slide" style="position: relative; height: 100%;">
-                                <img src="https://picsum.photos/1600/900?random=23" style="width: 100%; height: 100%; object-fit: cover; position: absolute; inset: 0;" alt="Slide 3"/>
-                            </div>
+                            @if(isset($siteSettings) && $siteSettings->banners && count($siteSettings->banners) > 0)
+                                @foreach($siteSettings->banners as $key => $path)
+                                    <div class="swiper-slide" style="position: relative; height: 100%;">
+                                        <img src="{{ asset('storage/' . $path) }}" style="width: 100%; height: 100%; object-fit: cover; position: absolute; inset: 0;" alt="Slide {{ $key + 1 }}"/>
+                                    </div>
+                                @endforeach
+                            @endif
                         </div>
 
                         <!-- Controls -->
                         <div class="swiper-pagination"></div>
-                        <!-- <div class="swiper-button-next"></div>
-                        <div class="swiper-button-prev"></div> -->
                     </div>
                 </div>
             </div>
