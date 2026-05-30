@@ -15,6 +15,10 @@ class SiteSetting extends Model
         'address',
         'email',
         'contact_number',
+        'facebook_link',
+        'linkedin_link',
+        'instagram_link',
+        'whatsapp_link',
     ];
 
     protected $casts = [

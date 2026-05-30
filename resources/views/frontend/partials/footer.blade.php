@@ -41,12 +41,53 @@
             </ul>
         </div>
         <div>
-            <h3 class="text-lg font-semibold text-white">Follow Us</h3>
-            <div class="mt-2 flex space-x-4">
-                <a href="#" class="hover:text-white"><i class="fab fa-facebook"></i></a>
-                <a href="#" class="hover:text-white"><i class="fab fa-twitter"></i></a>
-                <a href="#" class="hover:text-white"><i class="fab fa-linkedin"></i></a>
-            </div>
+            @if(isset($siteSettings) && (
+                $siteSettings->facebook_link ||
+                $siteSettings->linkedin_link ||
+                $siteSettings->instagram_link ||
+                $siteSettings->whatsapp_link
+            ))
+                <h3 class="text-lg font-semibold text-white">Follow Us</h3>
+                <div class="mt-2 flex space-x-4">
+                    @if($siteSettings->facebook_link)
+                        <a href="{{ $siteSettings->facebook_link }}" target="_blank" class="hover:text-white transition-colors duration-200" title="Facebook">
+                            <i class="fab fa-facebook-f"></i>
+                        </a>
+                    @endif
+
+                    @if($siteSettings->linkedin_link)
+                        <a href="{{ $siteSettings->linkedin_link }}" target="_blank" class="hover:text-white transition-colors duration-200" title="LinkedIn">
+                            <i class="fab fa-linkedin-in"></i>
+                        </a>
+                    @endif
+
+                    @if($siteSettings->instagram_link)
+                        <a href="{{ $siteSettings->instagram_link }}" target="_blank" class="hover:text-white transition-colors duration-200" title="Instagram">
+                            <i class="fab fa-instagram"></i>
+                        </a>
+                    @endif
+
+                    @if($siteSettings->whatsapp_link)
+                        @php
+                            $waLink = $siteSettings->whatsapp_link;
+                            if (!\Illuminate\Support\Str::startsWith($waLink, ['http://', 'https://'])) {
+                                $cleanNum = preg_replace('/[^0-9]/', '', $waLink);
+                                $waLink = "https://wa.me/{$cleanNum}";
+                            }
+                        @endphp
+                        <a href="{{ $waLink }}" target="_blank" class="hover:text-white transition-colors duration-200" title="WhatsApp">
+                            <i class="fab fa-whatsapp"></i>
+                        </a>
+                    @endif
+                </div>
+            @else
+                <h3 class="text-lg font-semibold text-white">Follow Us</h3>
+                <div class="mt-2 flex space-x-4">
+                    <a href="#" class="hover:text-white"><i class="fab fa-facebook-f"></i></a>
+                    <a href="#" class="hover:text-white"><i class="fab fa-twitter"></i></a>
+                    <a href="#" class="hover:text-white"><i class="fab fa-linkedin-in"></i></a>
+                </div>
+            @endif
         </div>
     </div>
     <div class="border-t border-gray-700 text-center py-4 text-sm">

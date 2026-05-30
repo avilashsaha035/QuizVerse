@@ -61,7 +61,7 @@
 
                         <!-- Left Column: Site Logo & Text Fields -->
                         <div class="col-lg-6">
-                            <div class="card border h-100">
+                            <div class="card border">
                                 <div class="card-header bg-light">
                                     <h6 class="mb-0 text-dark"><i class="bi bi-info-circle-fill me-2 text-success"></i>Core Properties</h6>
                                 </div>
@@ -126,7 +126,63 @@
                                     </div>
                                 </div>
                             </div>
+
+                        <!-- Social Media Links -->
+                        <div class="card border mt-4">
+                            <div class="card-header bg-light">
+                                <h6 class="mb-0 text-dark"><i class="bi bi-share-fill me-2 text-success"></i>Social Media Links</h6>
+                            </div>
+                            <div class="card-body">
+                                <!-- Facebook Link -->
+                                <div class="mb-3">
+                                    <label class="form-label fw-bold">Facebook Profile/Page URL</label>
+                                    <div class="input-group">
+                                        <span class="input-group-text bg-primary text-white"><i class="fab fa-facebook-f"></i></span>
+                                        <input type="url" name="facebook_link" value="{{ old('facebook_link', $settings->facebook_link) }}" class="form-control @error('facebook_link') is-invalid @enderror" placeholder="https://facebook.com/yourpage">
+                                    </div>
+                                    @error('facebook_link')
+                                        <small class="text-danger">{{ $message }}</small>
+                                    @enderror
+                                </div>
+
+                                <!-- LinkedIn Link -->
+                                <div class="mb-3">
+                                    <label class="form-label fw-bold">LinkedIn Company/Profile URL</label>
+                                    <div class="input-group">
+                                        <span class="input-group-text bg-info text-white"><i class="fab fa-linkedin-in"></i></span>
+                                        <input type="url" name="linkedin_link" value="{{ old('linkedin_link', $settings->linkedin_link) }}" class="form-control @error('linkedin_link') is-invalid @enderror" placeholder="https://linkedin.com/company/yourpage">
+                                    </div>
+                                    @error('linkedin_link')
+                                        <small class="text-danger">{{ $message }}</small>
+                                    @enderror
+                                </div>
+
+                                <!-- Instagram Link -->
+                                <div class="mb-3">
+                                    <label class="form-label fw-bold">Instagram Profile URL</label>
+                                    <div class="input-group">
+                                        <span class="input-group-text bg-danger text-white"><i class="fab fa-instagram"></i></span>
+                                        <input type="url" name="instagram_link" value="{{ old('instagram_link', $settings->instagram_link) }}" class="form-control @error('instagram_link') is-invalid @enderror" placeholder="https://instagram.com/yourprofile">
+                                    </div>
+                                    @error('instagram_link')
+                                        <small class="text-danger">{{ $message }}</small>
+                                    @enderror
+                                </div>
+
+                                <!-- WhatsApp Number / Chat Link -->
+                                <div class="mb-0">
+                                    <label class="form-label fw-bold">WhatsApp Number or Chat Link</label>
+                                    <div class="input-group">
+                                        <span class="input-group-text bg-success text-white"><i class="fab fa-whatsapp"></i></span>
+                                        <input type="text" name="whatsapp_link" value="{{ old('whatsapp_link', $settings->whatsapp_link) }}" class="form-control @error('whatsapp_link') is-invalid @enderror" placeholder="+1234567890 or https://wa.me/...">
+                                    </div>
+                                    @error('whatsapp_link')
+                                        <small class="text-danger">{{ $message }}</small>
+                                    @enderror
+                                </div>
+                            </div>
                         </div>
+                    </div>
 
                         <!-- Right Column: Home Slide Banners Manager -->
                         <div class="col-lg-6">

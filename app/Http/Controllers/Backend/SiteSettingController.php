@@ -34,6 +34,10 @@ class SiteSettingController extends Controller
             'contact_number' => 'nullable|string|max:50',
             'deleted_banners' => 'nullable|array',
             'deleted_banners.*' => 'string',
+            'facebook_link' => 'nullable|url|max:255',
+            'linkedin_link' => 'nullable|url|max:255',
+            'instagram_link' => 'nullable|url|max:255',
+            'whatsapp_link' => 'nullable|string|max:255',
         ]);
 
         // 1. Handle single logo upload
@@ -76,6 +80,10 @@ class SiteSettingController extends Controller
         $settings->address = $validated['address'];
         $settings->email = $validated['email'];
         $settings->contact_number = $validated['contact_number'];
+        $settings->facebook_link = $validated['facebook_link'];
+        $settings->linkedin_link = $validated['linkedin_link'];
+        $settings->instagram_link = $validated['instagram_link'];
+        $settings->whatsapp_link = $validated['whatsapp_link'];
 
         $settings->save();
 
