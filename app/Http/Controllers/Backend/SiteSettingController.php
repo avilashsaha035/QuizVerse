@@ -4,11 +4,25 @@ namespace App\Http\Controllers\Backend;
 
 use App\Http\Controllers\Controller;
 use App\Models\SiteSetting;
+use App\Services\BannerCacheService;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 
 class SiteSettingController extends Controller
 {
+    /**
+     * BannerCacheService instance
+     */
+    protected BannerCacheService $bannerCache;
+
+    /**
+     * Constructor
+     */
+    public function __construct(BannerCacheService $bannerCache)
+    {
+        $this->bannerCache = $bannerCache;
+    }
+
     /**
      * Display a single-page view for creating and editing site settings.
      */
@@ -40,6 +54,8 @@ class SiteSettingController extends Controller
             'whatsapp_link' => 'nullable|string|max:255',
         ]);
 
+        $bannerModified = false;
+
         // 1. Handle single logo upload
         if ($request->hasFile('logo')) {
             // Delete old logo if it exists
@@ -60,6 +76,7 @@ class SiteSettingController extends Controller
                 if (in_array($path, $currentBanners)) {
                     Storage::disk('public')->delete($path);
                     $currentBanners = array_values(array_diff($currentBanners, [$path]));
+                    $bannerModified = true;
                 }
             }
         }
@@ -69,6 +86,7 @@ class SiteSettingController extends Controller
             foreach ($request->file('banners') as $file) {
                 if ($file->isValid()) {
                     $currentBanners[] = $file->store('settings/banners', 'public');
+                    $bannerModified = true;
                 }
             }
         }
@@ -86,6 +104,12 @@ class SiteSettingController extends Controller
         $settings->whatsapp_link = $validated['whatsapp_link'];
 
         $settings->save();
+
+        // Explicitly invalidate cache if banners were modified
+        // This ensures immediate cache refresh on the next request
+        if ($bannerModified) {
+            $this->bannerCache->invalidateCache();
+        }
 
         return redirect()->back()->with('success', 'Site settings updated successfully.');
     }
