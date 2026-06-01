@@ -4,7 +4,7 @@
             <!-- Logo with gradient -->
             <a href="/" class="flex items-center">
                 @if(isset($siteSettings) && $siteSettings->logo)
-                    <img src="{{ asset('storage/' . $siteSettings->logo) }}" alt="QuizVerse" class="h-10 w-auto object-contain">
+                    <img src="{{ asset('storage/' . $siteSettings->logo) }}" alt="QuizVerse" class="h-14 w-auto object-contain">
                 @else
                     <span class="text-2xl font-bold bg-gradient-to-r from-blue-600 to-emerald-500 bg-clip-text text-transparent hover:from-blue-700 hover:to-emerald-600 transition-all duration-300">
                         QuizVerse

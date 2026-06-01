@@ -3,7 +3,7 @@
         <div>
             <h3 class="text-lg font-semibold text-white">
                 @if(isset($siteSettings) && $siteSettings->logo)
-                    <img src="{{ asset('storage/' . $siteSettings->logo) }}" alt="QuizVerse" class="h-8 w-auto object-contain mb-2">
+                    <img src="{{ asset('storage/' . $siteSettings->logo) }}" alt="QuizVerse" class="h-14 w-auto object-contain mb-2">
                 @else
                     QuizVerse
                 @endif
